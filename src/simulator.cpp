@@ -26,21 +26,25 @@ bool Simulator::load_code(uint32_t addr, const std::vector<uint8_t> &code)
     return uc_mem_write(uc_, addr, code.data(), code.size()) == UC_ERR_OK;
 }
 
+static void mem_write_hook_callback(uc_engine *uc, uc_mem_type type,
+                                   uint64_t addr, int size,
+                                   int64_t value, void *user_data)
+{
+    auto &cb = *static_cast<Simulator::HookCallback *>(user_data);
+    cb(uc, addr, size, value);
+}
+
 void Simulator::add_mem_write_hook(uint32_t start, uint32_t end,
-                                   HookCallback callback)
+                                 HookCallback callback)
 {
     auto cb = std::make_unique<HookCallback>(callback);
     uc_hook hook;
-    uc_cb_hookmem_t hook_lambda = [](uc_engine *uc, uc_mem_type,
-                                     uint64_t addr, int size,
-                                     int64_t value, void *user_data)
-    {
-        auto &cb = *static_cast<HookCallback *>(user_data);
-        cb(uc, addr, size, value);
-    };
-
-    uc_hook_add(uc_, &hook, UC_HOOK_MEM_WRITE, hook_lambda, cb.get(), start, end);
-    hooks_.push_back(std::move(cb)); // Keep callback, avoid dangling pointer
+    
+    uc_hook_add(uc_, &hook, UC_HOOK_MEM_WRITE, 
+               reinterpret_cast<void*>(mem_write_hook_callback), 
+               cb.get(), start, end);
+    
+    hooks_.push_back(std::move(cb));
 }
 
 void Simulator::run(uint32_t pc, uint32_t timeout_ms)
