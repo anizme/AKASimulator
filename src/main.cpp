@@ -70,7 +70,7 @@ int main()
     try
     {
         ElfLoader loader;
-        if (!loader.load("../elf_builder/firmware.elf"))
+        if (!loader.load("../../elf_builder/firmware.elf"))
         {
             std::cerr << "Failed to load ELF!" << std::endl;
             return 1;
