@@ -11,38 +11,42 @@ bool ElfLoader::load(const std::string &elf_path)
 
     entry_point_ = elf_reader.get_entry();
 
-    for (const auto &section : elf_reader.sections)
+    for (int i = 0; i < elf_reader.segments.size(); ++i)
     {
-        ELFIO::Elf_Half type = section->get_type();
-        // We care about only SHT_PROGBITS and SHT_NOBITS sections
-        // SHT_PROGBITS: contains data, code, etc.
-        // SHT_NOBITS: represents uninitialized data (BSS)
-        // Other types are not relevant for loading into memory
-        // and can be ignored.
-        if (type == ELFIO::SHT_PROGBITS || type == ELFIO::SHT_NOBITS)
-        {
-            Section sec;
-            sec.name = section->get_name();
-            sec.address = static_cast<uint32_t>(section->get_address());
-            sec.size = static_cast<uint32_t>(section->get_size());
-            sec.flags = static_cast<uint32_t>(section->get_flags());
+        const ELFIO::segment *pseg = elf_reader.segments[i];
 
-            if (type == ELFIO::SHT_PROGBITS)
-            {
-                const char *data_ptr = section->get_data();
-                if (data_ptr != nullptr && sec.size > 0)
-                {
-                    sec.data = std::vector<uint8_t>(data_ptr, data_ptr + sec.size);
-                }
-            }
-            else if (type == ELFIO::SHT_NOBITS)
-            {
-                // BSS: allocated but not initialized data
-                sec.data = std::vector<uint8_t>(sec.size, 0);
-            }
-
-            sections_.push_back(std::move(sec));
+        // We only care about loadable segments (PT_LOAD)
+        if (pseg->get_type() != ELFIO::PT_LOAD) {
+            continue;
         }
+
+        Segment seg;
+        seg.virtual_address = static_cast<uint32_t>(pseg->get_virtual_address());
+        seg.physical_address = static_cast<uint32_t>(pseg->get_physical_address());
+        seg.size = static_cast<uint32_t>(pseg->get_memory_size());
+        seg.file_size = static_cast<uint32_t>(pseg->get_file_size());
+        seg.flags = static_cast<uint32_t>(pseg->get_flags());
+        seg.alignment = static_cast<uint32_t>(pseg->get_align());
+
+        // Get segment data
+        const char *data = pseg->get_data();
+        if (data != nullptr && seg.file_size > 0)
+        {
+            seg.data.assign(data, data + seg.file_size);
+
+            // If memory size is larger than file size, pad with zeros
+            if (seg.size > seg.file_size)
+            {
+                seg.data.resize(seg.size, 0);
+            }
+        }
+        else if (seg.size > 0)
+        {
+            // For NOBITS sections (like .bss) in the segment
+            seg.data.resize(seg.size, 0);
+        }
+
+        segments_.push_back(std::move(seg));
     }
 
     return true;

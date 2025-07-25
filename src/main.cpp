@@ -23,6 +23,18 @@ void add_basic_hooks(Simulator &sim)
                                std::cout << "[GPIOB] Write ODR @ 0x" << std::hex << addr << " = 0x" << value << std::endl;
                            });
 
+    // GPIOC
+    sim.add_mem_write_hook(GPIOC::ODR, GPIOC::ODR + 4,
+                           [](uc_engine *, uint64_t addr, int size, int64_t value)
+                           {
+                               std::cout << "[GPIOC] Write ODR @ 0x" << std::hex << addr
+                                         << " = 0x" << value
+                                         << " | PC13 state: " << ((value & (1 << 13)) ? "ON" : "OFF")
+                                         << std::endl;
+                           });
+
+    
+
     // RCC
     sim.add_mem_write_hook(RCC::CR, RCC::CR + 4,
                            [](uc_engine *, uint64_t addr, int size, int64_t value)
@@ -63,6 +75,7 @@ void add_basic_hooks(Simulator &sim)
     // Optionally: IPR
     sim.add_mem_write_hook(NVIC::IPR_BASE, NVIC::IPR_BASE + 0x100, [](uc_engine *, uint64_t addr, int size, int64_t value)
                            { std::cout << "[NVIC] Write IPR @ 0x" << std::hex << addr << " = 0x" << value << std::endl; });
+
 }
 
 int main()
@@ -70,7 +83,7 @@ int main()
     try
     {
         ElfLoader loader;
-        if (!loader.load("../../elf_builder/firmware.elf"))
+        if (!loader.load("elf_builder/input_source/main.elf"))
         {
             std::cerr << "Failed to load ELF!" << std::endl;
             return 1;
@@ -80,9 +93,9 @@ int main()
             STM32F103::FLASH::BASE, STM32F103::FLASH::SIZE,
             STM32F103::RAM::BASE, STM32F103::RAM::SIZE);
 
-        for (const auto &section : loader.get_sections())
+        for (const auto &section : loader.get_segments())
         {
-            sim.load_code(section.address, section.data);
+            sim.load_code(section.physical_address, section.data);
         }
 
         add_basic_hooks(sim);

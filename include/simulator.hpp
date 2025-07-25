@@ -11,7 +11,9 @@ public:
     using HookCallback = std::function<void(uc_engine *uc, uint64_t addr,
                                             int size, int64_t value)>;
 
-    Simulator(uint32_t flash_base, uint32_t flash_size, uint32_t ram_base, uint32_t ram_size);
+    Simulator(uint32_t flash_base, uint32_t flash_size,
+              uint32_t ram_base, uint32_t ram_size);
+
     ~Simulator();
 
     bool load_code(uint32_t addr, const std::vector<uint8_t> &code);

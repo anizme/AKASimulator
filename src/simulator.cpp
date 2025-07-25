@@ -2,6 +2,7 @@
 
 #include "simulator.hpp"
 #include <stdexcept>
+#include <iostream>
 
 Simulator::Simulator(uint32_t flash_base, uint32_t flash_size,
                      uint32_t ram_base, uint32_t ram_size)
@@ -49,7 +50,12 @@ void Simulator::add_mem_write_hook(uint32_t start, uint32_t end,
 
 void Simulator::run(uint32_t pc, uint32_t timeout_ms)
 {
-    uc_emu_start(uc_, pc, 0, 0, timeout_ms * 1000);
+    uc_err err = uc_emu_start(uc_, pc, 0, 0, timeout_ms * 1000000);
+    if (err) {
+        std::cerr << "Failed on uc_emu_start() with error: " << uc_strerror(err) << "\n";
+        throw std::runtime_error("Emulation failed");
+    }
+
 }
 
 uint32_t Simulator::read_register(int reg_id)

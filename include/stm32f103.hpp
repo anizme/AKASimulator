@@ -50,6 +50,17 @@ namespace STM32F103 {
             constexpr uint32_t BRR  = BASE + 0x14;
         }
 
+        // Thêm GPIOC
+        namespace GPIOC {
+            constexpr uint32_t BASE = 0x40011000;  // Địa chỉ base của GPIOC
+            constexpr uint32_t CRL  = BASE + 0x00;
+            constexpr uint32_t CRH  = BASE + 0x04;
+            constexpr uint32_t IDR  = BASE + 0x08;
+            constexpr uint32_t ODR  = BASE + 0x0C; // Output Data Register
+            constexpr uint32_t BSRR = BASE + 0x10; // Bit Set/Reset Register
+            constexpr uint32_t BRR  = BASE + 0x14; // Bit Reset Register
+        }
+
         // USART1
         namespace USART1 {
             constexpr uint32_t BASE  = 0x40013800;
