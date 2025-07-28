@@ -1,7 +1,6 @@
 {
     "files.associations": {
-        "stm32f10x_lib.h": "c",
-        "iostream": "cpp",
-        "typeinfo": "cpp"
+        "stdexcept": "cpp",
+        "unicorn.h": "c"
     }
 }
