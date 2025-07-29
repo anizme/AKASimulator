@@ -9,6 +9,6 @@ project(AKASimulator)
 set(UNICORN_BUILD_SHARED OFF CACHE BOOL "Build static Unicorn lib")
 
 # Add Unicorn subdirectory
-add_subdirectory(external/unicorn)
+add_subdirectory(lib/unicorn)
 
-add_subdirectory(src)
+add_subdirectory(aka_simulator)
