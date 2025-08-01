@@ -85,7 +85,6 @@ bool STM32F103C8T6Emulator::setupMemoryRegions()
     }
     else
     { // SystemMemory
-
         std::cerr << "Have not support to map BOOT alias region by System Momory mode " << std::endl;
         return false;
     }
@@ -106,8 +105,8 @@ bool STM32F103C8T6Emulator::setupMemoryRegions()
         return false;
     }
 
-    // Option Bytes (small, but can be read)
-    err = uc_mem_map(uc_engine_, OPTION_BYTES_BASE, OPTION_BYTES_SIZE, UC_PROT_READ | UC_PROT_WRITE);
+    // Option Bytes (small, but can be read, can be writen but have not supported this case yet)
+    err = uc_mem_map(uc_engine_, OPTION_BYTES_BASE, OPTION_BYTES_SIZE, UC_PROT_READ);
     if (err != UC_ERR_OK)
     {
         std::cerr << "Failed to map Option Bytes: " << uc_strerror(err) << std::endl;
@@ -119,14 +118,6 @@ bool STM32F103C8T6Emulator::setupMemoryRegions()
     if (err != UC_ERR_OK)
     {
         std::cerr << "Failed to map SRAM: " << uc_strerror(err) << std::endl;
-        return false;
-    }
-
-    // System Control Space (NVIC, SysTick, MPU), hook each region later
-    err = uc_mem_map(uc_engine_, SYSTEM_CONTROL_SPACE_BASE, SYSTEM_CONTROL_SPACE_SIZE, UC_PROT_READ | UC_PROT_WRITE);
-    if (err != UC_ERR_OK)
-    {
-        std::cerr << "Failed to map System Control Space: " << uc_strerror(err) << std::endl;
         return false;
     }
 
@@ -171,6 +162,14 @@ bool STM32F103C8T6Emulator::setupMemoryRegions()
     {
         if (!map_periph(base))
             return false;
+    }
+
+    // System Control Space (NVIC, SysTick, MPU), hook each region later
+    err = uc_mem_map(uc_engine_, SYSTEM_CONTROL_SPACE_BASE, SYSTEM_CONTROL_SPACE_SIZE, UC_PROT_READ | UC_PROT_WRITE);
+    if (err != UC_ERR_OK)
+    {
+        std::cerr << "Failed to map System Control Space: " << uc_strerror(err) << std::endl;
+        return false;
     }
 
     return true;
@@ -284,7 +283,7 @@ bool STM32F103C8T6Emulator::execute(const std::string &log_file_path)
     logHeader();
 
     // Start emulation (no instruction limit, no timeout)
-    uc_err err = uc_emu_start(uc_engine_, entry_point_ | 1, 0xFFFFFFFF, 0, 0);
+    uc_err err = uc_emu_start(uc_engine_, entry_point_ | 1, 0xFFFFFFFF, 0, 1000);
 
     closeLogFile();
 
@@ -326,9 +325,9 @@ void STM32F103C8T6Emulator::logHeader()
     log_file_ << "# Start Time: " << getCurrentTimestamp() << std::endl;
     log_file_ << "# Entry Point: 0x" << std::hex << entry_point_ << std::dec << std::endl;
     log_file_ << "# Memory Layout:" << std::endl;
-    log_file_ << "#   Flash: 0x" << std::hex << FLASH_BASE << " - 0x"
+    log_file_ << "# \tFlash: 0x" << std::hex << FLASH_BASE << " - 0x"
               << (FLASH_BASE + FLASH_SIZE - 1) << std::endl;
-    log_file_ << "#   SRAM:  0x" << SRAM_BASE << " - 0x"
+    log_file_ << "# \tSRAM:  0x" << SRAM_BASE << " - 0x"
               << (SRAM_BASE + SRAM_SIZE - 1) << std::dec << std::endl;
     log_file_ << "# Format: ADDRESS: HEX_BYTES" << std::endl;
     log_file_ << "#" << std::endl;
@@ -432,9 +431,9 @@ std::string STM32F103C8T6Emulator::getCurrentTimestamp() const
 void STM32F103C8T6Emulator::printMemoryLayout() const
 {
     std::cout << "Memory Layout:" << std::endl;
-    std::cout << "  Flash: 0x" << std::hex << FLASH_BASE << " - 0x"
+    std::cout << "\tFlash: 0x" << std::hex << FLASH_BASE << " - 0x"
               << (FLASH_BASE + FLASH_SIZE - 1) << " (" << std::dec << (FLASH_SIZE / 1024) << "KB)" << std::endl;
-    std::cout << "  SRAM:  0x" << std::hex << SRAM_BASE << " - 0x"
+    std::cout << "\tSRAM:  0x" << std::hex << SRAM_BASE << " - 0x"
               << (SRAM_BASE + SRAM_SIZE - 1) << " (" << std::dec << (SRAM_SIZE / 1024) << "KB)" << std::endl;
 }
 

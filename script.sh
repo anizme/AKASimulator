@@ -1,13 +1,13 @@
 #!/bin/bash
 
-FIRMWARE_PATH=build/elf/firmware.elf
+FIRMWARE_PATH=elf/firmware.elf
 
 echo "[Step 1] Build firmware ELF using ARM compiler"
 
 if [ ! -f "$FIRMWARE_PATH" ]; then
     echo "→ Firmware not found. Building firmware..."
-    cmake -S elf -B build/elf -DCMAKE_TOOLCHAIN_FILE=build/elf_builder/toolchain/gcc-arm-none-eabi.cmake
-    cmake --build build/elf
+    cmake -S elf -B elf/build -DCMAKE_TOOLCHAIN_FILE=toolchain/gcc-arm-none-eabi.cmake
+    cmake --build elf/build
     echo "[Finish step 1] Firmware built successfully."
 else
     echo "→ Firmware already exists at $FIRMWARE_PATH. Skipping build."

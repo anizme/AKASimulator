@@ -50,13 +50,13 @@ private:
 
     // Option bytes
     static constexpr uint32_t OPTION_BYTES_BASE = 0x1FFFF800; // Option bytes
-    static constexpr uint32_t OPTION_BYTES_SIZE = 0xF; // min 1 page, infact this must be 0xF
+    static constexpr uint32_t OPTION_BYTES_SIZE = 0x400; // min 1 page, infact this must be 0xF
 
     // SRAM
     static constexpr uint32_t SRAM_BASE = 0x20000000;
     static constexpr uint32_t SRAM_SIZE = 0x00005000; // 20KB
 
-    // Peripheral Region
+    // Peripheral Region. Found in ARMv7-M Arch Ref Manual
     static constexpr uint32_t BLOCK_SIZE = 0x400; // 1KB block size for peripherals
     
     // APH1 peripherals
@@ -73,7 +73,7 @@ private:
     static constexpr uint32_t APH1_I2C2_BASE = 0x40005800;
     static constexpr uint32_t APH1_USB_BASE = 0x40005C00;
     // No mapping for shared USB/CAN SRAM region, this region is used internally by peripheral USB/bxCAN
-    static constexpr uint32_t APH1_SHARED_USB_CAN_BASE = 0x40006000; // Sha0x40006400red USB/CAN SRAM region
+    static constexpr uint32_t APH1_SHARED_USB_CAN_BASE = 0x40006000; // Shared USB/CAN SRAM region
     static constexpr uint32_t APH1_SHARED_USB_CAN_SIZE = 0x200; // 512 bytes shared SRAM for USB/CAN
     static constexpr uint32_t APH1_bxCAN_BASE = 0x40006400;
     static constexpr uint32_t APH1_BKP_BASE = 0x40006C00;
@@ -97,7 +97,9 @@ private:
     static constexpr uint32_t AHB_FLASH_BASE = 0x40022000; // Flash interface
     static constexpr uint32_t AHB_CRC_BASE = 0x40023000;
 
-    // System Control Space- ARMv7-M Arch Ref Manual
+    // System Control Space (SCS) - found in ARMv7-M Arch Ref Manual
+    // There is a larger region that contains SCS, it is 0xE0000000-0x0E010000 or Cortex-M3 internal peripherals
+    // But I have not found an official documentation that decribes the exact left regions (except for SCS)
     static constexpr uint32_t SYSTEM_CONTROL_SPACE_BASE = 0xE000E000;
     static constexpr uint32_t SYSTEM_CONTROL_SPACE_SIZE = 0x1000; // 4KB
 
