@@ -103,6 +103,10 @@ private:
     static constexpr uint32_t SYSTEM_CONTROL_SPACE_BASE = 0xE000E000;
     static constexpr uint32_t SYSTEM_CONTROL_SPACE_SIZE = 0x1000; // 4KB
 
+    // Currently, boot mode is not used, so I pick an address SYSTEM_MEMORY_BASE 
+    // to make the stop address (return address for main function - this is test driver's main function)
+    static constexpr uint32_t STOP_ADDR = 0x1FFF0000;
+
     // Core components
     uc_engine *uc_engine_;
     std::ofstream log_file_;
@@ -115,6 +119,10 @@ private:
 
     // Boot mode
     BootMode boot_mode_;
+
+    // Entry address of main
+    uint32_t main_entry_address_;
+    bool lr_patched_ = false;
 
     // Private methods
     bool setupMemoryRegions();

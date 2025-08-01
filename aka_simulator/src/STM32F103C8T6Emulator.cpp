@@ -36,25 +36,6 @@ bool STM32F103C8T6Emulator::initialize()
         return false;
     }
 
-    // Setup hooks
-    err = uc_hook_add(uc_engine_, &code_hook_handle_, UC_HOOK_CODE,
-                      (void *)codeHookCallback, this, 1, 0);
-    if (err != UC_ERR_OK)
-    {
-        std::cerr << "Failed to add code hook: " << uc_strerror(err) << std::endl;
-        return false;
-    }
-
-    // Setup invalid memory access hook
-    err = uc_hook_add(uc_engine_, &invalid_mem_hook_handle_,
-                      UC_HOOK_MEM_READ_UNMAPPED | UC_HOOK_MEM_WRITE_UNMAPPED,
-                      (void *)invalidMemoryCallback, this, 1, 0);
-    if (err != UC_ERR_OK)
-    {
-        std::cerr << "Failed to add invalid memory hook: " << uc_strerror(err) << std::endl;
-        return false;
-    }
-
     std::cout << "Emulator initialized successfully" << std::endl;
     printMemoryLayout();
     return true;
@@ -86,6 +67,14 @@ bool STM32F103C8T6Emulator::setupMemoryRegions()
     else
     { // SystemMemory
         std::cerr << "Have not support to map BOOT alias region by System Momory mode " << std::endl;
+        return false;
+    }
+
+    // Map for stop address
+    err = uc_mem_map(uc_engine_, STOP_ADDR, BLOCK_SIZE, UC_PROT_ALL);
+    if (err != UC_ERR_OK)
+    {
+        std::cerr << "Failed to map stop_addr region: " << uc_strerror(err) << std::endl;
         return false;
     }
 
@@ -188,9 +177,56 @@ bool STM32F103C8T6Emulator::loadELF(const std::string &elf_path)
         return false;
     }
 
+    if (reader.get_class() != ELFIO::ELFCLASS32)
+    {
+        std::cerr << "This is not a 32-bit ELF file (STM32 uses ELF32)!" << std::endl;
+        return false;
+    }
+
     // Get entry point
     entry_point_ = static_cast<uint32_t>(reader.get_entry());
     std::cout << "Entry point: 0x" << std::hex << entry_point_ << std::dec << std::endl;
+
+    // Find the main function symbol
+    bool found_main = false;
+
+    for (int i = 0; i < reader.sections.size(); ++i)
+    {
+        ELFIO::section *sec = reader.sections[i];
+        if (sec->get_type() == ELFIO::SHT_SYMTAB)
+        {
+            const ELFIO::symbol_section_accessor symbols(reader, sec);
+            for (unsigned int j = 0; j < symbols.get_symbols_num(); ++j)
+            {
+                std::string name;
+                ELFIO::Elf64_Addr value;
+                ELFIO::Elf_Xword size;
+                unsigned char bind, type, other;
+                ELFIO::Elf_Half section_index;
+
+                symbols.get_symbol(j, name, value, size, bind, type, section_index, other);
+
+                if (name == "main")
+                {
+                    main_entry_address_ = static_cast<uint32_t>(value & ~1U);
+                    std::cout << "Raw main address from ELF: 0x" << std::hex << value
+                              << " | Aligned: 0x" << (value & ~1U) << std::dec << std::endl;
+                    found_main = true;
+                    break;
+                }
+            }
+        }
+    }
+
+    if (!found_main)
+    {
+        std::cerr << "Could not find 'main' symbol in ELF!" << std::endl;
+        return false;
+    }
+    else 
+    {
+        std::cout << "Found 'main' at: 0x" << std::hex << main_entry_address_ << std::dec << std::endl;
+    }
 
     // Load program segments into memory
     for (int i = 0; i < reader.segments.size(); ++i)
@@ -238,6 +274,7 @@ bool STM32F103C8T6Emulator::setupInitialState()
         return false;
     }
 
+    // Read reset handler (second word in Flash)
     err = uc_mem_read(uc_engine_, FLASH_BASE + 4, &reset_handler, sizeof(reset_handler));
     if (err != UC_ERR_OK)
     {
@@ -265,6 +302,25 @@ bool STM32F103C8T6Emulator::setupInitialState()
     std::cout << "Initial state:" << std::endl;
     std::cout << "  Stack Pointer: 0x" << std::hex << initial_sp << std::endl;
     std::cout << "  Reset Handler: 0x" << reset_handler << std::dec << std::endl;
+
+    // Setup hooks
+    err = uc_hook_add(uc_engine_, &code_hook_handle_, UC_HOOK_CODE,
+                      (void *)codeHookCallback, this, 1, 0);
+    if (err != UC_ERR_OK)
+    {
+        std::cerr << "Failed to add code hook: " << uc_strerror(err) << std::endl;
+        return false;
+    }
+
+    // Setup invalid memory access hook
+    err = uc_hook_add(uc_engine_, &invalid_mem_hook_handle_,
+                      UC_HOOK_MEM_READ_UNMAPPED | UC_HOOK_MEM_WRITE_UNMAPPED,
+                      (void *)invalidMemoryCallback, this, 1, 0);
+    if (err != UC_ERR_OK)
+    {
+        std::cerr << "Failed to add invalid memory hook: " << uc_strerror(err) << std::endl;
+        return false;
+    }
 
     return true;
 }
@@ -343,6 +399,24 @@ void STM32F103C8T6Emulator::codeHookCallback(uc_engine *uc, uint64_t address, ui
 
 void STM32F103C8T6Emulator::handleCodeExecution(uint64_t address, uint32_t size)
 {
+    // Assign LR to STOP_ADDR when entering main
+    if (address == main_entry_address_)
+    {
+        if (!lr_patched_)
+        {
+            uc_reg_write(uc_engine_, UC_ARM_REG_LR, &STOP_ADDR);
+            lr_patched_ = true;
+            std::cout << "[Hook] Set LR to STOP_ADDR at entry of main\n";
+        }
+    }
+
+    // Check if we reached the stop address
+    if (address == STOP_ADDR)
+    {
+        std::cout << "[Hook] Reached STOP_ADDR (main returned), stopping...\n";
+        uc_emu_stop(uc_engine_);
+    }
+
     // Read instruction bytes from memory
     std::vector<uint8_t> instruction_bytes(size);
     uc_err err = uc_mem_read(uc_engine_, address, instruction_bytes.data(), size);

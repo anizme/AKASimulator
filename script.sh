@@ -21,7 +21,7 @@ echo "[Finish step 2] Build complete. Check if the simulator binary is located i
 
 echo
 echo "[Step 3] Run the simulator"
-build/aka_simulator/stm32f103c8t6_emulator elf/main.elf output.log
+build/aka_simulator/stm32f103c8t6_emulator elf/firmware.elf output.log
 echo "[Finish step 3] Simulator is running. You can now interact with it."
 
 read -p "Press Enter to continue..."
