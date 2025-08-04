@@ -1,6 +1,6 @@
 # STM32F103C8T6 Emulation Log
 # ELF File: elf/firmware.elf
-# Start Time: 2025-08-04 20:50:41
+# Start Time: 2025-08-04 23:38:46
 # Entry Point: 0x8000229
 # Memory Layout:
 # 	Flash: 0x8000000 - 0x801ffff
@@ -9,350 +9,350 @@
 #
 
 0x08000228: df f8 2c d0
-
+startup.s:66 (Reset_Handler)
 0x0800022c: 0b 48
-
+startup.s:69 (Reset_Handler)
 0x0800022e: 0c 49
-
+startup.s:6a (Reset_Handler)
 0x08000230: 0c 4a
-
+startup.s:6b (Reset_Handler)
 0x08000232: 00 23
-
+startup.s:6c (Reset_Handler)
 0x08000234: 91 42
-
+startup.s:6e (Reset_Handler)
 0x08000236: 03 da
-
+startup.s:6f (Reset_Handler)
 0x08000240: 09 48
-
+startup.s:77 (Reset_Handler)
 0x08000242: 0a 49
-
+startup.s:78 (Reset_Handler)
 0x08000244: 00 22
-
+startup.s:79 (Reset_Handler)
 0x08000246: 88 42
-
+startup.s:7b (Reset_Handler)
 0x08000248: 02 da
-
+startup.s:7c (Reset_Handler)
 0x08000250: ff f7 a8 ff
-
+startup.s:82 (Reset_Handler)
 0x080001a4: 80 b5
-
+main.c:1c (main)
 0x080001a6: 82 b0
-
+main.c:1c (main)
 0x080001a8: 00 af
-
+main.c:1c (main)
 0x080001aa: ff f7 c3 ff
-
+main.c:1d (main)
 0x08000134: 80 b4
-
+main.c:f (gpio_init)
 0x08000136: 00 af
-
+main.c:f (gpio_init)
 0x08000138: 0a 4b
-
+main.c:10 (gpio_init)
 0x0800013a: 1b 68
-
+main.c:10 (gpio_init)
 0x0800013c: 09 4a
-
+main.c:10 (gpio_init)
 0x0800013e: 43 f0 10 03
-
+main.c:10 (gpio_init)
 0x08000142: 13 60
-
+main.c:10 (gpio_init)
 0x08000144: 08 4b
-
+main.c:11 (gpio_init)
 0x08000146: 1b 68
-
+main.c:11 (gpio_init)
 0x08000148: 07 4a
-
+main.c:11 (gpio_init)
 0x0800014a: 23 f4 70 03
-
+main.c:11 (gpio_init)
 0x0800014e: 13 60
-
+main.c:11 (gpio_init)
 0x08000150: 05 4b
-
+main.c:12 (gpio_init)
 0x08000152: 1b 68
-
+main.c:12 (gpio_init)
 0x08000154: 04 4a
-
+main.c:12 (gpio_init)
 0x08000156: 43 f4 80 13
-
+main.c:12 (gpio_init)
 0x0800015a: 13 60
-
+main.c:12 (gpio_init)
 0x0800015c: 00 bf
-
+main.c:13 (gpio_init)
 0x0800015e: bd 46
-
+main.c:13 (gpio_init)
 0x08000160: 80 bc
-
+main.c:13 (gpio_init)
 0x08000162: 70 47
-
+main.c:13 (gpio_init)
 0x080001ae: 00 23
-
+main.c:1f (main)
 0x080001b0: 7b 60
-
+main.c:1f (main)
 0x080001b2: 00 21
-
+main.c:22 (main)
 0x080001b4: 6f f0 01 00
-
+main.c:22 (main)
 0x080001b8: ff f7 a6 ff
-
+main.c:22 (main)
 0x08000108: 80 b4
-
+main.c:b (is_button_pressed)
 0x0800010a: 83 b0
-
+main.c:b (is_button_pressed)
 0x0800010c: 00 af
-
+main.c:b (is_button_pressed)
 0x0800010e: 78 60
-
+main.c:b (is_button_pressed)
 0x08000110: 39 60
-
+main.c:b (is_button_pressed)
 0x08000112: 01 22
-
+main.c:c (is_button_pressed)
 0x08000114: 3b 68
-
+main.c:c (is_button_pressed)
 0x08000116: 02 fa 03 f3
-
+main.c:c (is_button_pressed)
 0x0800011a: 1a 46
-
+main.c:c (is_button_pressed)
 0x0800011c: 7b 68
-
+main.c:c (is_button_pressed)
 0x0800011e: 13 40
-
+main.c:c (is_button_pressed)
 0x08000120: 00 2b
-
+main.c:c (is_button_pressed)
 0x08000122: 0c bf
-
+main.c:c (is_button_pressed)
 0x08000124: 01 23
-
+main.c:c (is_button_pressed)
 0x08000128: db b2
-
+main.c:c (is_button_pressed)
 0x0800012a: 18 46
-
+main.c:d (is_button_pressed)
 0x0800012c: 0c 37
-
+main.c:d (is_button_pressed)
 0x0800012e: bd 46
-
+main.c:d (is_button_pressed)
 0x08000130: 80 bc
-
+main.c:d (is_button_pressed)
 0x08000132: 70 47
-
+main.c:d (is_button_pressed)
 0x080001bc: 03 46
-
+main.c:22 (main)
 0x080001be: 01 2b
-
+main.c:22 (main)
 0x080001c0: 02 d0
-
+main.c:22 (main)
 0x080001c8: 00 21
-
+main.c:25 (main)
 0x080001ca: 4f f0 ff 30
-
+main.c:25 (main)
 0x080001ce: ff f7 9b ff
-
+main.c:25 (main)
 0x08000108: 80 b4
-
+main.c:b (is_button_pressed)
 0x0800010a: 83 b0
-
+main.c:b (is_button_pressed)
 0x0800010c: 00 af
-
+main.c:b (is_button_pressed)
 0x0800010e: 78 60
-
+main.c:b (is_button_pressed)
 0x08000110: 39 60
-
+main.c:b (is_button_pressed)
 0x08000112: 01 22
-
+main.c:c (is_button_pressed)
 0x08000114: 3b 68
-
+main.c:c (is_button_pressed)
 0x08000116: 02 fa 03 f3
-
+main.c:c (is_button_pressed)
 0x0800011a: 1a 46
-
+main.c:c (is_button_pressed)
 0x0800011c: 7b 68
-
+main.c:c (is_button_pressed)
 0x0800011e: 13 40
-
+main.c:c (is_button_pressed)
 0x08000120: 00 2b
-
+main.c:c (is_button_pressed)
 0x08000122: 0c bf
-
+main.c:c (is_button_pressed)
 0x08000126: 00 23
-
+main.c:c (is_button_pressed)
 0x08000128: db b2
-
+main.c:c (is_button_pressed)
 0x0800012a: 18 46
-
+main.c:d (is_button_pressed)
 0x0800012c: 0c 37
-
+main.c:d (is_button_pressed)
 0x0800012e: bd 46
-
+main.c:d (is_button_pressed)
 0x08000130: 80 bc
-
+main.c:d (is_button_pressed)
 0x08000132: 70 47
-
+main.c:d (is_button_pressed)
 0x080001d2: 03 46
-
+main.c:25 (main)
 0x080001d4: 00 2b
-
+main.c:25 (main)
 0x080001d6: 02 d0
-
+main.c:25 (main)
 0x080001de: 03 21
-
+main.c:28 (main)
 0x080001e0: 6f f0 08 00
-
+main.c:28 (main)
 0x080001e4: ff f7 90 ff
-
+main.c:28 (main)
 0x08000108: 80 b4
-
+main.c:b (is_button_pressed)
 0x0800010a: 83 b0
-
+main.c:b (is_button_pressed)
 0x0800010c: 00 af
-
+main.c:b (is_button_pressed)
 0x0800010e: 78 60
-
+main.c:b (is_button_pressed)
 0x08000110: 39 60
-
+main.c:b (is_button_pressed)
 0x08000112: 01 22
-
+main.c:c (is_button_pressed)
 0x08000114: 3b 68
-
+main.c:c (is_button_pressed)
 0x08000116: 02 fa 03 f3
-
+main.c:c (is_button_pressed)
 0x0800011a: 1a 46
-
+main.c:c (is_button_pressed)
 0x0800011c: 7b 68
-
+main.c:c (is_button_pressed)
 0x0800011e: 13 40
-
+main.c:c (is_button_pressed)
 0x08000120: 00 2b
-
+main.c:c (is_button_pressed)
 0x08000122: 0c bf
-
+main.c:c (is_button_pressed)
 0x08000124: 01 23
-
+main.c:c (is_button_pressed)
 0x08000128: db b2
-
+main.c:c (is_button_pressed)
 0x0800012a: 18 46
-
+main.c:d (is_button_pressed)
 0x0800012c: 0c 37
-
+main.c:d (is_button_pressed)
 0x0800012e: bd 46
-
+main.c:d (is_button_pressed)
 0x08000130: 80 bc
-
+main.c:d (is_button_pressed)
 0x08000132: 70 47
-
+main.c:d (is_button_pressed)
 0x080001e8: 03 46
-
+main.c:28 (main)
 0x080001ea: 01 2b
-
+main.c:28 (main)
 0x080001ec: 02 d0
-
+main.c:28 (main)
 0x080001f4: 03 21
-
+main.c:2b (main)
 0x080001f6: 4f f0 ff 30
-
+main.c:2b (main)
 0x080001fa: ff f7 85 ff
-
+main.c:2b (main)
 0x08000108: 80 b4
-
+main.c:b (is_button_pressed)
 0x0800010a: 83 b0
-
+main.c:b (is_button_pressed)
 0x0800010c: 00 af
-
+main.c:b (is_button_pressed)
 0x0800010e: 78 60
-
+main.c:b (is_button_pressed)
 0x08000110: 39 60
-
+main.c:b (is_button_pressed)
 0x08000112: 01 22
-
+main.c:c (is_button_pressed)
 0x08000114: 3b 68
-
+main.c:c (is_button_pressed)
 0x08000116: 02 fa 03 f3
-
+main.c:c (is_button_pressed)
 0x0800011a: 1a 46
-
+main.c:c (is_button_pressed)
 0x0800011c: 7b 68
-
+main.c:c (is_button_pressed)
 0x0800011e: 13 40
-
+main.c:c (is_button_pressed)
 0x08000120: 00 2b
-
+main.c:c (is_button_pressed)
 0x08000122: 0c bf
-
+main.c:c (is_button_pressed)
 0x08000126: 00 23
-
+main.c:c (is_button_pressed)
 0x08000128: db b2
-
+main.c:c (is_button_pressed)
 0x0800012a: 18 46
-
+main.c:d (is_button_pressed)
 0x0800012c: 0c 37
-
+main.c:d (is_button_pressed)
 0x0800012e: bd 46
-
+main.c:d (is_button_pressed)
 0x08000130: 80 bc
-
+main.c:d (is_button_pressed)
 0x08000132: 70 47
-
+main.c:d (is_button_pressed)
 0x080001fe: 03 46
-
+main.c:2b (main)
 0x08000200: 00 2b
-
+main.c:2b (main)
 0x08000202: 02 d0
-
+main.c:2b (main)
 0x0800020a: 7b 68
-
+main.c:2e (main)
 0x0800020c: 00 2b
-
+main.c:2e (main)
 0x0800020e: 0c bf
-
+main.c:2e (main)
 0x08000210: 01 23
-
+main.c:2e (main)
 0x08000214: db b2
-
+main.c:2e (main)
 0x08000216: 18 46
-
+main.c:2e (main)
 0x08000218: ff f7 a8 ff
-
+main.c:2e (main)
 0x0800016c: 80 b4
-
+main.c:15 (set_led)
 0x0800016e: 83 b0
-
+main.c:15 (set_led)
 0x08000170: 00 af
-
+main.c:15 (set_led)
 0x08000172: 78 60
-
+main.c:15 (set_led)
 0x08000174: 7b 68
-
+main.c:16 (set_led)
 0x08000176: 00 2b
-
+main.c:16 (set_led)
 0x08000178: 06 d0
-
+main.c:16 (set_led)
 0x0800017a: 09 4b
-
+main.c:17 (set_led)
 0x0800017c: 1b 68
-
+main.c:17 (set_led)
 0x0800017e: 08 4a
-
+main.c:17 (set_led)
 0x08000180: 23 f4 00 53
-
+main.c:17 (set_led)
 0x08000184: 13 60
-
+main.c:17 (set_led)
 0x08000186: 05 e0
-
+main.c:1a (set_led)
 0x08000194: 00 bf
-
+main.c:1a (set_led)
 0x08000196: 0c 37
-
+main.c:1a (set_led)
 0x08000198: bd 46
-
+main.c:1a (set_led)
 0x0800019a: 80 bc
-
+main.c:1a (set_led)
 0x0800019c: 70 47
-
+main.c:1a (set_led)
 0x0800021c: 00 23
-
+main.c:31 (main)
 0x0800021e: 18 46
-
+main.c:32 (main)
 0x08000220: 08 37
-
+main.c:32 (main)
 0x08000222: bd 46
-
+main.c:32 (main)
 0x08000224: 80 bd
-
+main.c:32 (main)

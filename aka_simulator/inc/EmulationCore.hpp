@@ -5,44 +5,47 @@
 #include "ExecutionLogger.hpp"
 #include <unicorn/unicorn.h>
 
-namespace STM32F103C8T6 {
+namespace STM32F103C8T6
+{
 
-class EmulationCore {
-public:
-    EmulationCore();
-    ~EmulationCore();
+    class EmulationCore
+    {
+    public:
+        EmulationCore();
+        ~EmulationCore();
 
-    bool initialize(BootMode boot_mode = BootMode::Flash);
-    bool setupInitialState(const ELFInfo& elf_info);
-    bool execute(uint32_t entry_point, uint32_t instruction_limit = 1000);
-    void printRegisters() const;
+        bool initialize(BootMode boot_mode = BootMode::Flash);
+        bool setupInitialState(const ELFInfo &elf_info);
+        bool execute(uint32_t entry_point, uint32_t instruction_limit = 1000);
+        void printRegisters() const;
 
-    // Hook management
-    void setMainAddress(uint32_t address) { main_address_ = address; }
-    void setLogger(ExecutionLogger* logger) { logger_ = logger; }
+        // Hook management
+        void setMainAddress(uint32_t address) { main_address_ = address; }
+        void setLogger(ExecutionLogger *logger) { logger_ = logger; }
 
         // Engine access (needed for other components)
-    uc_engine* getEngine() const { return uc_engine_; }
-private:
-    uc_engine* uc_engine_;
-    uc_hook code_hook_handle_;
-    uc_hook invalid_mem_hook_handle_;
-    
-    uint32_t main_address_;
-    bool lr_patched_;
-    ExecutionLogger* logger_;
+        uc_engine *getEngine() const { return uc_engine_; }
 
-    bool setupHooks();
-    bool setupCPUState(const ELFInfo& elf_info);
+    private:
+        uc_engine *uc_engine_;
+        uc_hook code_hook_handle_;
+        uc_hook invalid_mem_hook_handle_;
 
-    // Static hook callbacks
-    static void codeHookCallback(uc_engine* uc, uint64_t address, uint32_t size, void* user_data);
-    static bool invalidMemoryCallback(uc_engine* uc, uc_mem_type type, uint64_t address,
-                                     int size, int64_t value, void* user_data);
+        uint32_t main_address_;
+        bool lr_patched_;
+        ExecutionLogger *logger_;
 
-    // Hook handlers
-    void handleCodeExecution(uint64_t address, const uint8_t *instruction_bytes, uint32_t size);
-    void handleInvalidMemory(uint64_t address, int size);
-};
+        bool setupHooks();
+        bool setupCPUState(const ELFInfo &elf_info);
+
+        // Static hook callbacks
+        static void codeHookCallback(uc_engine *uc, uint64_t address, uint32_t size, void *user_data);
+        static bool invalidMemoryCallback(uc_engine *uc, uc_mem_type type, uint64_t address,
+                                          int size, int64_t value, void *user_data);
+
+        // Hook handlers
+        void handleCodeExecution(uint64_t address, const uint8_t *instruction_bytes, uint32_t size);
+        void handleInvalidMemory(uint64_t address, int size);
+    };
 
 } // namespace STM32F103C8T6

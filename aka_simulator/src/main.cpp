@@ -4,7 +4,8 @@
 #include <iostream>
 #include <string>
 
-void printUsage(const char* program_name) {
+void printUsage(const char *program_name)
+{
     std::cout << "Usage: " << program_name << " <elf_file> [log_file]" << std::endl;
     std::cout << " elf_file: Path to STM32F103C8T6 ELF binary" << std::endl;
     std::cout << " log_file: Path to output log file (default: emulation.log)" << std::endl;
@@ -13,9 +14,11 @@ void printUsage(const char* program_name) {
     std::cout << " " << program_name << " firmware.elf execution.log" << std::endl;
 }
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[])
+{
     // Check command line arguments
-    if (argc < 2 || argc > 3) {
+    if (argc < 2 || argc > 3)
+    {
         printUsage(argv[0]);
         return 1;
     }
@@ -30,14 +33,16 @@ int main(int argc, char* argv[]) {
 
     // Create and initialize emulator
     STM32F103C8T6::Emulator emulator;
-    
-    if (!emulator.initialize()) {
+
+    if (!emulator.initialize())
+    {
         std::cerr << "ERROR: Failed to initialize emulator" << std::endl;
         return 1;
     }
 
     // Load ELF file
-    if (!emulator.loadELF(elf_file)) {
+    if (!emulator.loadELF(elf_file))
+    {
         std::cerr << "ERROR: Failed to load ELF file: " << elf_file << std::endl;
         return 1;
     }
@@ -49,7 +54,8 @@ int main(int argc, char* argv[]) {
 
     // Execute with logging
     std::cout << "Starting emulation (press Ctrl+C to stop)..." << std::endl;
-    if (!emulator.execute(log_file)) {
+    if (!emulator.execute(log_file))
+    {
         std::cerr << "ERROR: Emulation failed" << std::endl;
         return 1;
     }
