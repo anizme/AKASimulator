@@ -154,7 +154,7 @@ namespace STM32F103C8T6
             if (system(test_cmd.c_str()) == 0)
             {
                 std::cout << "Using " << variant << " for debug info" << std::endl;
-                return variant + " -e " + elf_path + " -f -C";
+                return variant + " -e " + elf_path + " -a -f";
             }
         }
 

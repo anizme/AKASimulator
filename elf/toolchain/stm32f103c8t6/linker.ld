@@ -65,8 +65,11 @@ SECTIONS
     }
 
     /* Debug sections (kept in ELF but not loaded to Flash) */
-    .debug_info 0 : { *(.debug_info) }
-    .debug_line 0 : { *(.debug_line) }
-    .debug_abbrev 0 : { *(.debug_abbrev) }
+    .debug_info     0 : { *(.debug_info) }
+    .debug_abbrev   0 : { *(.debug_abbrev) }
+    .debug_line     0 : { *(.debug_line) }
+    .debug_frame    0 : { *(.debug_frame) }
+    .debug_str      0 : { *(.debug_str) }
+    .debug_loc      0 : { *(.debug_loc) }
     /* Add other debug sections as needed */
 }

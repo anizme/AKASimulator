@@ -45,9 +45,9 @@ namespace STM32F103C8T6
 
         // Use a stringstream to capture backtrace output
         std::stringstream ss;
-        ss << "0x" << std::hex << std::setfill('0') << std::setw(8) << address << ": ";
+        ss << "Instruction: 0x" << std::hex << std::setfill('0') << std::setw(8) << address << ": ";
         ss << formatHexBytes(instruction_bytes, size);
-        ss << std::endl;
+        ss << "\n\t|--> Code line: ";
 
         // Get source information
         if (!addr2line_command_.empty())
@@ -55,7 +55,7 @@ namespace STM32F103C8T6
             SourceInfo info = getSourceInfo(address);
             if (!info.filename.empty() && info.filename != "??")
             {
-                ss << info.filename << ":" << info.line_number;
+                ss << info.filename << ":" << std::dec << info.line_number;
                 if (!info.function.empty() && info.function != "??")
                 {
                     ss << " (" << info.function << ")";
@@ -149,7 +149,6 @@ namespace STM32F103C8T6
         {
             return it->second;
         }
-
         // Not in cache, call addr2line
         std::string output = executeAddr2Line(address);
         SourceInfo info = parseAddr2LineOutput(output);
@@ -190,7 +189,6 @@ namespace STM32F103C8T6
         {
             result += buffer;
         }
-
         return result;
     }
 
@@ -209,10 +207,16 @@ namespace STM32F103C8T6
         std::istringstream stream(output);
         std::string line;
 
-        // addr2line with -f flag outputs function name first, then file:line
+        // addr2line with -a -f outputs: address, function name, then file:line
+        // Skip the first line (address)
         if (std::getline(stream, line))
         {
-            // First line is function name
+            // First line is address, ignore it
+        }
+
+        // Second line is function name
+        if (std::getline(stream, line))
+        {
             if (!line.empty() && line != "??")
             {
                 info.function = line;
@@ -224,9 +228,9 @@ namespace STM32F103C8T6
             }
         }
 
+        // Third line is file:line
         if (std::getline(stream, line))
         {
-            // Second line is file:line
             if (!line.empty() && line != "??:0")
             {
                 // Remove newline if present
@@ -247,17 +251,9 @@ namespace STM32F103C8T6
                     {
                         info.line_number = 0;
                     }
-
-                    // Extract just the filename (not full path) for cleaner output
-                    size_t slash_pos = info.filename.find_last_of('/');
-                    if (slash_pos != std::string::npos && slash_pos + 1 < info.filename.length())
-                    {
-                        info.filename = info.filename.substr(slash_pos + 1);
-                    }
                 }
             }
         }
-
         return info;
     }
 
