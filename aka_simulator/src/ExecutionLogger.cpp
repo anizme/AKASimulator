@@ -93,7 +93,7 @@ namespace STM32F103C8T6
             log_file_ << "# ERROR: " << message << std::endl;
             log_file_.flush();
         }
-        std::cerr << message << std::endl;
+        std::cerr << "[LOG] " + message << std::endl;
     }
 
     void ExecutionLogger::logInfo(const std::string &message, uint64_t address)
@@ -103,7 +103,7 @@ namespace STM32F103C8T6
             log_file_ << "# INFO: " << message << " at 0x" << std::hex << address << std::dec << std::endl;
             log_file_.flush();
         }
-        std::cout << message << std::endl;
+        std::cout << "[LOG] " + message << std::endl;
     }
 
     std::string ExecutionLogger::dumpSourceInfo(const SourceInfo &info)

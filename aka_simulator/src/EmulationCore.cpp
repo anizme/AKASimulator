@@ -143,18 +143,18 @@ namespace STM32F103C8T6
         }
         else if (err == UC_ERR_READ_UNMAPPED || err == UC_ERR_WRITE_UNMAPPED || err == UC_ERR_FETCH_UNMAPPED)
         {
-            uint64_t pc = 0;
+            uint32_t pc = 0;
             uc_reg_read(uc_engine_, UC_ARM_REG_PC, &pc);
-            std::cerr << "Emulation stopped due to invalid memory access: " << uc_strerror(err) << std::endl;
-            logger_->logError("Invalid memory access at PC: 0x" + std::to_string(pc));
+            std::cerr << uc_strerror(err) << std::endl;
+            logger_->logError(std::string(uc_strerror(err)) + ": Invalid memory access at PC: 0x" + std::to_string(pc));
             return false;
         }
         else if (err == UC_ERR_WRITE_PROT || err == UC_ERR_READ_PROT || err == UC_ERR_FETCH_PROT)
         {
             uint64_t pc = 0;
             uc_reg_read(uc_engine_, UC_ARM_REG_PC, &pc);
-            std::cerr << "Emulation stopped due to memory protection violation: " << uc_strerror(err) << std::endl;
-            logger_->logError("Invalid memory access at PC: 0x" + std::to_string(pc));
+            std::cerr << uc_strerror(err) << std::endl;
+            logger_->logError(std::string(uc_strerror(err)) + ": Invalid memory access at PC: 0x" + std::to_string(pc));
             return false;
         }
         else
