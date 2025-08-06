@@ -14,6 +14,7 @@ namespace STM32F103C8T6
 
     bool MemoryManager::setupMemoryRegions()
     {
+        std::cout << "[Setup] Memory regions..." << std::endl;
         if (!mapBootRegion())
         {
             std::cerr << "Failed to map boot region" << std::endl;
@@ -49,6 +50,7 @@ namespace STM32F103C8T6
 
     bool MemoryManager::mapBootRegion()
     {
+        std::cout << "[Setup] Boot region..." << std::endl;
         uc_err err;
 
         // Boot region mapping based on boot mode
@@ -77,6 +79,7 @@ namespace STM32F103C8T6
 
     bool MemoryManager::mapCoreMemory()
     {
+        std::cout << "[Setup] Core memory regions..." << std::endl;
         uc_err err;
 
         // Map Flash memory (readable + executable)
@@ -116,6 +119,7 @@ namespace STM32F103C8T6
 
     bool MemoryManager::mapPeripherals()
     {
+        std::cout << "[Setup] Peripheral regions..." << std::endl;
         // APB1 peripherals
         const std::vector<uint32_t> apb1_bases = {
             MemoryMap::APB1_TIM2_BASE, MemoryMap::APB1_TIM3_BASE, MemoryMap::APB1_TIM4_BASE,
@@ -165,6 +169,7 @@ namespace STM32F103C8T6
 
     bool MemoryManager::mapSystemControlSpace()
     {
+        std::cout << "[Setup] System Control Space..." << std::endl;
         uc_err err = uc_mem_map(uc_engine_, MemoryMap::SYSTEM_CONTROL_SPACE_BASE,
                                 MemoryMap::SYSTEM_CONTROL_SPACE_SIZE, UC_PROT_READ | UC_PROT_WRITE);
         if (err != UC_ERR_OK)
@@ -189,6 +194,7 @@ namespace STM32F103C8T6
 
     bool MemoryManager::mapVirtualStopAddress()
     {
+        std::cout << "[Setup] Virtual stop address..." << std::endl;
         uc_err err;
 
         // Map for stop address

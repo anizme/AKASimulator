@@ -1,6 +1,6 @@
 # STM32F103C8T6 Emulation Log
 # ELF File: elf/firmware.elf
-# Start Time: 2025-08-06 11:21:42
+# Start Time: 2025-08-07 00:12:56
 # Entry Point: 0x80002d5
 # Memory Layout:
 # 	Flash: 0x8000000 - 0x801ffff
@@ -100,3 +100,4 @@ Instruction: 0x080001b0: 03 4a
 	|--> Code line: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:34 (cause_null_pointer_deref)
 Instruction: 0x080001b2: 1a 60
 	|--> Code line: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:34 (cause_null_pointer_deref)
+# ERROR: Invalid memory access at PC: 0x134218162

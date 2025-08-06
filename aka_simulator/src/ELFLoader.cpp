@@ -20,7 +20,7 @@ namespace STM32F103C8T6
 
     bool ELFLoader::loadELF(const std::string &elf_path, ELFInfo &elf_info)
     {
-        std::cout << "Loading ELF file: " << elf_path << std::endl;
+        std::cout << "[Load ELF] Loading ELF file: " << elf_path << std::endl;
 
         elf_info.file_path = elf_path;
 

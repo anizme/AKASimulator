@@ -14,7 +14,7 @@ namespace STM32F103C8T6
 
     bool Emulator::initialize(BootMode boot_mode)
     {
-        std::cout << "Initializing STM32F103C8T6 Emulator..." << std::endl;
+        std::cout << "[Initialize] STM32F103C8T6 Emulator..." << std::endl;
 
         boot_mode_ = boot_mode;
 

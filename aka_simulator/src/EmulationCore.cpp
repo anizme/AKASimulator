@@ -25,7 +25,7 @@ namespace STM32F103C8T6
 
     bool EmulationCore::initialize(BootMode boot_mode)
     {
-        std::cout << "Initializing Emulation Core..." << std::endl;
+        std::cout << "[Initialize] Emulation Core..." << std::endl;
 
         // Initialize Unicorn engine for ARM Cortex-M3 (Thumb mode)
         uc_err err = uc_open(UC_ARCH_ARM, UC_MODE_THUMB, &uc_engine_);
@@ -41,11 +41,13 @@ namespace STM32F103C8T6
 
     bool EmulationCore::setupInitialState(const ELFInfo &elf_info)
     {
+        std::cout << "[Setup] Initial state..." << std::endl;
         if (!setupCPUState(elf_info))
         {
             return false;
         }
 
+        std::cout << "[Setup] Hooks ..." << std::endl;
         if (!setupHooks())
         {
             return false;
@@ -57,10 +59,12 @@ namespace STM32F103C8T6
 
     bool EmulationCore::setupCPUState(const ELFInfo &elf_info)
     {
+        std::cout << "[Setup] CPU state..." << std::endl;
         // For STM32, the first word in Flash is initial stack pointer
         // The second word is the reset handler (entry point)
         uint32_t initial_sp, reset_handler;
 
+        std::cout <<  "[Setup] Reading initial stack pointer and reset handler..." << std::endl;
         uc_err err = uc_mem_read(uc_engine_, MemoryMap::FLASH_BASE, &initial_sp, sizeof(initial_sp));
         if (err != UC_ERR_OK)
         {
@@ -103,7 +107,7 @@ namespace STM32F103C8T6
     bool EmulationCore::setupHooks()
     {
         uc_err err;
-
+        std::cout << "[Setup] Hook code instruction in full memory range" << std::endl;
         // Setup code execution hook
         err = uc_hook_add(uc_engine_, &code_hook_handle_, UC_HOOK_CODE,
                           (void *)codeHookCallback, this, 1, 0);
@@ -114,32 +118,51 @@ namespace STM32F103C8T6
         }
 
         // Setup invalid memory access hook
-        err = uc_hook_add(uc_engine_, &invalid_mem_hook_handle_,
-                          UC_HOOK_MEM_READ_UNMAPPED | UC_HOOK_MEM_WRITE_UNMAPPED,
-                          (void *)invalidMemoryCallback, this, 1, 0);
-        if (err != UC_ERR_OK)
-        {
-            std::cerr << "Failed to add invalid memory hook: " << uc_strerror(err) << std::endl;
-            return false;
-        }
+        // err = uc_hook_add(uc_engine_, &invalid_mem_hook_handle_,
+        //                   UC_HOOK_MEM_READ_UNMAPPED | UC_HOOK_MEM_WRITE_UNMAPPED,
+        //                   (void *)invalidMemoryCallback, this, 1, 0);
+        // if (err != UC_ERR_OK)
+        // {
+        //     std::cerr << "Failed to add invalid memory hook: " << uc_strerror(err) << std::endl;
+        //     return false;
+        // }
 
         return true;
     }
 
     bool EmulationCore::execute(uint32_t entry_point, uint32_t instruction_limit)
     {
-        std::cout << "Starting emulation..." << std::endl;
+        std::cout << "[Execute] Starting emulation..." << std::endl;
 
         // Start emulation
         uc_err err = uc_emu_start(uc_engine_, entry_point | 1, 0xFFFFFFFF, 0, instruction_limit);
-
-        if (err != UC_ERR_OK)
+        std::cout << "[Result] ";
+        if (err == UC_ERR_OK)
+        {
+            std::cout << "Emulation completed successfully" << std::endl;
+        }
+        else if (err == UC_ERR_READ_UNMAPPED || err == UC_ERR_WRITE_UNMAPPED || err == UC_ERR_FETCH_UNMAPPED)
+        {
+            uint64_t pc = 0;
+            uc_reg_read(uc_engine_, UC_ARM_REG_PC, &pc);
+            std::cerr << "Emulation stopped due to invalid memory access: " << uc_strerror(err) << std::endl;
+            logger_->logError("Invalid memory access at PC: 0x" + std::to_string(pc));
+            return false;
+        }
+        else if (err == UC_ERR_WRITE_PROT || err == UC_ERR_READ_PROT || err == UC_ERR_FETCH_PROT)
+        {
+            uint64_t pc = 0;
+            uc_reg_read(uc_engine_, UC_ARM_REG_PC, &pc);
+            std::cerr << "Emulation stopped due to memory protection violation: " << uc_strerror(err) << std::endl;
+            logger_->logError("Invalid memory access at PC: 0x" + std::to_string(pc));
+            return false;
+        }
+        else
         {
             std::cerr << "Emulation failed: " << uc_strerror(err) << std::endl;
             return false;
         }
 
-        std::cout << "Emulation completed successfully" << std::endl;
         return true;
     }
 
@@ -204,7 +227,6 @@ namespace STM32F103C8T6
         {
             if (!lr_patched_)
             {
-                uint32_t stop_addr = MemoryMap::STOP_ADDR;
                 uc_reg_write(uc_engine_, UC_ARM_REG_LR, &MemoryMap::STOP_ADDR);
                 lr_patched_ = true;
                 std::cout << "[Hook] Set LR to STOP_ADDR at entry of main" << std::endl;
