@@ -192,7 +192,7 @@ namespace STM32F103C8T6
         uc_err err;
 
         // Map for stop address
-        err = uc_mem_map(uc_engine_, MemoryMap::STOP_ADDR, MemoryMap::BLOCK_SIZE, UC_PROT_ALL);
+        err = uc_mem_map(uc_engine_, MemoryMap::STOP_ADDR, MemoryMap::BLOCK_SIZE, UC_PROT_EXEC);
         if (err != UC_ERR_OK)
         {
             std::cerr << "Failed to map stop_addr region: " << uc_strerror(err) << std::endl;

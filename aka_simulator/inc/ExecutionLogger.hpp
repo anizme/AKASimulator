@@ -26,6 +26,7 @@ namespace STM32F103C8T6
                         uint32_t entry_point, const std::string &addr2line_cmd);
         void logInstruction(uint64_t address, const uint8_t *instruction_bytes, uint32_t size);
         void logError(const std::string &message);
+        void logInfo(const std::string &message, uint64_t address);
         void close();
 
     private:
@@ -43,6 +44,8 @@ namespace STM32F103C8T6
         SourceInfo getSourceInfo(uint64_t address);
         std::string executeAddr2Line(uint64_t address);
         SourceInfo parseAddr2LineOutput(const std::string &output);
+
+        std::string dumpSourceInfo(const SourceInfo &info);
     };
 
 } // namespace STM32F103C8T6

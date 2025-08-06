@@ -94,7 +94,7 @@ namespace STM32F103C8T6
         core_->setLogger(logger_.get());
 
         // Start execution
-        bool success = core_->execute(elf_info_.entry_point, 1000);
+        bool success = core_->execute(elf_info_.entry_point, 0);
 
         // Close logger
         logger_->close();

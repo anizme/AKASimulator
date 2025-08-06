@@ -205,7 +205,7 @@ namespace STM32F103C8T6
             if (!lr_patched_)
             {
                 uint32_t stop_addr = MemoryMap::STOP_ADDR;
-                uc_reg_write(uc_engine_, UC_ARM_REG_LR, &stop_addr);
+                uc_reg_write(uc_engine_, UC_ARM_REG_LR, &MemoryMap::STOP_ADDR);
                 lr_patched_ = true;
                 std::cout << "[Hook] Set LR to STOP_ADDR at entry of main" << std::endl;
             }
@@ -217,6 +217,7 @@ namespace STM32F103C8T6
         {
             std::cout << "[Hook] Reached STOP_ADDR (main returned), stopping..." << std::endl;
             uc_emu_stop(uc_engine_);
+            logger_->logInfo("Main function returned at ", address);
             return;
         }
 

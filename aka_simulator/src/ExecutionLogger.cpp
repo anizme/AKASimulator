@@ -53,18 +53,7 @@ namespace STM32F103C8T6
         if (!addr2line_command_.empty())
         {
             SourceInfo info = getSourceInfo(address);
-            if (!info.filename.empty() && info.filename != "??")
-            {
-                ss << info.filename << ":" << std::dec << info.line_number;
-                if (!info.function.empty() && info.function != "??")
-                {
-                    ss << " (" << info.function << ")";
-                }
-            }
-            else
-            {
-                ss << "unknown (no debug info)";
-            }
+            ss << dumpSourceInfo(info);
         }
         else
         {
@@ -105,6 +94,34 @@ namespace STM32F103C8T6
             log_file_.flush();
         }
         std::cerr << message << std::endl;
+    }
+
+    void ExecutionLogger::logInfo(const std::string &message, uint64_t address)
+    {
+        if (log_file_.is_open())
+        {
+            log_file_ << "# INFO: " << message << " at 0x" << std::hex << address << std::dec << std::endl;
+            log_file_.flush();
+        }
+        std::cout << message << std::endl;
+    }
+
+    std::string ExecutionLogger::dumpSourceInfo(const SourceInfo &info)
+    {
+        std::string str;
+        if (!info.filename.empty() && info.filename != "??")
+        {
+            str.append(info.filename).append(":").append(std::to_string(info.line_number));
+            if (!info.function.empty() && info.function != "??")
+            {
+                str.append(" (").append(info.function).append(")");
+            }
+        }
+        else
+        {
+            str.append("unknown (no debug info)");
+        }
+        return str;
     }
 
     void ExecutionLogger::close()
