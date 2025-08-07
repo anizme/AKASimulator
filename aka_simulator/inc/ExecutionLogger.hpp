@@ -40,8 +40,6 @@ namespace STM32F103C8T6
         std::unordered_map<uint64_t, SourceInfo> address_cache_;
 
         void writeHeader(uint32_t entry_point);
-        std::string getCurrentTimestamp() const;
-        std::string formatHexBytes(const uint8_t *bytes, uint32_t size) const;
         SourceInfo getSourceInfo(uint64_t address);
         std::string executeAddr2Line(uint64_t address);
         SourceInfo parseAddr2LineOutput(const std::string &output);

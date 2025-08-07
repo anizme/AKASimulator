@@ -2,6 +2,7 @@
 
 #include "ExecutionLogger.hpp"
 #include "MemoryMap.hpp"
+#include "Utils.hpp"
 #include <iostream>
 #include <iomanip>
 #include <sstream>
@@ -48,7 +49,7 @@ namespace STM32F103C8T6
         // Use a osstringstream to capture backtrace output
         std::ostringstream oss;
         oss << "Instruction: 0x" << std::hex << std::setfill('0') << std::setw(8) << address << ": ";
-        oss << formatHexBytes(instruction_bytes, size);
+        oss << Utils::formatHexBytes(instruction_bytes, size);
 
         appendSourceInfo(oss, address);
         writeLogLine(oss.str());
@@ -97,23 +98,6 @@ namespace STM32F103C8T6
         {
             log_file_.flush();
         }
-    }
-
-    std::string ExecutionLogger::formatHexBytes(const uint8_t *bytes, uint32_t size) const
-    {
-        std::stringstream ss;
-        ss << std::hex << std::setfill('0');
-
-        for (uint32_t i = 0; i < size; ++i)
-        {
-            ss << std::setw(2) << static_cast<int>(bytes[i]);
-            if (i < size - 1)
-            {
-                ss << " ";
-            }
-        }
-
-        return ss.str();
     }
 
     void ExecutionLogger::logError(const std::string &message)
@@ -165,7 +149,7 @@ namespace STM32F103C8T6
     {
         log_file_ << "# STM32F103C8T6 Emulation Log" << std::endl;
         log_file_ << "# ELF File: " << elf_path_ << std::endl;
-        log_file_ << "# Start Time: " << getCurrentTimestamp() << std::endl;
+        log_file_ << "# Start Time: " << Utils::getCurrentTimestamp() << std::endl;
         log_file_ << "# Entry Point: 0x" << std::hex << entry_point << std::dec << std::endl;
         log_file_ << "# Memory Layout:" << std::endl;
         log_file_ << "# \tFlash: 0x" << std::hex << MemoryMap::FLASH_BASE << " - 0x"
@@ -175,16 +159,6 @@ namespace STM32F103C8T6
         log_file_ << "# Format: ADDRESS: FILE:LINE (FUNCTION)" << std::endl;
         log_file_ << "#" << std::endl;
         log_file_ << std::endl;
-    }
-
-    std::string ExecutionLogger::getCurrentTimestamp() const
-    {
-        auto now = std::chrono::system_clock::now();
-        auto time_t = std::chrono::system_clock::to_time_t(now);
-
-        std::stringstream ss;
-        ss << std::put_time(std::localtime(&time_t), "%Y-%m-%d %H:%M:%S");
-        return ss.str();
     }
 
     SourceInfo ExecutionLogger::getSourceInfo(uint64_t address)

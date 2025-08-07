@@ -13,8 +13,9 @@ namespace STM32F103C8T6
         : uc_engine_(nullptr), code_hook_handle_(0), invalid_mem_hook_handle_(0),
           main_address_(0), lr_patched_(false), logger_(nullptr)
     {
-         // Initialize Capstone
-        if (cs_open(CS_ARCH_ARM, CS_MODE_THUMB, &capstone_handle_) != CS_ERR_OK) {
+        // Initialize Capstone
+        if (cs_open(CS_ARCH_ARM, CS_MODE_THUMB, &capstone_handle_) != CS_ERR_OK)
+        {
             throw std::runtime_error("Failed to initialize Capstone");
         }
         cs_option(capstone_handle_, CS_OPT_DETAIL, CS_OPT_ON);
@@ -70,7 +71,7 @@ namespace STM32F103C8T6
         // The second word is the reset handler (entry point)
         uint32_t initial_sp, reset_handler;
 
-        std::cout <<  "[Setup] Reading initial stack pointer and reset handler..." << std::endl;
+        std::cout << "[Setup] Reading initial stack pointer and reset handler..." << std::endl;
         uc_err err = uc_mem_read(uc_engine_, MemoryMap::FLASH_BASE, &initial_sp, sizeof(initial_sp));
         if (err != UC_ERR_OK)
         {
@@ -143,7 +144,12 @@ namespace STM32F103C8T6
         // Start emulation
         uc_err err = uc_emu_start(uc_engine_, entry_point | 1, 0xFFFFFFFF, 0, instruction_limit);
         std::cout << "[Result] ";
-        if (err == UC_ERR_OK)
+        if (emu_error == EmulationError::DIVISION_BY_ZERO)
+        {
+            std::cerr << "Emulation stopped due to division by zero" << std::endl;
+            return false;
+        }
+        else if (err == UC_ERR_OK)
         {
             std::cout << "Emulation completed successfully" << std::endl;
         }
@@ -211,8 +217,8 @@ namespace STM32F103C8T6
                       << ": " << uc_strerror(err) << std::dec << std::endl;
             return;
         }
-        core->detectDivisionByZero(uc, address, instruction_bytes.data(), size);
         core->handleCodeExecution(address, instruction_bytes.data(), size);
+        core->detectDivisionByZero(uc, address, instruction_bytes.data(), size);
     }
 
     bool EmulationCore::invalidMemoryCallback(uc_engine *uc, uc_mem_type type, uint64_t address,
@@ -250,38 +256,70 @@ namespace STM32F103C8T6
         if (logger_)
         {
             // Disassemble instruction using Capstone
-            cs_insn* insn;
+            cs_insn *insn;
             size_t count = cs_disasm(capstone_handle_, instruction_bytes, size, address, 1, &insn);
-            
-            if (count > 0) {
+
+            if (count > 0)
+            {
                 // Log disassembled instruction
                 logger_->logInstructionAsm(address, insn->mnemonic, insn->op_str);
                 cs_free(insn, count);
-            } else {
+            }
+            else
+            {
                 // Fallback to raw bytes if disassembly fails
                 logger_->logInstructionRaw(address, instruction_bytes, size);
             }
         }
     }
 
-    void EmulationCore::detectDivisionByZero(uc_engine* uc, uint64_t address, const uint8_t* code, size_t size) {
-        cs_insn* insn;
+    void EmulationCore::detectDivisionByZero(uc_engine *uc, uint64_t address, const uint8_t *code, size_t size)
+    {
+        cs_insn *insn;
         size_t count = cs_disasm(capstone_handle_, code, size, address, 1, &insn);
 
-        if (count > 0) {
+        if (count > 0)
+        {
             // Check opcode that corresponds to devision operator (UDIV/SDIV)
-            if (insn->id == ARM_INS_UDIV || insn->id == ARM_INS_SDIV) {
+            if (insn->id == ARM_INS_UDIV || insn->id == ARM_INS_SDIV)
+            {
+                // Devision instruction has 3 operands: SDIV/UDIV Rd, Rn, Rm: Rd = Rn / Rm
+                // Check if the instruction has 3 operands (result, dividend, divisor)
+                if (insn->detail->arm.op_count != 3)
+                {
+                    std::cerr << "[ERROR] Unexpected operand count for division instruction at 0x" << std::hex << address << std::endl;
+                    cs_free(insn, count);
+                    return;
+                }
                 // Fetch 2nd operand (divisor)
-                cs_arm_op* op = &insn->detail->arm.operands[1];
-                if (op->type == ARM_OP_REG) {
-                    // Đọc giá trị thanh ghi divisor
-                    uint32_t divisor_value;
-                    uc_reg_read(uc, UC_ARM_REG_R0 + op->reg, &divisor_value);
+                cs_arm_op *op = &insn->detail->arm.operands[2];
 
-                    if (divisor_value == 0) {
-                        std::cerr << "[ERROR] Division by zero at 0x" << std::hex << address
-                                  << ": " << insn->mnemonic << " " << insn->op_str << std::dec << std::endl;
-                        uc_emu_stop(uc);  // Dừng emulation
+                if (op->type == ARM_OP_REG)
+                {
+                    uint32_t divisor_value;
+                    int reg_id = Utils::map_capstone_to_unicorn_reg(static_cast<arm_reg>(op->reg));
+                    uc_err err = uc_reg_read(uc, reg_id, &divisor_value);
+                    if (err != UC_ERR_OK)
+                    {
+                        std::cerr << "[ERROR] Failed to read register: " << cs_reg_name(capstone_handle_, op->reg) << std::endl;
+                        uc_emu_stop(uc);
+                        cs_free(insn, count);
+                        return;
+                    }
+
+                    std::cout << "[HOOK] Detected division instruction: " << insn->mnemonic << " " << insn->op_str << std::endl;
+                    std::cout << "[HOOK] Divisor register: " << cs_reg_name(capstone_handle_, op->reg) << std::endl;
+                    std::cout << "[HOOK] Divisor value: " << divisor_value << std::endl;
+
+                    if (divisor_value == 0)
+                    {
+
+                        std::stringstream ss;
+                        ss << "Division by zero at 0x" << std::hex << address << ": " << insn->mnemonic << " " << insn->op_str;
+                        std::cerr << "[ERROR] " + ss.str() << std::endl;
+                        logger_->logError(ss.str());
+                        uc_emu_stop(uc);
+                        emu_error = EmulationError::DIVISION_BY_ZERO;
                     }
                 }
             }

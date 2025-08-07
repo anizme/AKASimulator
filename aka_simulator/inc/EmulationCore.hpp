@@ -3,17 +3,26 @@
 #include "MemoryManager.hpp"
 #include "ELFLoader.hpp"
 #include "ExecutionLogger.hpp"
+#include "Utils.hpp"
 #include <unicorn/unicorn.h>
 #include <capstone/capstone.h>
 
 namespace STM32F103C8T6
 {
 
+    enum class EmulationError
+    {
+        NONE,
+        DIVISION_BY_ZERO,
+    };
+
     class EmulationCore
     {
     public:
         EmulationCore();
         ~EmulationCore();
+            
+        EmulationError emu_error = EmulationError::NONE;
 
         bool initialize(BootMode boot_mode = BootMode::Flash);
         bool setupInitialState(const ELFInfo &elf_info);
@@ -49,7 +58,7 @@ namespace STM32F103C8T6
         // Hook handlers
         void handleCodeExecution(uint64_t address, const uint8_t *instruction_bytes, uint32_t size);
         void handleInvalidMemory(uint64_t address, int size);
-        void detectDivisionByZero(uc_engine* uc, uint64_t address, const uint8_t* code, size_t size);
+        void detectDivisionByZero(uc_engine *uc, uint64_t address, const uint8_t *code, size_t size);
     };
 
 } // namespace STM32F103C8T6

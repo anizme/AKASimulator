@@ -1,6 +1,6 @@
 # STM32F103C8T6 Emulation Log
 # ELF File: elf/firmware.elf
-# Start Time: 2025-08-07 10:12:46
+# Start Time: 2025-08-07 14:43:18
 # Entry Point: 0x80002d5
 # Memory Layout:
 # 	Flash: 0x8000000 - 0x801ffff
@@ -104,64 +104,4 @@
 	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:47 (cause_divide_by_zero)
 [0x080001fa] sdiv     r3, r2, r3
 	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:47 (cause_divide_by_zero)
-[0x080001fe] str      r3, [r7, #4]
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:47 (cause_divide_by_zero)
-[0x08000200] ldr      r3, [r7, #4]
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:48 (cause_divide_by_zero)
-[0x08000202] nop     
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:49 (cause_divide_by_zero)
-[0x08000204] adds     r7, #0x14
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:49 (cause_divide_by_zero)
-[0x08000206] mov      sp, r7
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:49 (cause_divide_by_zero)
-[0x08000208] pop      {r7}
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:49 (cause_divide_by_zero)
-[0x0800020a] bx       lr
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:49 (cause_divide_by_zero)
-[0x080002c6] movs     r0, #1
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:113 (main)
-[0x080002c8] bl       0x800016c
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:113 (main)
-[0x0800016c] push     {r7}
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:24 (set_led)
-[0x0800016e] sub      sp, #0xc
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:24 (set_led)
-[0x08000170] add      r7, sp, #0
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:24 (set_led)
-[0x08000172] str      r0, [r7, #4]
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:24 (set_led)
-[0x08000174] ldr      r3, [r7, #4]
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:25 (set_led)
-[0x08000176] cmp      r3, #0
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:25 (set_led)
-[0x08000178] beq      0x8000188
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:25 (set_led)
-[0x0800017a] ldr      r3, [pc, #0x24]
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:26 (set_led)
-[0x0800017c] ldr      r3, [r3]
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:26 (set_led)
-[0x0800017e] ldr      r2, [pc, #0x20]
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:26 (set_led)
-[0x08000180] bic      r3, r3, #0x2000
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:26 (set_led)
-[0x08000184] str      r3, [r2]
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:26 (set_led)
-[0x08000186] b        0x8000194
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:29 (set_led)
-[0x08000194] nop     
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:29 (set_led)
-[0x08000196] adds     r7, #0xc
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:29 (set_led)
-[0x08000198] mov      sp, r7
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:29 (set_led)
-[0x0800019a] pop      {r7}
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:29 (set_led)
-[0x0800019c] bx       lr
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:29 (set_led)
-[0x080002cc] movs     r3, #0
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:114 (main)
-[0x080002ce] mov      r0, r3
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:115 (main)
-[0x080002d0] pop      {r7, pc}
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:115 (main)
-# INFO: Main function returned at  at 0x8020000
+# ERROR: Division by zero at 0x80001fa: sdiv r3, r2, r3
