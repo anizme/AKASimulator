@@ -11,6 +11,7 @@
 #include <memory>
 #include <string>
 #include <cstring>
+#include <filesystem>
 
 namespace STM32F103C8T6
 {
@@ -33,10 +34,43 @@ namespace STM32F103C8T6
             std::cerr << "Failed to open log file: " << log_file_path << std::endl;
             return false;
         }
+        std::string executed_code_log_file_path = generateExecutedCodePath(log_file_path);
+        executed_code_log_file_.open(executed_code_log_file_path);
+        if (!executed_code_log_file_.is_open())
+        {
+            std::cerr << "Failed to open log file: " << executed_code_log_file_path << std::endl;
+            return false;
+        }
 
         std::cout << "Log file created: " << log_file_path << std::endl;
         writeHeader(entry_point);
         return true;
+    }
+
+    std::string ExecutionLogger::generateExecutedCodePath(const std::string &filePath)
+    {
+        std::filesystem::path path(filePath);
+
+        //Remove extionsion
+        std::string fileName = path.stem().string();
+
+        std::filesystem::path parentPath = path.parent_path();
+
+        std::string newFileName = "executed_code_" + fileName + ".log";
+
+        std::filesystem::path outputPath = parentPath / newFileName;
+
+        return outputPath.string();
+    }
+
+    void ExecutionLogger::logExecutedCode(const std::string &message) {
+        if (!executed_code_log_file_.is_open())
+        {
+            return;
+        }
+        std::ostringstream oss;
+        oss << message << std::endl;
+        executed_code_log_file_ << oss.str();
     }
 
     void ExecutionLogger::logInstructionRaw(uint64_t address, const uint8_t *instruction_bytes, uint32_t size)
@@ -83,6 +117,7 @@ namespace STM32F103C8T6
         {
             SourceInfo info = getSourceInfo(address);
             oss << dumpSourceInfo(info);
+            logExecutedCode(dumpSourceInfoOnlyLineOfCode(info));
         }
         else
         {
@@ -107,6 +142,10 @@ namespace STM32F103C8T6
             log_file_ << "# ERROR: " << message << std::endl;
             log_file_.flush();
         }
+        if (executed_code_log_file_.is_open()) {
+            executed_code_log_file_ << "# ERROR: " << message << std::endl;
+            executed_code_log_file_.flush();
+        }
         std::cerr << "[LOG] " + message << std::endl;
     }
 
@@ -116,6 +155,10 @@ namespace STM32F103C8T6
         {
             log_file_ << "# INFO: " << message << " at 0x" << std::hex << address << std::dec << std::endl;
             log_file_.flush();
+        }
+        if (executed_code_log_file_.is_open()) {
+            executed_code_log_file_ << "# INFO: " << message << std::endl;
+            executed_code_log_file_.flush();
         }
     }
 
@@ -129,6 +172,19 @@ namespace STM32F103C8T6
             {
                 str.append(" (").append(info.function).append(")");
             }
+        }
+        else
+        {
+            str.append("unknown (no debug info)");
+        }
+        return str;
+    }
+
+    std::string ExecutionLogger::dumpSourceInfoOnlyLineOfCode(const SourceInfo &info) {
+        std::string str;
+        if (!info.filename.empty() && info.filename != "??")
+        {
+            str.append(info.filename).append(":").append(std::to_string(info.line_number));
         }
         else
         {

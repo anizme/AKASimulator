@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
     }
 
     std::string elf_file = argv[1];
-    std::string log_file = (argc == 3) ? argv[2] : "emulation.log";
+    std::string log_file = (argc == 3) ? argv[2] : "detail_execution.log";
 
     std::cout << "=== STM32F103C8T6 Emulator ===" << std::endl;
     std::cout << "ELF File: " << elf_file << std::endl;

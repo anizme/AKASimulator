@@ -248,7 +248,7 @@ namespace STM32F103C8T6
         {
             std::cout << "[Hook] Reached STOP_ADDR (main returned), stopping..." << std::endl;
             uc_emu_stop(uc_engine_);
-            logger_->logInfo("Main function returned at ", address);
+            logger_->logInfo("Main function returned ", address);
             return;
         }
 
