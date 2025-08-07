@@ -13,4 +13,4 @@ add_executable(stm32f103c8t6_emulator
 
 # Link Unicorn
 target_link_libraries(stm32f103c8t6_emulator PRIVATE unicorn)
-target_link_libraries(stm32f103c8t6_emulator PRIVATE backtrace)
+target_link_libraries(stm32f103c8t6_emulator PRIVATE capstone)

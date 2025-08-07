@@ -4,6 +4,7 @@
 #include "ELFLoader.hpp"
 #include "ExecutionLogger.hpp"
 #include <unicorn/unicorn.h>
+#include <capstone/capstone.h>
 
 namespace STM32F103C8T6
 {
@@ -31,6 +32,8 @@ namespace STM32F103C8T6
         uc_hook code_hook_handle_;
         uc_hook invalid_mem_hook_handle_;
 
+        csh capstone_handle_;
+
         uint32_t main_address_;
         bool lr_patched_;
         ExecutionLogger *logger_;
@@ -46,6 +49,7 @@ namespace STM32F103C8T6
         // Hook handlers
         void handleCodeExecution(uint64_t address, const uint8_t *instruction_bytes, uint32_t size);
         void handleInvalidMemory(uint64_t address, int size);
+        void detectDivisionByZero(uc_engine* uc, uint64_t address, const uint8_t* code, size_t size);
     };
 
 } // namespace STM32F103C8T6

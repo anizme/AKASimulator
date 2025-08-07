@@ -98,9 +98,9 @@ int main(void) {
     gpio_init();
 
 
-    cause_null_pointer_deref();          // 1. Gây lỗi con trỏ NULL -> Unicorn crash, chua hook log
-    // cause_invalid_address_access();      // 2. Gây lỗi truy cập địa chỉ không hợp lệ -> Unicorn crash, da hook
-    // cause_divide_by_zero();              // 3. Gây lỗi chia cho 0 -> Unicorn khong crash
+    // cause_null_pointer_deref();          // 1. Gây lỗi con trỏ NULL -> Unicorn crash, da bat err de log
+    // cause_invalid_address_access();      // 2. Gây lỗi truy cập địa chỉ không hợp lệ -> Unicorn crash, da bat err de log
+    cause_divide_by_zero();              // 3. Gây lỗi chia cho 0 -> Unicorn khong crash
     // cause_stack_overflow();              // 4. Gây tràn stack -> Unicorn khong crash
     // cause_buffer_overflow();             // 5. Ghi tràn stack -> Unicorn crash, da hook (Tran stack thi truy cap vao invalid memory)
     // cause_function_pointer_crash();      // 6. Gọi function pointer rác -> Unicorn crash, chua hook log

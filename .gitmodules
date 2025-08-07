@@ -1,3 +1,6 @@
 [submodule "lib/unicorn"]
 	path = lib/unicorn
 	url = https://github.com/unicorn-engine/unicorn
+[submodule "lib/capstone"]
+	path = lib/capstone
+	url = https://github.com/capstone-engine/capstone.git

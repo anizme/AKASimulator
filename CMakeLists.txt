@@ -10,5 +10,6 @@ set(UNICORN_BUILD_SHARED OFF CACHE BOOL "Build static Unicorn lib")
 
 # Add Unicorn subdirectory
 add_subdirectory(lib/unicorn)
+add_subdirectory(lib/capstone)
 
 add_subdirectory(aka_simulator)

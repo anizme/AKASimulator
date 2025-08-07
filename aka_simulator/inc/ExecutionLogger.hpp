@@ -24,7 +24,8 @@ namespace STM32F103C8T6
 
         bool initialize(const std::string &log_file_path, const std::string &elf_path,
                         uint32_t entry_point, const std::string &addr2line_cmd);
-        void logInstruction(uint64_t address, const uint8_t *instruction_bytes, uint32_t size);
+        void logInstructionRaw(uint64_t address, const uint8_t *instruction_bytes, uint32_t size);
+        void logInstructionAsm(uint64_t address, const char* mnemonic, const char* op_str);
         void logError(const std::string &message);
         void logInfo(const std::string &message, uint64_t address);
         void close();
@@ -46,6 +47,9 @@ namespace STM32F103C8T6
         SourceInfo parseAddr2LineOutput(const std::string &output);
 
         std::string dumpSourceInfo(const SourceInfo &info);
+
+        void appendSourceInfo(std::ostringstream &oss, uint64_t address);
+        void writeLogLine(const std::string &line);
     };
 
 } // namespace STM32F103C8T6

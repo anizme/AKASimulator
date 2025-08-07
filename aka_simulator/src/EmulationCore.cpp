@@ -13,6 +13,11 @@ namespace STM32F103C8T6
         : uc_engine_(nullptr), code_hook_handle_(0), invalid_mem_hook_handle_(0),
           main_address_(0), lr_patched_(false), logger_(nullptr)
     {
+         // Initialize Capstone
+        if (cs_open(CS_ARCH_ARM, CS_MODE_THUMB, &capstone_handle_) != CS_ERR_OK) {
+            throw std::runtime_error("Failed to initialize Capstone");
+        }
+        cs_option(capstone_handle_, CS_OPT_DETAIL, CS_OPT_ON);
     }
 
     EmulationCore::~EmulationCore()
@@ -21,6 +26,7 @@ namespace STM32F103C8T6
         {
             uc_close(uc_engine_);
         }
+        cs_close(&capstone_handle_);
     }
 
     bool EmulationCore::initialize(BootMode boot_mode)
@@ -143,18 +149,14 @@ namespace STM32F103C8T6
         }
         else if (err == UC_ERR_READ_UNMAPPED || err == UC_ERR_WRITE_UNMAPPED || err == UC_ERR_FETCH_UNMAPPED)
         {
-            uint32_t pc = 0;
-            uc_reg_read(uc_engine_, UC_ARM_REG_PC, &pc);
             std::cerr << uc_strerror(err) << std::endl;
-            logger_->logError(std::string(uc_strerror(err)) + ": Invalid memory access at PC: 0x" + std::to_string(pc));
+            logger_->logError(uc_strerror(err));
             return false;
         }
         else if (err == UC_ERR_WRITE_PROT || err == UC_ERR_READ_PROT || err == UC_ERR_FETCH_PROT)
         {
-            uint64_t pc = 0;
-            uc_reg_read(uc_engine_, UC_ARM_REG_PC, &pc);
             std::cerr << uc_strerror(err) << std::endl;
-            logger_->logError(std::string(uc_strerror(err)) + ": Invalid memory access at PC: 0x" + std::to_string(pc));
+            logger_->logError(uc_strerror(err));
             return false;
         }
         else
@@ -209,6 +211,7 @@ namespace STM32F103C8T6
                       << ": " << uc_strerror(err) << std::dec << std::endl;
             return;
         }
+        core->detectDivisionByZero(uc, address, instruction_bytes.data(), size);
         core->handleCodeExecution(address, instruction_bytes.data(), size);
     }
 
@@ -246,7 +249,43 @@ namespace STM32F103C8T6
         // Log the instruction if logger is available
         if (logger_)
         {
-            logger_->logInstruction(address, instruction_bytes, size);
+            // Disassemble instruction using Capstone
+            cs_insn* insn;
+            size_t count = cs_disasm(capstone_handle_, instruction_bytes, size, address, 1, &insn);
+            
+            if (count > 0) {
+                // Log disassembled instruction
+                logger_->logInstructionAsm(address, insn->mnemonic, insn->op_str);
+                cs_free(insn, count);
+            } else {
+                // Fallback to raw bytes if disassembly fails
+                logger_->logInstructionRaw(address, instruction_bytes, size);
+            }
+        }
+    }
+
+    void EmulationCore::detectDivisionByZero(uc_engine* uc, uint64_t address, const uint8_t* code, size_t size) {
+        cs_insn* insn;
+        size_t count = cs_disasm(capstone_handle_, code, size, address, 1, &insn);
+
+        if (count > 0) {
+            // Check opcode that corresponds to devision operator (UDIV/SDIV)
+            if (insn->id == ARM_INS_UDIV || insn->id == ARM_INS_SDIV) {
+                // Fetch 2nd operand (divisor)
+                cs_arm_op* op = &insn->detail->arm.operands[1];
+                if (op->type == ARM_OP_REG) {
+                    // Đọc giá trị thanh ghi divisor
+                    uint32_t divisor_value;
+                    uc_reg_read(uc, UC_ARM_REG_R0 + op->reg, &divisor_value);
+
+                    if (divisor_value == 0) {
+                        std::cerr << "[ERROR] Division by zero at 0x" << std::hex << address
+                                  << ": " << insn->mnemonic << " " << insn->op_str << std::dec << std::endl;
+                        uc_emu_stop(uc);  // Dừng emulation
+                    }
+                }
+            }
+            cs_free(insn, count);
         }
     }
 

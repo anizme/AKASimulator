@@ -8,6 +8,8 @@
 #include <chrono>
 #include <cstdlib>
 #include <memory>
+#include <string>
+#include <cstring>
 
 namespace STM32F103C8T6
 {
@@ -36,33 +38,61 @@ namespace STM32F103C8T6
         return true;
     }
 
-    void ExecutionLogger::logInstruction(uint64_t address, const uint8_t *instruction_bytes, uint32_t size)
+    void ExecutionLogger::logInstructionRaw(uint64_t address, const uint8_t *instruction_bytes, uint32_t size)
     {
         if (!log_file_.is_open())
         {
             return;
         }
 
-        // Use a stringstream to capture backtrace output
-        std::stringstream ss;
-        ss << "Instruction: 0x" << std::hex << std::setfill('0') << std::setw(8) << address << ": ";
-        ss << formatHexBytes(instruction_bytes, size);
-        ss << "\n\t|--> Code line: ";
+        // Use a osstringstream to capture backtrace output
+        std::ostringstream oss;
+        oss << "Instruction: 0x" << std::hex << std::setfill('0') << std::setw(8) << address << ": ";
+        oss << formatHexBytes(instruction_bytes, size);
 
-        // Get source information
+        appendSourceInfo(oss, address);
+        writeLogLine(oss.str());
+    }
+
+    void ExecutionLogger::logInstructionAsm(uint64_t address, const char *mnemonic, const char *op_str)
+    {
+        if (!log_file_.is_open())
+        {
+            return;
+        }
+
+        // Format: [ADDRESS] MNEMONIC OPERANDS
+        std::ostringstream oss;
+        oss << "[0x" << std::hex << std::setfill('0') << std::setw(8) << address << "] ";
+        oss << std::setfill(' ') << std::left << std::setw(8) << mnemonic;
+
+        if (op_str && strlen(op_str) > 0)
+        {
+            oss << " " << op_str;
+        }
+
+        appendSourceInfo(oss, address);
+        writeLogLine(oss.str());
+    }
+
+    void ExecutionLogger::appendSourceInfo(std::ostringstream &oss, uint64_t address)
+    {
+        oss << "\n\t|-> Code: ";
         if (!addr2line_command_.empty())
         {
             SourceInfo info = getSourceInfo(address);
-            ss << dumpSourceInfo(info);
+            oss << dumpSourceInfo(info);
         }
         else
         {
-            ss << "unknown (addr2line not available)";
+            oss << "unknown (addr2line not available)";
         }
+    }
 
-        log_file_ << ss.str() << std::endl;
+    void ExecutionLogger::writeLogLine(const std::string &line)
+    {
+        log_file_ << line << std::endl;
 
-        // Flush periodically for real-time monitoring
         if (++instruction_count_ % 100 == 0)
         {
             log_file_.flush();
@@ -103,7 +133,6 @@ namespace STM32F103C8T6
             log_file_ << "# INFO: " << message << " at 0x" << std::hex << address << std::dec << std::endl;
             log_file_.flush();
         }
-        std::cout << "[LOG] " + message << std::endl;
     }
 
     std::string ExecutionLogger::dumpSourceInfo(const SourceInfo &info)
