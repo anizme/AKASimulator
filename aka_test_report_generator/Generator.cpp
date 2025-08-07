@@ -214,7 +214,10 @@ body {
     background-color: white;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    overflow: hidden;
+    overflow: auto;
+    max-height: 70vh;
+    border: 1px solid #e0e0e0;
+    position: relative;
 }
 
 .source-line {
@@ -223,6 +226,11 @@ body {
     font-size: 14px;
     line-height: 1.4;
     border-bottom: 1px solid #f0f0f0;
+    min-height: 24px;
+}
+
+.source-line:last-child {
+    border-bottom: none;
 }
 
 .line-number {
@@ -233,13 +241,17 @@ body {
     text-align: right;
     border-right: 1px solid #e0e0e0;
     user-select: none;
+    position: sticky;
+    left: 0;
+    z-index: 1;
 }
 
 .line-content {
     padding: 4px 8px;
     flex: 1;
-    white-space: pre-wrap;
-    word-break: break-all;
+    white-space: pre;
+    overflow-x: auto;
+    word-wrap: break-word;
 }
 
 .covered {

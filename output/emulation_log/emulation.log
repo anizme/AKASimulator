@@ -1,6 +1,6 @@
 # STM32F103C8T6 Emulation Log
 # ELF File: elf/firmware.elf
-# Start Time: 2025-08-07 15:52:28
+# Start Time: 2025-08-07 15:57:11
 # Entry Point: 0x80002d5
 # Memory Layout:
 # 	Flash: 0x8000000 - 0x801ffff
