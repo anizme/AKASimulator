@@ -68,9 +68,6 @@ namespace STM32F103C8T6
             return false;
         }
 
-        // Set main address in core for hook handling
-        core_->setMainAddress(elf_info_.main_address);
-
         return true;
     }
 

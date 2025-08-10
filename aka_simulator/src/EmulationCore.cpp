@@ -10,8 +10,7 @@ namespace STM32F103C8T6
 {
 
     EmulationCore::EmulationCore()
-        : uc_engine_(nullptr), code_hook_handle_(0), invalid_mem_hook_handle_(0),
-          main_address_(0), logger_(nullptr)
+        : uc_engine_(nullptr), code_hook_handle_(0), invalid_mem_hook_handle_(0), logger_(nullptr)
     {
         // Initialize Capstone
         if (cs_open(CS_ARCH_ARM, CS_MODE_THUMB, &capstone_handle_) != CS_ERR_OK)
@@ -60,7 +59,7 @@ namespace STM32F103C8T6
             return false;
         }
 
-        main_address_ = elf_info.main_address;
+        elf_info_ = elf_info;
         return true;
     }
 
@@ -232,7 +231,7 @@ namespace STM32F103C8T6
     void EmulationCore::handleCodeExecution(uint64_t address, const uint8_t *instruction_bytes, uint32_t size)
     {
         // Assign LR to stop address when entering main
-        if (address == main_address_)
+        if (address == elf_info_.main_address)
         {
             uc_err err = uc_reg_read(uc_engine_, UC_ARM_REG_LR, &main_return_address_);
             main_return_address_ &= ~1U; // Clear Thumb bit
@@ -248,6 +247,19 @@ namespace STM32F103C8T6
             uc_emu_stop(uc_engine_);
             logger_->logInfo("Main function returned ", address);
             return;
+        }
+
+        if (address == elf_info_.aka_sim_writer_u32_address) {
+            uint32_t value;
+            uc_err err = uc_reg_read(uc_engine_, UC_ARM_REG_R0, &value);
+            if (err != UC_ERR_OK) {
+                std::cerr << "[ERROR] Failed to read R0 register: " << uc_strerror(err) << std::endl;
+                return;
+            }
+            std::cout << "[HOOK] aka_sim_writer_u32 called with value: " << std::dec << value << std::endl;
+            logger_->logInfo("aka_sim_writer_u32 called with value: " + std::to_string(value), address);
+        } else if (address == elf_info_.aka_sim_writer_u64_address) {
+            // TODO: support later
         }
 
         // Log the instruction if logger is available

@@ -31,10 +31,15 @@ namespace STM32F103C8T6
             return false;
         }
 
-        // Find main symbol
+        // Find function symbol
         if (!findMainSymbol(elf_path, elf_info.main_address))
         {
             std::cerr << "Failed to find main symbol" << std::endl;
+            return false;
+        }
+        if (!findAkaWriterSymbol(elf_path, elf_info.aka_sim_writer_u32_address, elf_info.aka_sim_writer_u64_address))
+        {
+            std::cerr << "Failed to find aka_sim_writer symbols" << std::endl;
             return false;
         }
 
@@ -98,6 +103,21 @@ namespace STM32F103C8T6
     bool ELFLoader::findMainSymbol(const std::string &elf_path, uint32_t &main_address)
     {
         return findFunctionAddress(elf_path, "main", main_address);
+    }
+
+    bool ELFLoader::findAkaWriterSymbol(const std::string &elf_path, uint32_t &address32, uint32_t &address64)
+    {
+        if (!findFunctionAddress(elf_path, "aka_sim_writer_u32", address32))
+        {
+            std::cerr << "Failed to find aka_sim_writer_u32 symbol" << std::endl;
+            return false;
+        }
+        if (!findFunctionAddress(elf_path, "aka_sim_writer_u64", address64))
+        {
+            std::cerr << "Failed to find aka_sim_writer_u64 symbol" << std::endl;
+            return false;
+        }
+        return true;
     }
 
     bool ELFLoader::findFunctionAddress(const std::string &elf_path, const std::string &func_name, uint32_t &addr)

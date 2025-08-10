@@ -29,8 +29,6 @@ namespace STM32F103C8T6
         bool execute(uint32_t entry_point, uint32_t instruction_limit = 1000);
         void printRegisters() const;
 
-        // Hook management
-        void setMainAddress(uint32_t address) { main_address_ = address; }
         void setLogger(ExecutionLogger *logger) { logger_ = logger; }
 
         // Engine access (needed for other components)
@@ -43,7 +41,7 @@ namespace STM32F103C8T6
 
         csh capstone_handle_;
 
-        uint32_t main_address_;
+        ELFInfo elf_info_;
         uint32_t main_return_address_ = -1;
         ExecutionLogger *logger_;
 

@@ -1,49 +1,53 @@
 #include <stdint.h>
-#include <stdlib.h> // nếu môi trường có malloc/free
-#include <stdint.h>
+#include <stddef.h>
+#include <stdbool.h>
 
-// Map thanh ghi ngoại vi
-#define RCC_APB2ENR (*(volatile uint32_t *)0x40021018)
-#define GPIOC_CRH (*(volatile uint32_t *)0x40011004)
-#define GPIOC_ODR (*(volatile uint32_t *)0x4001100C)
-
-// Kiểm tra bit thứ pin có đang bị clear hay không (dạng active-low button)
-int is_button_pressed(uint32_t gpio_idr, int pin)
+// Struct test
+typedef struct
 {
-    return !(gpio_idr & (1 << pin));
-}
+    int a;
+    float b;
+    char c;
+} MyStruct;
 
-void gpio_init()
+// Unit Under Test (UUT)
+int uut(int x, int y, char *msg, MyStruct *data, int *arr, size_t arr_len)
 {
-    RCC_APB2ENR |= (1 << 4);   // Bật clock GPIOC
-    GPIOC_CRH &= ~(0xF << 20); // Clear CNF13/MODE13
-    GPIOC_CRH |= (0x1 << 20);  // MODE13 = 01: output push-pull 10MHz
-}
-
-void set_led(int on)
-{
-    if (on)
-        GPIOC_ODR &= ~(1 << 13); // LED on (PC13 = 0)
-    else
-        GPIOC_ODR |= (1 << 13); // LED off (PC13 = 1)
+    int sum = x + (int)y + data->a;
+    for (size_t i = 0; i < arr_len; i++)
+    {
+        sum += arr[i];
+    }
+    if (msg)
+    {
+        // Giả sử làm gì đó với msg
+        sum += (int)msg[0];
+    }
+    sum += (int)data->c;
+    return sum;
 }
 
 ///////////////////////////////////////////////////////
 ////////////////// TEST DRIVER ////////////////////////
 ///////////////////////////////////////////////////////
 
-void write_custom(int value) {
+void aka_sim_writer_u32(uint32_t raw) {
+    // log raw 4 bytes
 }
 
-// void write_custom(int value) {
-// }
+void aka_sim_writer_u64(uint64_t raw) {
+    // log raw 8 bytes
+}
 
-int main(void) {
-    gpio_init();
+int main(void)
+{
+    char text[] = "Hello";
+    MyStruct s = {10, 3.14f, 'A'};
+    int numbers[] = {1, 2, 3, 4};
 
-    int res = is_button_pressed(GPIOC_ODR, 13);
+    int result = uut(5, 2.5f, text, &s, numbers, 4);
 
-    write_custom(res);
-    set_led(1);
+    aka_sim_writer_u32(result);
+    aka_sim_writer_u32(s.a);
     return 0;
 }

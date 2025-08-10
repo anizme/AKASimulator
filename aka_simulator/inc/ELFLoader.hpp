@@ -11,6 +11,8 @@ namespace STM32F103C8T6
     {
         uint32_t entry_point;
         uint32_t main_address;
+        uint32_t aka_sim_writer_u32_address;
+        uint32_t aka_sim_writer_u64_address;
         std::string file_path;
         std::string addr2line_command; // Command to call addr2line
     };
@@ -28,6 +30,8 @@ namespace STM32F103C8T6
 
         bool loadSegments(const std::string &elf_path, uint32_t &entry_point);
         bool findMainSymbol(const std::string &elf_path, uint32_t &main_address);
+        bool findAkaWriterSymbol(const std::string &elf_path, uint32_t &address32, uint32_t &address64);
+
         std::string setupAddr2LineCommand(const std::string &elf_path);
         bool checkAddr2LineAvailable();
         bool findFunctionAddress(const std::string &elf_path, const std::string &function_name, uint32_t &address);
