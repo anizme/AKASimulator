@@ -84,11 +84,6 @@ namespace STM32F103C8T6
         static constexpr uint32_t SYSTEM_CONTROL_SPACE_BASE = 0xE000E000;
         static constexpr uint32_t SYSTEM_CONTROL_SPACE_SIZE = 0x1000;
 
-        // Stop address for main function return
-        // Currently, boot mode is not used, so I pick an reserved address
-        // to make the stop address (return address for main function - this is test driver's main function)
-        static constexpr uint32_t STOP_ADDR = 0x08020000;
-
         static void printLayout();
     };
 

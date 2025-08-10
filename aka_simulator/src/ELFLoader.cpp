@@ -97,39 +97,68 @@ namespace STM32F103C8T6
 
     bool ELFLoader::findMainSymbol(const std::string &elf_path, uint32_t &main_address)
     {
+        return findFunctionAddress(elf_path, "main", main_address);
+    }
+
+    bool ELFLoader::findFunctionAddress(const std::string &elf_path, const std::string &func_name, uint32_t &addr)
+    {
         ELFIO::elfio reader;
         if (!reader.load(elf_path))
-        {
             return false;
-        }
 
+        ELFIO::section *symtab = nullptr;
         for (int i = 0; i < reader.sections.size(); ++i)
         {
             ELFIO::section *sec = reader.sections[i];
             if (sec->get_type() == ELFIO::SHT_SYMTAB)
             {
-                const ELFIO::symbol_section_accessor symbols(reader, sec);
-                for (unsigned int j = 0; j < symbols.get_symbols_num(); ++j)
+                symtab = sec;
+                break;
+            }
+        }
+        if (!symtab)
+            return false;
+
+        ELFIO::symbol_section_accessor symbols(reader, symtab);
+
+        bool found = false;
+        bool found_weak = false;
+        uint32_t tmp_addr = 0;
+
+        for (unsigned int j = 0; j < symbols.get_symbols_num(); ++j)
+        {
+            std::string name;
+            ELFIO::Elf64_Addr value;
+            ELFIO::Elf_Xword size;
+            unsigned char bind, type, other;
+            ELFIO::Elf_Half section_index;
+
+            symbols.get_symbol(j, name, value, size, bind, type, section_index, other);
+
+            if (name == func_name &&
+                type == ELFIO::STT_FUNC &&
+                section_index != ELFIO::SHN_UNDEF)
+            {
+                uint32_t aligned = static_cast<uint32_t>(value & ~1U);
+
+                if (bind == ELFIO::STB_GLOBAL)
                 {
-                    std::string name;
-                    ELFIO::Elf64_Addr value;
-                    ELFIO::Elf_Xword size;
-                    unsigned char bind, type, other;
-                    ELFIO::Elf_Half section_index;
-
-                    symbols.get_symbol(j, name, value, size, bind, type, section_index, other);
-
-                    if (name == "main")
-                    {
-                        main_address = static_cast<uint32_t>(value & ~1U);
-                        std::cout << "Raw main address from ELF: 0x" << std::hex << value
-                                  << " | Aligned: 0x" << (value & ~1U) << std::dec << std::endl;
-                        return true;
-                    }
+                    addr = aligned;
+                    return true;
+                }
+                else if (bind == ELFIO::STB_WEAK && !found_weak)
+                {
+                    tmp_addr = aligned;
+                    found_weak = true;
                 }
             }
         }
 
+        if (found_weak)
+        {
+            addr = tmp_addr;
+            return true;
+        }
         return false;
     }
 

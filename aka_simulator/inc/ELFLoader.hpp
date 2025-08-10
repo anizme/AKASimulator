@@ -30,6 +30,7 @@ namespace STM32F103C8T6
         bool findMainSymbol(const std::string &elf_path, uint32_t &main_address);
         std::string setupAddr2LineCommand(const std::string &elf_path);
         bool checkAddr2LineAvailable();
+        bool findFunctionAddress(const std::string &elf_path, const std::string &function_name, uint32_t &address);
     };
 
 } // namespace STM32F103C8T6

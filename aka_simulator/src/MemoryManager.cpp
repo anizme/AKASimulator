@@ -39,12 +39,6 @@ namespace STM32F103C8T6
             return false;
         }
 
-        if (!mapVirtualStopAddress())
-        {
-            std::cerr << "Failed to map virtual stop address" << std::endl;
-            return false;
-        }
-
         return true;
     }
 
@@ -187,21 +181,6 @@ namespace STM32F103C8T6
         {
             std::cerr << "Failed to map peripheral block at 0x" << std::hex << base
                       << ": " << uc_strerror(err) << std::endl;
-            return false;
-        }
-        return true;
-    }
-
-    bool MemoryManager::mapVirtualStopAddress()
-    {
-        std::cout << "[Setup] Virtual stop address..." << std::endl;
-        uc_err err;
-
-        // Map for stop address
-        err = uc_mem_map(uc_engine_, MemoryMap::STOP_ADDR, MemoryMap::BLOCK_SIZE, UC_PROT_EXEC);
-        if (err != UC_ERR_OK)
-        {
-            std::cerr << "Failed to map stop_addr region: " << uc_strerror(err) << std::endl;
             return false;
         }
         return true;

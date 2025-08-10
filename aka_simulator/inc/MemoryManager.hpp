@@ -25,7 +25,6 @@ namespace STM32F103C8T6
         bool mapPeripherals();
         bool mapSystemControlSpace();
         bool mapPeripheralBlock(uint32_t base);
-        bool mapVirtualStopAddress();
     };
 
 } // namespace STM32F103C8T6

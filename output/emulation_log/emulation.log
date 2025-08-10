@@ -1,45 +1,47 @@
 # STM32F103C8T6 Emulation Log
 # ELF File: elf/firmware.elf
-# Start Time: 2025-08-07 15:57:11
-# Entry Point: 0x80002d5
+# Start Time: 2025-08-10 23:15:55
+# Entry Point: 0x80001e9
 # Memory Layout:
 # 	Flash: 0x8000000 - 0x801ffff
 # 	SRAM:  0x20000000 - 0x20004fff
 # Format: ADDRESS: FILE:LINE (FUNCTION)
 #
 
-[0x080002d4] ldr.w    sp, [pc, #0x2c]
+[0x080001e8] ldr.w    sp, [pc, #0x2c]
 	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/startup.s:102 (Reset_Handler)
-[0x080002d8] ldr      r0, [pc, #0x2c]
+[0x080001ec] ldr      r0, [pc, #0x2c]
 	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/startup.s:105 (Reset_Handler)
-[0x080002da] ldr      r1, [pc, #0x30]
+[0x080001ee] ldr      r1, [pc, #0x30]
 	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/startup.s:106 (Reset_Handler)
-[0x080002dc] ldr      r2, [pc, #0x30]
+[0x080001f0] ldr      r2, [pc, #0x30]
 	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/startup.s:107 (Reset_Handler)
-[0x080002de] movs     r3, #0
+[0x080001f2] movs     r3, #0
 	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/startup.s:108 (Reset_Handler)
-[0x080002e0] cmp      r1, r2
+[0x080001f4] cmp      r1, r2
 	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/startup.s:110 (Reset_Handler)
-[0x080002e2] bge      0x80002ec
+[0x080001f6] bge      0x8000200
 	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/startup.s:111 (Reset_Handler)
-[0x080002ec] ldr      r0, [pc, #0x24]
+[0x08000200] ldr      r0, [pc, #0x24]
 	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/startup.s:119 (Reset_Handler)
-[0x080002ee] ldr      r1, [pc, #0x28]
+[0x08000202] ldr      r1, [pc, #0x28]
 	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/startup.s:120 (Reset_Handler)
-[0x080002f0] movs     r2, #0
+[0x08000204] movs     r2, #0
 	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/startup.s:121 (Reset_Handler)
-[0x080002f2] cmp      r0, r1
+[0x08000206] cmp      r0, r1
 	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/startup.s:123 (Reset_Handler)
-[0x080002f4] bge      0x80002fc
+[0x08000208] bge      0x8000210
 	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/startup.s:124 (Reset_Handler)
-[0x080002fc] bl       0x80002ba
+[0x08000210] bl       0x80001b6
 	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/startup.s:130 (Reset_Handler)
-[0x080002ba] push     {r7, lr}
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:97 (main)
-[0x080002bc] add      r7, sp, #0
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:97 (main)
-[0x080002be] bl       0x8000134
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:98 (main)
+[0x080001b6] push     {r7, lr}
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:41 (main)
+[0x080001b8] sub      sp, #8
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:41 (main)
+[0x080001ba] add      r7, sp, #0
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:41 (main)
+[0x080001bc] bl       0x8000134
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:42 (main)
 [0x08000134] push     {r7}
 	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:17 (gpio_init)
 [0x08000136] add      r7, sp, #0
@@ -82,26 +84,128 @@
 	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:21 (gpio_init)
 [0x08000162] bx       lr
 	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:21 (gpio_init)
-[0x080002c2] bl       0x80001e8
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:103 (main)
-[0x080001e8] push     {r7}
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:44 (cause_divide_by_zero)
-[0x080001ea] sub      sp, #0x14
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:44 (cause_divide_by_zero)
-[0x080001ec] add      r7, sp, #0
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:44 (cause_divide_by_zero)
-[0x080001ee] movs     r3, #0xa
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:45 (cause_divide_by_zero)
-[0x080001f0] str      r3, [r7, #0xc]
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:45 (cause_divide_by_zero)
-[0x080001f2] movs     r3, #0
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:46 (cause_divide_by_zero)
-[0x080001f4] str      r3, [r7, #8]
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:46 (cause_divide_by_zero)
-[0x080001f6] ldr      r2, [r7, #0xc]
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:47 (cause_divide_by_zero)
-[0x080001f8] ldr      r3, [r7, #8]
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:47 (cause_divide_by_zero)
-[0x080001fa] sdiv     r3, r2, r3
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:47 (cause_divide_by_zero)
-# ERROR: Division by zero at 0x80001fa: sdiv r3, r2, r3
+[0x080001c0] ldr      r3, [pc, #0x20]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:44 (main)
+[0x080001c2] ldr      r3, [r3]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:44 (main)
+[0x080001c4] movs     r1, #0xd
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:44 (main)
+[0x080001c6] mov      r0, r3
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:44 (main)
+[0x080001c8] bl       0x8000108
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:44 (main)
+[0x08000108] push     {r7}
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:12 (is_button_pressed)
+[0x0800010a] sub      sp, #0xc
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:12 (is_button_pressed)
+[0x0800010c] add      r7, sp, #0
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:12 (is_button_pressed)
+[0x0800010e] str      r0, [r7, #4]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:12 (is_button_pressed)
+[0x08000110] str      r1, [r7]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:12 (is_button_pressed)
+[0x08000112] movs     r2, #1
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:13 (is_button_pressed)
+[0x08000114] ldr      r3, [r7]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:13 (is_button_pressed)
+[0x08000116] lsl.w    r3, r2, r3
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:13 (is_button_pressed)
+[0x0800011a] mov      r2, r3
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:13 (is_button_pressed)
+[0x0800011c] ldr      r3, [r7, #4]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:13 (is_button_pressed)
+[0x0800011e] ands     r3, r2
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:13 (is_button_pressed)
+[0x08000120] cmp      r3, #0
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:13 (is_button_pressed)
+[0x08000122] ite      eq
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:13 (is_button_pressed)
+[0x08000124] moveq    r3, #1
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:13 (is_button_pressed)
+[0x08000128] uxtbne   r3, r3
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:13 (is_button_pressed)
+[0x0800012a] mov      r0, r3
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:14 (is_button_pressed)
+[0x0800012c] adds     r7, #0xc
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:14 (is_button_pressed)
+[0x0800012e] mov      sp, r7
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:14 (is_button_pressed)
+[0x08000130] pop      {r7}
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:14 (is_button_pressed)
+[0x08000132] bx       lr
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:14 (is_button_pressed)
+[0x080001cc] str      r0, [r7, #4]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:44 (main)
+[0x080001ce] ldr      r0, [r7, #4]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:46 (main)
+[0x080001d0] bl       0x80001a4
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:46 (main)
+[0x080001a4] push     {r7}
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:35 (write_custom)
+[0x080001a6] sub      sp, #0xc
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:35 (write_custom)
+[0x080001a8] add      r7, sp, #0
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:35 (write_custom)
+[0x080001aa] str      r0, [r7, #4]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:35 (write_custom)
+[0x080001ac] nop     
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:36 (write_custom)
+[0x080001ae] adds     r7, #0xc
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:36 (write_custom)
+[0x080001b0] mov      sp, r7
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:36 (write_custom)
+[0x080001b2] pop      {r7}
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:36 (write_custom)
+[0x080001b4] bx       lr
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:36 (write_custom)
+[0x080001d4] movs     r0, #1
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:47 (main)
+[0x080001d6] bl       0x800016c
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:47 (main)
+[0x0800016c] push     {r7}
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:24 (set_led)
+[0x0800016e] sub      sp, #0xc
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:24 (set_led)
+[0x08000170] add      r7, sp, #0
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:24 (set_led)
+[0x08000172] str      r0, [r7, #4]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:24 (set_led)
+[0x08000174] ldr      r3, [r7, #4]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:25 (set_led)
+[0x08000176] cmp      r3, #0
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:25 (set_led)
+[0x08000178] beq      0x8000188
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:25 (set_led)
+[0x0800017a] ldr      r3, [pc, #0x24]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:26 (set_led)
+[0x0800017c] ldr      r3, [r3]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:26 (set_led)
+[0x0800017e] ldr      r2, [pc, #0x20]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:26 (set_led)
+[0x08000180] bic      r3, r3, #0x2000
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:26 (set_led)
+[0x08000184] str      r3, [r2]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:26 (set_led)
+[0x08000186] b        0x8000194
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:29 (set_led)
+[0x08000194] nop     
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:29 (set_led)
+[0x08000196] adds     r7, #0xc
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:29 (set_led)
+[0x08000198] mov      sp, r7
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:29 (set_led)
+[0x0800019a] pop      {r7}
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:29 (set_led)
+[0x0800019c] bx       lr
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:29 (set_led)
+[0x080001da] movs     r3, #0
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:48 (main)
+[0x080001dc] mov      r0, r3
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:49 (main)
+[0x080001de] adds     r7, #8
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:49 (main)
+[0x080001e0] mov      sp, r7
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:49 (main)
+[0x080001e2] pop      {r7, pc}
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:49 (main)
+# INFO: Main function returned  at 0x8000214

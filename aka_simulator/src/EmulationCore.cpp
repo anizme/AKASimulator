@@ -11,7 +11,7 @@ namespace STM32F103C8T6
 
     EmulationCore::EmulationCore()
         : uc_engine_(nullptr), code_hook_handle_(0), invalid_mem_hook_handle_(0),
-          main_address_(0), lr_patched_(false), logger_(nullptr)
+          main_address_(0), logger_(nullptr)
     {
         // Initialize Capstone
         if (cs_open(CS_ARCH_ARM, CS_MODE_THUMB, &capstone_handle_) != CS_ERR_OK)
@@ -231,20 +231,18 @@ namespace STM32F103C8T6
 
     void EmulationCore::handleCodeExecution(uint64_t address, const uint8_t *instruction_bytes, uint32_t size)
     {
-        // Assign LR to STOP_ADDR when entering main
+        // Assign LR to stop address when entering main
         if (address == main_address_)
         {
-            if (!lr_patched_)
-            {
-                uc_reg_write(uc_engine_, UC_ARM_REG_LR, &MemoryMap::STOP_ADDR);
-                lr_patched_ = true;
-                std::cout << "[Hook] Set LR to STOP_ADDR at entry of main" << std::endl;
-            }
+            uc_err err = uc_reg_read(uc_engine_, UC_ARM_REG_LR, &main_return_address_);
+            main_return_address_ &= ~1U; // Clear Thumb bit
+            std::cout << "[Hook] Return address of main (current LR): " << std::hex << main_return_address_ << std::endl;
+        
         }
 
         // Check if we reached the stop address
         // There is a case that main have not returned but an instruction access invalidly to this stop address
-        if (address == MemoryMap::STOP_ADDR)
+        if (main_return_address_ != -1 && address == main_return_address_)
         {
             std::cout << "[Hook] Reached STOP_ADDR (main returned), stopping..." << std::endl;
             uc_emu_stop(uc_engine_);

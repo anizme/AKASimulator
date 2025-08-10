@@ -44,7 +44,7 @@ namespace STM32F103C8T6
         csh capstone_handle_;
 
         uint32_t main_address_;
-        bool lr_patched_;
+        uint32_t main_return_address_ = -1;
         ExecutionLogger *logger_;
 
         bool setupHooks();
