@@ -144,7 +144,6 @@
 /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:50
 /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:50
 /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:50
-# INFO: aka_sim_writer_u32 called with value: 164
 /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:34
 /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:34
 /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:34
@@ -157,7 +156,6 @@
 /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:51
 /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:51
 /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:51
-# INFO: aka_sim_writer_u32 called with value: 10
 /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:34
 /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:34
 /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:34
@@ -172,4 +170,4 @@
 /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:53
 /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:53
 /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:53
-# INFO: Main function returned 
+# SUCCESS: Main function returned 

@@ -18,6 +18,6 @@ echo "[Finish step 3] Simulator is running. You can now interact with it."
 
 echo "[Step 4] Test report genertion"
 g++ aka_test_report_generator/Generator.cpp -o aka_test_report_generator/Generator
-aka_test_report_generator/Generator output/emulation_log/executed_code_emulation.log output/test_report
+aka_test_report_generator/Generator output/emulation_log/code_line_emulation.log output/test_report
 echo "[Finish step 4] Test report generated successfully. Check the output/test_report directory."
 read -p "Press Enter to continue..."

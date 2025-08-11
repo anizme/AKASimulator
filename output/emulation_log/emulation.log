@@ -1,6 +1,6 @@
 # STM32F103C8T6 Emulation Log
 # ELF File: elf/firmware.elf
-# Start Time: 2025-08-11 01:16:20
+# Start Time: 2025-08-11 08:11:13
 # Entry Point: 0x8000209
 # Memory Layout:
 # 	Flash: 0x8000000 - 0x801ffff
@@ -300,7 +300,6 @@
 	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:50 (main)
 [0x080001e4] bl       0x8000172
 	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:50 (main)
-# INFO: aka_sim_writer_u32 called with value: 164 at 0x8000172
 [0x08000172] push     {r7}
 	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:34 (aka_sim_writer_u32)
 [0x08000174] sub      sp, #0xc
@@ -325,7 +324,6 @@
 	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:51 (main)
 [0x080001ec] bl       0x8000172
 	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:51 (main)
-# INFO: aka_sim_writer_u32 called with value: 10 at 0x8000172
 [0x08000172] push     {r7}
 	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:34 (aka_sim_writer_u32)
 [0x08000174] sub      sp, #0xc
@@ -354,4 +352,4 @@
 	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:53 (main)
 [0x080001f8] pop      {r4, r7, pc}
 	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/elf/input_source/main.c:53 (main)
-# INFO: Main function returned  at 0x8000234
+# SUCCESS: Main function returned  at 0x8000234

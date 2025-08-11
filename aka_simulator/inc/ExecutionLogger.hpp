@@ -29,11 +29,13 @@ namespace STM32F103C8T6
         void logError(const std::string &message);
         void logInfo(const std::string &message, uint64_t address);
         void logExecutedCode(const std::string &message);
+        void logActuals(const std::string &value);
         void close();
 
     private:
         std::ofstream log_file_;
         std::ofstream executed_code_log_file_;
+        std::ofstream actuals_log_file_;;
         std::string elf_path_;
         std::string addr2line_command_;
         int instruction_count_;
@@ -53,6 +55,7 @@ namespace STM32F103C8T6
         void writeLogLine(const std::string &line);
 
         std::string generateExecutedCodePath(const std::string& filePath);
+        std::string generateActualsPath(const std::string &filePath);
     };
 
 } // namespace STM32F103C8T6

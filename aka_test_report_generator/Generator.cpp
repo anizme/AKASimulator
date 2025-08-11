@@ -92,9 +92,9 @@ private:
                     execResult.errorLineNumber = lineNum;
                 }
             }
-        } else if (lastLine.find("# INFO:") == 0) {
+        } else if (lastLine.find("# SUCCESS:") == 0) {
             execResult.success = true;
-            execResult.message = lastLine.substr(8); // Remove "# INFO: "
+            execResult.message = lastLine.substr(11); // Remove "# SUCCESS: "
         }
         
         // Parse covered lines (all lines except the last)

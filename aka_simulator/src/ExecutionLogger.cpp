@@ -34,11 +34,20 @@ namespace STM32F103C8T6
             std::cerr << "Failed to open log file: " << log_file_path << std::endl;
             return false;
         }
+
         std::string executed_code_log_file_path = generateExecutedCodePath(log_file_path);
         executed_code_log_file_.open(executed_code_log_file_path);
         if (!executed_code_log_file_.is_open())
         {
             std::cerr << "Failed to open log file: " << executed_code_log_file_path << std::endl;
+            return false;
+        }
+
+        std::string actuals_log_file_path = generateActualsPath(log_file_path);
+        actuals_log_file_.open(actuals_log_file_path);
+        if (!actuals_log_file_.is_open())
+        {
+            std::cerr << "Failed to open log file: " << actuals_log_file_path << std::endl;
             return false;
         }
 
@@ -51,19 +60,36 @@ namespace STM32F103C8T6
     {
         std::filesystem::path path(filePath);
 
-        //Remove extionsion
+        // Remove extionsion
         std::string fileName = path.stem().string();
 
         std::filesystem::path parentPath = path.parent_path();
 
-        std::string newFileName = "executed_code_" + fileName + ".log";
+        std::string newFileName = "code_line_" + fileName + ".log";
 
         std::filesystem::path outputPath = parentPath / newFileName;
 
         return outputPath.string();
     }
 
-    void ExecutionLogger::logExecutedCode(const std::string &message) {
+    std::string ExecutionLogger::generateActualsPath(const std::string &filePath)
+    {
+        std::filesystem::path path(filePath);
+
+        // Remove extionsion
+        std::string fileName = path.stem().string();
+
+        std::filesystem::path parentPath = path.parent_path();
+
+        std::string newFileName = "actuals_" + fileName + ".log";
+
+        std::filesystem::path outputPath = parentPath / newFileName;
+
+        return outputPath.string();
+    }
+
+    void ExecutionLogger::logExecutedCode(const std::string &message)
+    {
         if (!executed_code_log_file_.is_open())
         {
             return;
@@ -142,7 +168,8 @@ namespace STM32F103C8T6
             log_file_ << "# ERROR: " << message << std::endl;
             log_file_.flush();
         }
-        if (executed_code_log_file_.is_open()) {
+        if (executed_code_log_file_.is_open())
+        {
             executed_code_log_file_ << "# ERROR: " << message << std::endl;
             executed_code_log_file_.flush();
         }
@@ -153,11 +180,12 @@ namespace STM32F103C8T6
     {
         if (log_file_.is_open())
         {
-            log_file_ << "# INFO: " << message << " at 0x" << std::hex << address << std::dec << std::endl;
+            log_file_ << message << " at 0x" << std::hex << address << std::dec << std::endl;
             log_file_.flush();
         }
-        if (executed_code_log_file_.is_open()) {
-            executed_code_log_file_ << "# INFO: " << message << std::endl;
+        if (executed_code_log_file_.is_open())
+        {
+            executed_code_log_file_ << message << std::endl;
             executed_code_log_file_.flush();
         }
     }
@@ -180,7 +208,8 @@ namespace STM32F103C8T6
         return str;
     }
 
-    std::string ExecutionLogger::dumpSourceInfoOnlyLineOfCode(const SourceInfo &info) {
+    std::string ExecutionLogger::dumpSourceInfoOnlyLineOfCode(const SourceInfo &info)
+    {
         std::string str;
         if (!info.filename.empty() && info.filename != "??")
         {
@@ -191,6 +220,15 @@ namespace STM32F103C8T6
             str.append("unknown (no debug info)");
         }
         return str;
+    }
+
+    void ExecutionLogger::logActuals(const std::string &value)
+    {
+        if (actuals_log_file_.is_open())
+        {
+            actuals_log_file_ << value << std::endl;
+            actuals_log_file_.flush();
+        }
     }
 
     void ExecutionLogger::close()

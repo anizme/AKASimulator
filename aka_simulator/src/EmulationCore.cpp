@@ -245,7 +245,7 @@ namespace STM32F103C8T6
         {
             std::cout << "[Hook] Reached STOP_ADDR (main returned), stopping..." << std::endl;
             uc_emu_stop(uc_engine_);
-            logger_->logInfo("Main function returned ", address);
+            logger_->logInfo("# SUCCESS: Main function returned ", address);
             return;
         }
 
@@ -257,7 +257,7 @@ namespace STM32F103C8T6
                 return;
             }
             std::cout << "[HOOK] aka_sim_writer_u32 called with value: " << std::dec << value << std::endl;
-            logger_->logInfo("aka_sim_writer_u32 called with value: " + std::to_string(value), address);
+            logger_->logActuals(std::to_string(value));
         } else if (address == elf_info_.aka_sim_writer_u64_address) {
             // TODO: support later
         }
