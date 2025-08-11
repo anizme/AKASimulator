@@ -1,6 +1,6 @@
 # STM32F103C8T6 Emulation Log
 # ELF File: akas_working_space/akas_test_driver/firmware.elf
-# Start Time: 2025-08-11 09:22:00
+# Start Time: 2025-08-11 09:23:32
 # Entry Point: 0x8000109
 # Memory Layout:
 # 	Flash: 0x8000000 - 0x801ffff

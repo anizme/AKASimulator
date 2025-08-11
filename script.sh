@@ -12,11 +12,11 @@ cmake --build build
 echo "[Finish step 2] Build complete. Check if the simulator binary is located in build/akas_simulator/"
 
 echo "[Step 3] Run the simulator"
-build/akas_simulator/stm32f103c8t6_emulator akas_working_space/akas_test_driver/firmware.elf akas_output/emulation_log/emulation.log
+build/akas_simulator/stm32f103c8t6_emulator akas_working_space/akas_test_driver/firmware.elf akas_working_space/akas_output/emulation_log/emulation.log
 echo "[Finish step 3] Simulator is running. You can now interact with it."
 
 echo "[Step 4] Test report genertion"
 g++ akas_report_generator/Generator.cpp -o akas_report_generator/Generator
-akas_report_generator/Generator akas_output/emulation_log/code_line_emulation.log akas_output/test_report
+akas_report_generator/Generator akas_working_space/akas_output/emulation_log/code_line_emulation.log akas_working_space/akas_output/test_report
 echo "[Finish step 4] Test report generated successfully. Check the akas_output/test_report directory."
 read -p "Press Enter to continue..."
