@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Coverage: main.c</title>
+<title>Coverage: test_driver_uut.c</title>
 <style>
 body {
     font-family: Arial, sans-serif;
@@ -171,9 +171,9 @@ body {
 <a href="index.html" class="nav-link">← Back to Index</a>
 </div>
 <div class="header">
-<h1>Coverage: main.c</h1>
-<p><strong>File:</strong> /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_test_driver/akas_source/main.c</p>
-<p><strong>Coverage:</strong> 32.1% (9/28 lines)</p>
+<h1>Coverage: test_driver_uut.c</h1>
+<p><strong>File:</strong> /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_test_driver/test_driver_uut.c</p>
+<p><strong>Coverage:</strong> 44.0% (11/25 lines)</p>
 </div>
 <div class="source-container">
 <div class="source-line" id="line1">
@@ -190,47 +190,47 @@ body {
 </div>
 <div class="source-line" id="line4">
 <div class="line-number">4</div>
-<div class="line-content"></div>
+<div class="line-content">#include &quot;akas_source/main.c&quot;</div>
 </div>
 <div class="source-line" id="line5">
 <div class="line-number">5</div>
-<div class="line-content">// Struct test</div>
+<div class="line-content"></div>
 </div>
-<div class="source-line" id="line6">
+<div class="source-line covered" id="line6">
 <div class="line-number">6</div>
-<div class="line-content">typedef struct</div>
+<div class="line-content">void aka_sim_writer_u32(uint32_t raw) {</div>
 </div>
 <div class="source-line" id="line7">
 <div class="line-number">7</div>
-<div class="line-content">{</div>
+<div class="line-content">    // log raw 4 bytes</div>
 </div>
-<div class="source-line" id="line8">
+<div class="source-line covered" id="line8">
 <div class="line-number">8</div>
-<div class="line-content">    int a;</div>
+<div class="line-content">}</div>
 </div>
 <div class="source-line" id="line9">
 <div class="line-number">9</div>
-<div class="line-content">    float b;</div>
+<div class="line-content"></div>
 </div>
 <div class="source-line" id="line10">
 <div class="line-number">10</div>
-<div class="line-content">    char c;</div>
+<div class="line-content">void aka_sim_writer_u64(uint64_t raw) {</div>
 </div>
 <div class="source-line" id="line11">
 <div class="line-number">11</div>
-<div class="line-content">} MyStruct;</div>
+<div class="line-content">    // log raw 8 bytes</div>
 </div>
 <div class="source-line" id="line12">
 <div class="line-number">12</div>
-<div class="line-content"></div>
+<div class="line-content">}</div>
 </div>
 <div class="source-line" id="line13">
 <div class="line-number">13</div>
-<div class="line-content">// Unit Under Test (UUT)</div>
+<div class="line-content"></div>
 </div>
 <div class="source-line" id="line14">
 <div class="line-number">14</div>
-<div class="line-content">int uut(int x, int y, char *msg, MyStruct *data, int *arr, size_t arr_len)</div>
+<div class="line-content">int main(void)</div>
 </div>
 <div class="source-line covered" id="line15">
 <div class="line-number">15</div>
@@ -238,54 +238,42 @@ body {
 </div>
 <div class="source-line covered" id="line16">
 <div class="line-number">16</div>
-<div class="line-content">    int sum = x + (int)y + data-&gt;a;</div>
+<div class="line-content">    char text[] = &quot;Hello&quot;;</div>
 </div>
 <div class="source-line covered" id="line17">
 <div class="line-number">17</div>
-<div class="line-content">    for (size_t i = 0; i &lt; arr_len; i++)</div>
+<div class="line-content">    MyStruct s = {10, 3.14f, &#39;A&#39;};</div>
 </div>
-<div class="source-line" id="line18">
+<div class="source-line covered" id="line18">
 <div class="line-number">18</div>
-<div class="line-content">    {</div>
+<div class="line-content">    int numbers[] = {1, 2, 3, 4};</div>
 </div>
-<div class="source-line covered" id="line19">
+<div class="source-line" id="line19">
 <div class="line-number">19</div>
-<div class="line-content">        sum += arr[i];</div>
+<div class="line-content"></div>
 </div>
-<div class="source-line" id="line20">
+<div class="source-line covered" id="line20">
 <div class="line-number">20</div>
-<div class="line-content">    }</div>
+<div class="line-content">    int akas_return_uut = uut(5, 2.5f, text, &amp;s, numbers, 4);</div>
 </div>
-<div class="source-line covered" id="line21">
+<div class="source-line" id="line21">
 <div class="line-number">21</div>
-<div class="line-content">    if (msg)</div>
+<div class="line-content"></div>
 </div>
-<div class="source-line" id="line22">
+<div class="source-line covered" id="line22">
 <div class="line-number">22</div>
-<div class="line-content">    {</div>
+<div class="line-content">    aka_sim_writer_u32(akas_return_uut);</div>
 </div>
-<div class="source-line" id="line23">
+<div class="source-line covered" id="line23">
 <div class="line-number">23</div>
-<div class="line-content">        // Giả sử làm gì đó với msg</div>
+<div class="line-content">    aka_sim_writer_u32(s.a);</div>
 </div>
 <div class="source-line covered" id="line24">
 <div class="line-number">24</div>
-<div class="line-content">        sum += (int)msg[0];</div>
+<div class="line-content">    return 0;</div>
 </div>
-<div class="source-line" id="line25">
+<div class="source-line covered" id="line25">
 <div class="line-number">25</div>
-<div class="line-content">    }</div>
-</div>
-<div class="source-line covered" id="line26">
-<div class="line-number">26</div>
-<div class="line-content">    sum += (int)data-&gt;c;</div>
-</div>
-<div class="source-line covered" id="line27">
-<div class="line-number">27</div>
-<div class="line-content">    return sum;</div>
-</div>
-<div class="source-line covered" id="line28">
-<div class="line-number">28</div>
 <div class="line-content">}</div>
 </div>
 </div>

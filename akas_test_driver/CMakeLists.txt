@@ -6,19 +6,33 @@ project(elf_builder C CXX ASM)
 # Set output
 set(OUTPUT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/)
 # Need debug info and no optimization for easier to mapping address to source code
-set(CORTEX3_FLAGS -mcpu=cortex-m3 -mthumb -nostdlib -g -O0 -static -g3 -fno-inline -fno-common -fno-builtin)
+set(CORTEX3_FLAGS 
+    -mcpu=cortex-m3 
+    -mthumb 
+    -nostdlib 
+    -g 
+    -O0 
+    -static 
+    -g3 
+    -fno-inline 
+    -fno-common 
+    -fno-builtin)
+
 set(LINKER_SCRIPT ${CMAKE_CURRENT_SOURCE_DIR}/toolchain/stm32f103c8t6/linker.ld)
 message(STATUS "Using linker script: ${LINKER_SCRIPT}")
 
 file(GLOB_RECURSE SOURCES
-    ${CMAKE_CURRENT_SOURCE_DIR}/input_source/*.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/input_source/*.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/input_source/*.cc
-    ${CMAKE_CURRENT_SOURCE_DIR}/input_source/*.cxx
-    ${CMAKE_CURRENT_SOURCE_DIR}/input_source/*.s
-    ${CMAKE_CURRENT_SOURCE_DIR}/input_source/*.S
+    ${CMAKE_CURRENT_SOURCE_DIR}/akas_source/startup.s
 )
-add_executable(firmware.elf ${SOURCES})
+# Add test driver main
+set(TEST_DRIVER
+    ${CMAKE_CURRENT_SOURCE_DIR}/test_driver_uut.c
+)
+
+add_executable(firmware.elf
+    ${SOURCES}
+    ${TEST_DRIVER}
+)
 
 set_target_properties(firmware.elf PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIR}
