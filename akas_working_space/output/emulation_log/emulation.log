@@ -1,0 +1,609 @@
+# STM32F103C8T6 Emulation Log
+# ELF File: akas_working_space/test_driver/firmware.elf
+# Start Time: 2025-08-11 15:18:13
+# Entry Point: 0x8000109
+# Memory Layout:
+# 	Flash: 0x8000000 - 0x801ffff
+# 	SRAM:  0x20000000 - 0x20004fff
+# Format: ADDRESS: FILE:LINE (FUNCTION)
+#
+
+[0x08000108] ldr.w    sp, [pc, #0x2c]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:102 (Reset_Handler)
+[0x0800010c] ldr      r0, [pc, #0x2c]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:105 (Reset_Handler)
+[0x0800010e] ldr      r1, [pc, #0x30]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:106 (Reset_Handler)
+[0x08000110] ldr      r2, [pc, #0x30]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:107 (Reset_Handler)
+[0x08000112] movs     r3, #0
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:108 (Reset_Handler)
+[0x08000114] cmp      r1, r2
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:110 (Reset_Handler)
+[0x08000116] bge      0x8000120
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:111 (Reset_Handler)
+[0x08000120] ldr      r0, [pc, #0x24]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:119 (Reset_Handler)
+[0x08000122] ldr      r1, [pc, #0x28]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:120 (Reset_Handler)
+[0x08000124] movs     r2, #0
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:121 (Reset_Handler)
+[0x08000126] cmp      r0, r1
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:123 (Reset_Handler)
+[0x08000128] bge      0x8000130
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:124 (Reset_Handler)
+[0x0800012a] str      r2, [r0], #4
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:125 (Reset_Handler)
+[0x0800012e] b        0x8000126
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:126 (Reset_Handler)
+[0x08000126] cmp      r0, r1
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:123 (Reset_Handler)
+[0x08000128] bge      0x8000130
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:124 (Reset_Handler)
+[0x0800012a] str      r2, [r0], #4
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:125 (Reset_Handler)
+[0x0800012e] b        0x8000126
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:126 (Reset_Handler)
+[0x08000126] cmp      r0, r1
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:123 (Reset_Handler)
+[0x08000128] bge      0x8000130
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:124 (Reset_Handler)
+[0x0800012a] str      r2, [r0], #4
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:125 (Reset_Handler)
+[0x0800012e] b        0x8000126
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:126 (Reset_Handler)
+[0x08000126] cmp      r0, r1
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:123 (Reset_Handler)
+[0x08000128] bge      0x8000130
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:124 (Reset_Handler)
+[0x0800012a] str      r2, [r0], #4
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:125 (Reset_Handler)
+[0x0800012e] b        0x8000126
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:126 (Reset_Handler)
+[0x08000126] cmp      r0, r1
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:123 (Reset_Handler)
+[0x08000128] bge      0x8000130
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:124 (Reset_Handler)
+[0x0800012a] str      r2, [r0], #4
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:125 (Reset_Handler)
+[0x0800012e] b        0x8000126
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:126 (Reset_Handler)
+[0x08000126] cmp      r0, r1
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:123 (Reset_Handler)
+[0x08000128] bge      0x8000130
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:124 (Reset_Handler)
+[0x0800012a] str      r2, [r0], #4
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:125 (Reset_Handler)
+[0x0800012e] b        0x8000126
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:126 (Reset_Handler)
+[0x08000126] cmp      r0, r1
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:123 (Reset_Handler)
+[0x08000128] bge      0x8000130
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:124 (Reset_Handler)
+[0x0800012a] str      r2, [r0], #4
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:125 (Reset_Handler)
+[0x0800012e] b        0x8000126
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:126 (Reset_Handler)
+[0x08000126] cmp      r0, r1
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:123 (Reset_Handler)
+[0x08000128] bge      0x8000130
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:124 (Reset_Handler)
+[0x0800012a] str      r2, [r0], #4
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:125 (Reset_Handler)
+[0x0800012e] b        0x8000126
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:126 (Reset_Handler)
+[0x08000126] cmp      r0, r1
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:123 (Reset_Handler)
+[0x08000128] bge      0x8000130
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:124 (Reset_Handler)
+[0x0800012a] str      r2, [r0], #4
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:125 (Reset_Handler)
+[0x0800012e] b        0x8000126
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:126 (Reset_Handler)
+[0x08000126] cmp      r0, r1
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:123 (Reset_Handler)
+[0x08000128] bge      0x8000130
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:124 (Reset_Handler)
+[0x0800012a] str      r2, [r0], #4
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:125 (Reset_Handler)
+[0x0800012e] b        0x8000126
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:126 (Reset_Handler)
+[0x08000126] cmp      r0, r1
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:123 (Reset_Handler)
+[0x08000128] bge      0x8000130
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:124 (Reset_Handler)
+[0x0800012a] str      r2, [r0], #4
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:125 (Reset_Handler)
+[0x0800012e] b        0x8000126
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:126 (Reset_Handler)
+[0x08000126] cmp      r0, r1
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:123 (Reset_Handler)
+[0x08000128] bge      0x8000130
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:124 (Reset_Handler)
+[0x0800012a] str      r2, [r0], #4
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:125 (Reset_Handler)
+[0x0800012e] b        0x8000126
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:126 (Reset_Handler)
+[0x08000126] cmp      r0, r1
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:123 (Reset_Handler)
+[0x08000128] bge      0x8000130
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:124 (Reset_Handler)
+[0x08000130] bl       0x80001ea
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s:130 (Reset_Handler)
+[0x080001ea] push     {r7, lr}
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:26 (main)
+[0x080001ec] sub      sp, #0x20
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:26 (main)
+[0x080001ee] add      r7, sp, #8
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:26 (main)
+[0x080001f0] movs     r3, #1
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:27 (main)
+[0x080001f2] str      r3, [r7, #0x14]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:27 (main)
+[0x080001f4] movs     r3, #2
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:28 (main)
+[0x080001f6] str      r3, [r7, #0x10]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:28 (main)
+[0x080001f8] ldr      r3, [pc, #0xdc]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:30 (main)
+[0x080001fa] movs     r2, #0x31
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:30 (main)
+[0x080001fc] strb     r2, [r3]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:30 (main)
+[0x080001fe] ldr      r3, [pc, #0xd8]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:31 (main)
+[0x08000200] movs     r2, #0
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:31 (main)
+[0x08000202] strb     r2, [r3, #1]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:31 (main)
+[0x08000204] ldr      r3, [pc, #0xd4]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:33 (main)
+[0x08000206] movs     r2, #1
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:33 (main)
+[0x08000208] str      r2, [r3]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:33 (main)
+[0x0800020a] ldr      r3, [pc, #0xd0]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:34 (main)
+[0x0800020c] movs     r2, #0x63
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:34 (main)
+[0x0800020e] strb     r2, [r3, #8]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:34 (main)
+[0x08000210] ldr      r3, [pc, #0xcc]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:36 (main)
+[0x08000212] movs     r2, #1
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:36 (main)
+[0x08000214] str      r2, [r3]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:36 (main)
+[0x08000216] ldr      r3, [pc, #0xcc]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:37 (main)
+[0x08000218] movs     r2, #1
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:37 (main)
+[0x0800021a] str      r2, [r3]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:37 (main)
+[0x0800021c] movs     r3, #0
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:39 (main)
+[0x0800021e] str      r3, [r7, #0xc]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:39 (main)
+[0x08000220] ldr      r3, [pc, #0xc0]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:40 (main)
+[0x08000222] ldr      r3, [r3]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:40 (main)
+[0x08000224] str      r3, [sp, #4]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:40 (main)
+[0x08000226] ldr      r3, [pc, #0xb8]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:40 (main)
+[0x08000228] str      r3, [sp]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:40 (main)
+[0x0800022a] ldr      r3, [pc, #0xb0]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:40 (main)
+[0x0800022c] ldr      r2, [pc, #0xa8]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:40 (main)
+[0x0800022e] ldr      r1, [r7, #0x10]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:40 (main)
+[0x08000230] ldr      r0, [r7, #0x14]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:40 (main)
+[0x08000232] bl       0x8000154
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:40 (main)
+[0x08000154] push     {r7}
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:15 (uut)
+[0x08000156] sub      sp, #0x1c
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:15 (uut)
+[0x08000158] add      r7, sp, #0
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:15 (uut)
+[0x0800015a] str      r0, [r7, #0xc]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:15 (uut)
+[0x0800015c] str      r1, [r7, #8]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:15 (uut)
+[0x0800015e] str      r2, [r7, #4]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:15 (uut)
+[0x08000160] str      r3, [r7]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:15 (uut)
+[0x08000162] ldr      r2, [r7, #0xc]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:16 (uut)
+[0x08000164] ldr      r3, [r7, #8]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:16 (uut)
+[0x08000166] add      r2, r3
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:16 (uut)
+[0x08000168] ldr      r3, [r7]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:16 (uut)
+[0x0800016a] ldr      r3, [r3]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:16 (uut)
+[0x0800016c] add      r3, r2
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:16 (uut)
+[0x0800016e] str      r3, [r7, #0x14]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:16 (uut)
+[0x08000170] movs     r3, #0
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:17 (uut)
+[0x08000172] str      r3, [r7, #0x10]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:17 (uut)
+[0x08000174] b        0x800018c
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:17 (uut)
+[0x0800018c] ldr      r2, [r7, #0x10]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:17 (uut)
+[0x0800018e] ldr      r3, [r7, #0x24]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:17 (uut)
+[0x08000190] cmp      r2, r3
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:17 (uut)
+[0x08000192] blo      0x8000176
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:17 (uut)
+[0x08000176] ldr      r3, [r7, #0x10]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:19 (uut)
+[0x08000178] lsls     r3, r3, #2
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:19 (uut)
+[0x0800017a] ldr      r2, [r7, #0x20]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:19 (uut)
+[0x0800017c] add      r3, r2
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:19 (uut)
+[0x0800017e] ldr      r3, [r3]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:19 (uut)
+[0x08000180] ldr      r2, [r7, #0x14]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:19 (uut)
+[0x08000182] add      r3, r2
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:19 (uut)
+[0x08000184] str      r3, [r7, #0x14]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:19 (uut)
+[0x08000186] ldr      r3, [r7, #0x10]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:17 (uut)
+[0x08000188] adds     r3, #1
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:17 (uut)
+[0x0800018a] str      r3, [r7, #0x10]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:17 (uut)
+[0x0800018c] ldr      r2, [r7, #0x10]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:17 (uut)
+[0x0800018e] ldr      r3, [r7, #0x24]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:17 (uut)
+[0x08000190] cmp      r2, r3
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:17 (uut)
+[0x08000192] blo      0x8000176
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:17 (uut)
+[0x08000194] ldr      r3, [r7, #4]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:21 (uut)
+[0x08000196] cmp      r3, #0
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:21 (uut)
+[0x08000198] beq      0x80001a6
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:21 (uut)
+[0x0800019a] ldr      r3, [r7, #4]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:24 (uut)
+[0x0800019c] ldrb     r3, [r3]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:24 (uut)
+[0x0800019e] mov      r2, r3
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:24 (uut)
+[0x080001a0] ldr      r3, [r7, #0x14]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:24 (uut)
+[0x080001a2] add      r3, r2
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:24 (uut)
+[0x080001a4] str      r3, [r7, #0x14]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:24 (uut)
+[0x080001a6] ldr      r3, [r7]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:26 (uut)
+[0x080001a8] ldrb     r3, [r3, #8]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:26 (uut)
+[0x080001aa] mov      r2, r3
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:26 (uut)
+[0x080001ac] ldr      r3, [r7, #0x14]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:26 (uut)
+[0x080001ae] add      r3, r2
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:26 (uut)
+[0x080001b0] str      r3, [r7, #0x14]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:26 (uut)
+[0x080001b2] ldr      r3, [r7, #0x14]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:27 (uut)
+[0x080001b4] mov      r0, r3
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:28 (uut)
+[0x080001b6] adds     r7, #0x1c
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:28 (uut)
+[0x080001b8] mov      sp, r7
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:28 (uut)
+[0x080001ba] pop      {r7}
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:28 (uut)
+[0x080001bc] bx       lr
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:28 (uut)
+[0x08000236] str      r0, [r7, #8]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:40 (main)
+[0x08000238] ldr      r3, [r7, #8]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:42 (main)
+[0x0800023a] ldr      r2, [r7, #0xc]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:42 (main)
+[0x0800023c] mov      r1, r2
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:42 (main)
+[0x0800023e] mov      r0, r3
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:42 (main)
+[0x08000240] bl       0x80001be
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:42 (main)
+[0x080001be] push     {r7}
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c0] sub      sp, #0xc
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c2] add      r7, sp, #0
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c4] str      r0, [r7, #4]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c6] str      r1, [r7]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c8] nop     
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x080001ca] adds     r7, #0xc
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x080001cc] mov      sp, r7
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x080001ce] pop      {r7}
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x080001d0] bx       lr
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x08000244] movs     r3, #2
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:44 (main)
+[0x08000246] str      r3, [r7, #4]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:44 (main)
+[0x08000248] movs     r3, #3
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:45 (main)
+[0x0800024a] str      r3, [r7]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:45 (main)
+[0x0800024c] ldr      r3, [r7, #0x14]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:47 (main)
+[0x0800024e] ldr      r2, [r7, #4]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:47 (main)
+[0x08000250] mov      r1, r2
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:47 (main)
+[0x08000252] mov      r0, r3
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:47 (main)
+[0x08000254] bl       0x80001be
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:47 (main)
+[0x080001be] push     {r7}
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c0] sub      sp, #0xc
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c2] add      r7, sp, #0
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c4] str      r0, [r7, #4]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c6] str      r1, [r7]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c8] nop     
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x080001ca] adds     r7, #0xc
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x080001cc] mov      sp, r7
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x080001ce] pop      {r7}
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x080001d0] bx       lr
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x08000258] ldr      r3, [r7, #0x10]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:48 (main)
+[0x0800025a] ldr      r2, [r7]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:48 (main)
+[0x0800025c] mov      r1, r2
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:48 (main)
+[0x0800025e] mov      r0, r3
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:48 (main)
+[0x08000260] bl       0x80001be
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:48 (main)
+[0x080001be] push     {r7}
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c0] sub      sp, #0xc
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c2] add      r7, sp, #0
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c4] str      r0, [r7, #4]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c6] str      r1, [r7]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c8] nop     
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x080001ca] adds     r7, #0xc
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x080001cc] mov      sp, r7
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x080001ce] pop      {r7}
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x080001d0] bx       lr
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x08000264] ldr      r3, [pc, #0x80]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:50 (main)
+[0x08000266] movs     r2, #0x32
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:50 (main)
+[0x08000268] strb     r2, [r3]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:50 (main)
+[0x0800026a] ldr      r3, [pc, #0x7c]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:51 (main)
+[0x0800026c] movs     r2, #0
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:51 (main)
+[0x0800026e] strb     r2, [r3, #1]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:51 (main)
+[0x08000270] ldr      r3, [pc, #0x78]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:53 (main)
+[0x08000272] movs     r2, #2
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:53 (main)
+[0x08000274] str      r2, [r3]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:53 (main)
+[0x08000276] ldr      r3, [pc, #0x74]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:54 (main)
+[0x08000278] movs     r2, #0x61
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:54 (main)
+[0x0800027a] strb     r2, [r3, #8]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:54 (main)
+[0x0800027c] ldr      r3, [pc, #0x5c]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:56 (main)
+[0x0800027e] ldr      r3, [r3]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:56 (main)
+[0x08000280] mov      r2, r3
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:56 (main)
+[0x08000282] ldr      r3, [pc, #0x68]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:56 (main)
+[0x08000284] ldr      r3, [r3]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:56 (main)
+[0x08000286] mov      r1, r3
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:56 (main)
+[0x08000288] mov      r0, r2
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:56 (main)
+[0x0800028a] bl       0x80001be
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:56 (main)
+[0x080001be] push     {r7}
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c0] sub      sp, #0xc
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c2] add      r7, sp, #0
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c4] str      r0, [r7, #4]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c6] str      r1, [r7]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c8] nop     
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x080001ca] adds     r7, #0xc
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x080001cc] mov      sp, r7
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x080001ce] pop      {r7}
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x080001d0] bx       lr
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x0800028e] ldr      r3, [pc, #0x4c]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:57 (main)
+[0x08000290] ldrb     r3, [r3, #8]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:57 (main)
+[0x08000292] mov      r2, r3
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:57 (main)
+[0x08000294] ldr      r3, [pc, #0x54]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:57 (main)
+[0x08000296] ldrb     r3, [r3, #8]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:57 (main)
+[0x08000298] mov      r1, r3
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:57 (main)
+[0x0800029a] mov      r0, r2
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:57 (main)
+[0x0800029c] bl       0x80001be
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:57 (main)
+[0x080001be] push     {r7}
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c0] sub      sp, #0xc
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c2] add      r7, sp, #0
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c4] str      r0, [r7, #4]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c6] str      r1, [r7]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c8] nop     
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x080001ca] adds     r7, #0xc
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x080001cc] mov      sp, r7
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x080001ce] pop      {r7}
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x080001d0] bx       lr
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x080002a0] ldr      r3, [pc, #0x4c]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:59 (main)
+[0x080002a2] movs     r2, #2
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:59 (main)
+[0x080002a4] str      r2, [r3]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:59 (main)
+[0x080002a6] ldr      r3, [pc, #0x38]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:61 (main)
+[0x080002a8] ldr      r3, [r3]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:61 (main)
+[0x080002aa] mov      r2, r3
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:61 (main)
+[0x080002ac] ldr      r3, [pc, #0x40]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:61 (main)
+[0x080002ae] ldr      r3, [r3]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:61 (main)
+[0x080002b0] mov      r1, r3
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:61 (main)
+[0x080002b2] mov      r0, r2
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:61 (main)
+[0x080002b4] bl       0x80001be
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:61 (main)
+[0x080001be] push     {r7}
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c0] sub      sp, #0xc
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c2] add      r7, sp, #0
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c4] str      r0, [r7, #4]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c6] str      r1, [r7]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c8] nop     
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x080001ca] adds     r7, #0xc
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x080001cc] mov      sp, r7
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x080001ce] pop      {r7}
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x080001d0] bx       lr
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x080002b8] ldr      r3, [pc, #0x38]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:63 (main)
+[0x080002ba] movs     r2, #1
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:63 (main)
+[0x080002bc] str      r2, [r3]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:63 (main)
+[0x080002be] ldr      r3, [pc, #0x24]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:64 (main)
+[0x080002c0] ldr      r3, [r3]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:64 (main)
+[0x080002c2] ldr      r2, [pc, #0x30]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:64 (main)
+[0x080002c4] ldr      r2, [r2]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:64 (main)
+[0x080002c6] mov      r1, r2
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:64 (main)
+[0x080002c8] mov      r0, r3
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:64 (main)
+[0x080002ca] bl       0x80001be
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:64 (main)
+[0x080001be] push     {r7}
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c0] sub      sp, #0xc
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c2] add      r7, sp, #0
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c4] str      r0, [r7, #4]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c6] str      r1, [r7]
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:7 (aka_sim_writer_u32)
+[0x080001c8] nop     
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x080001ca] adds     r7, #0xc
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x080001cc] mov      sp, r7
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x080001ce] pop      {r7}
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x080001d0] bx       lr
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:8 (aka_sim_writer_u32)
+[0x080002ce] movs     r3, #0
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:66 (main)
+[0x080002d0] mov      r0, r3
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:67 (main)
+[0x080002d2] adds     r7, #0x18
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:67 (main)
+[0x080002d4] mov      sp, r7
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:67 (main)
+[0x080002d6] pop      {r7, pc}
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:67 (main)
+# SUCCESS: Main function returned  at 0x8000134

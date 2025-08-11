@@ -222,11 +222,20 @@ namespace STM32F103C8T6
         return str;
     }
 
-    void ExecutionLogger::logActuals(const std::string &value)
+    void ExecutionLogger::logAssert(const std::string &assertion, uint64_t address)
     {
+        if (!actuals_log_file_.is_open())
+        {
+            return;
+        }
+
+        std::ostringstream oss;
+        oss << assertion;
+        appendSourceInfo(oss, address);
+
         if (actuals_log_file_.is_open())
         {
-            actuals_log_file_ << value << std::endl;
+            actuals_log_file_ << oss.str() << std::endl;
             actuals_log_file_.flush();
         }
     }

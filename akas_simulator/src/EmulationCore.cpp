@@ -250,14 +250,22 @@ namespace STM32F103C8T6
         }
 
         if (address == elf_info_.aka_sim_writer_u32_address) {
-            uint32_t value;
-            uc_err err = uc_reg_read(uc_engine_, UC_ARM_REG_R0, &value);
+            uint32_t actual;
+            uint32_t expected;
+            uc_err err = uc_reg_read(uc_engine_, UC_ARM_REG_R0, &actual);
             if (err != UC_ERR_OK) {
                 std::cerr << "[ERROR] Failed to read R0 register: " << uc_strerror(err) << std::endl;
                 return;
             }
-            std::cout << "[HOOK] aka_sim_writer_u32 called with value: " << std::dec << value << std::endl;
-            logger_->logActuals(std::to_string(value));
+            std::cout << "[HOOK] aka_sim_writer_u32 called with actual value: " << std::dec << actual << std::endl;
+            
+            err = uc_reg_read(uc_engine_, UC_ARM_REG_R1, &expected);
+            if (err != UC_ERR_OK) {
+                std::cerr << "[ERROR] Failed to read R1 register: " << uc_strerror(err) << std::endl;
+                return;
+            }
+            std::cout << "[HOOK] aka_sim_writer_u32 called with expected value: " << std::dec << expected << std::endl;
+            logger_->logAssert("actual: " + std::to_string(actual) + ", expected: " + std::to_string(expected), pre_address_);
         } else if (address == elf_info_.aka_sim_writer_u64_address) {
             // TODO: support later
         }
@@ -281,6 +289,7 @@ namespace STM32F103C8T6
                 logger_->logInstructionRaw(address, instruction_bytes, size);
             }
         }
+        pre_address_ = address;
     }
 
     void EmulationCore::detectDivisionByZero(uc_engine *uc, uint64_t address, const uint8_t *code, size_t size)

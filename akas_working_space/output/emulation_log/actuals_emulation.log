@@ -1,0 +1,14 @@
+actual: 153, expected: 0
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:42 (main)
+actual: 1, expected: 2
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:47 (main)
+actual: 2, expected: 3
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:48 (main)
+actual: 1, expected: 2
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:56 (main)
+actual: 99, expected: 97
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:57 (main)
+actual: 1, expected: 2
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:61 (main)
+actual: 1, expected: 1
+	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:64 (main)

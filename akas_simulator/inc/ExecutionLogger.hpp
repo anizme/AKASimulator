@@ -29,7 +29,7 @@ namespace STM32F103C8T6
         void logError(const std::string &message);
         void logInfo(const std::string &message, uint64_t address);
         void logExecutedCode(const std::string &message);
-        void logActuals(const std::string &value);
+        void logAssert(const std::string &assertion, uint64_t address);
         void close();
 
     private:

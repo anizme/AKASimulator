@@ -1,0 +1,429 @@
+{
+  "name": "uut_int_int_charmul_MyStructmul_intmul_size_t_manual_0",
+  "status": "success",
+  "testCaseUserCode": {
+    "includePaths": [],
+    "setUpContent": "// set up\n;",
+    "tearDownContent": "// tear down\n;"
+  },
+  "result": "1/7",
+  "path": "./aka-working-space/sim/test-cases/uut_int_int_charmul_MyStructmul_intmul_size_t_manual_0.json",
+  "sourceCode": "./aka-working-space/sim/test-drivers/uut_int_int_charmul_MyStructmul_intmul_size_t_manual_0.c",
+  "testPath": "./aka-working-space/sim/test-paths/uut_int_int_charmul_MyStructmul_intmul_size_t_manual_0.tp",
+  "executable": "./aka-working-space/sim/exe/uut_int_int_charmul_MyStructmul_intmul_size_t_manual_0.exe",
+  "commandConfig": "./aka-working-space/sim/test-case-commands/uut_int_int_charmul_MyStructmul_intmul_size_t_manual_0.json",
+  "commandDebug": "./aka-working-space/sim/debugger/commands/uut_int_int_charmul_MyStructmul_intmul_size_t_manual_0.json",
+  "breakPoint": "./aka-working-space/sim/debugger/breakpoints/uut_int_int_charmul_MyStructmul_intmul_size_t_manual_0.br.json",
+  "debugExecutable": "./aka-working-space/sim/exe/debug_uut_int_int_charmul_MyStructmul_intmul_size_t_manual_0.exe",
+  "executionResult": "./aka-working-space/sim/execution-results/uut_int_int_charmul_MyStructmul_intmul_size_t_manual_0-Results.xml",
+  "creationDate": "2025-08-11T08:25:30.924511262",
+  "executionDate": "2025-08-11T08:30:23.410562834",
+  "rootDataNode": {
+    "type": "com.dse.testdata.object.RootDataNode",
+    "name": "ROOT",
+    "virtual_name": "NON_VALUE",
+    "functionNode": "./input_source/main.c/uut(int,int,char*,MyStruct*,int*,size_t)",
+    "level": "ROOT",
+    "children": [
+      {
+        "type": "com.dse.testdata.object.UnitUnderTestNode",
+        "name": "main.c",
+        "virtual_name": "NON_VALUE",
+        "sourceNode": "./input_source/main.c",
+        "children": [
+          {
+            "type": "com.dse.testdata.object.RootDataNode",
+            "name": "SBF",
+            "virtual_name": "NON_VALUE",
+            "functionNode": "./input_source/main.c/uut(int,int,char*,MyStruct*,int*,size_t)",
+            "level": "SBF"
+          },
+          {
+            "type": "com.dse.testdata.object.GlobalRootDataNode",
+            "name": "GLOBAL",
+            "virtual_name": "NON_VALUE",
+            "functionNode": "./input_source/main.c/uut(int,int,char*,MyStruct*,int*,size_t)",
+            "paramExpectedOuputs": [],
+            "level": "GLOBAL"
+          },
+          {
+            "type": "com.dse.testdata.object.SubprogramNode",
+            "name": "uut(int,int,char*,MyStruct*,int*,size_t)",
+            "virtual_name": "NON_VALUE",
+            "dataType": "int",
+            "realType": "int",
+            "functionNode": "./input_source/main.c/uut(int,int,char*,MyStruct*,int*,size_t)",
+            "paramExpectedOuputs": [
+              {
+                "type": "com.dse.testdata.object.PointerStructureDataNode",
+                "name": "data",
+                "virtual_name": "EXPECTED_data",
+                "dataType": "MyStruct*",
+                "realType": "MyStruct*",
+                "external": false,
+                "correspondingVar": "./input_source/main.c/uut(int,int,char*,MyStruct*,int*,size_t)/data",
+                "correspondingType": "./input_source/main.c/MyStruct",
+                "level": 1,
+                "size": 1,
+                "children": [
+                  {
+                    "type": "com.dse.testdata.object.StructDataNode",
+                    "name": "data[0]",
+                    "virtual_name": "EXPECTED_data[0]",
+                    "dataType": "MyStruct",
+                    "realType": "MyStruct",
+                    "external": false,
+                    "correspondingVar": "./input_source/main.c/uut(int,int,char*,MyStruct*,int*,size_t)/data/data[0]",
+                    "correspondingType": "./input_source/main.c/MyStruct",
+                    "children": [
+                      {
+                        "type": "com.dse.testdata.object.NormalNumberDataNode",
+                        "name": "a",
+                        "virtual_name": "EXPECTED_data[0].a",
+                        "dataType": "int",
+                        "realType": "int",
+                        "external": false,
+                        "assertMethod": "ASSERT EQUAL",
+                        "correspondingVar": "./input_source/main.c/MyStruct/a",
+                        "correspondingType": "int",
+                        "value": "2"
+                      },
+                      {
+                        "type": "com.dse.testdata.object.NormalNumberDataNode",
+                        "name": "b",
+                        "virtual_name": "EXPECTED_data[0].b",
+                        "dataType": "float",
+                        "realType": "float",
+                        "external": false,
+                        "correspondingVar": "./input_source/main.c/MyStruct/b",
+                        "correspondingType": "float",
+                        "value": "null"
+                      },
+                      {
+                        "type": "com.dse.testdata.object.NormalCharacterDataNode",
+                        "name": "c",
+                        "virtual_name": "EXPECTED_data[0].c",
+                        "dataType": "char",
+                        "realType": "char",
+                        "external": false,
+                        "assertMethod": "ASSERT EQUAL",
+                        "correspondingVar": "./input_source/main.c/MyStruct/c",
+                        "correspondingType": "char",
+                        "value": "97"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "com.dse.testdata.object.PointerNumberDataNode",
+                "name": "arr",
+                "virtual_name": "EXPECTED_arr",
+                "dataType": "int*",
+                "realType": "int*",
+                "external": false,
+                "correspondingVar": "./input_source/main.c/uut(int,int,char*,MyStruct*,int*,size_t)/arr",
+                "correspondingType": "",
+                "level": 1,
+                "size": 1,
+                "children": [
+                  {
+                    "type": "com.dse.testdata.object.NormalNumberDataNode",
+                    "name": "arr[0]",
+                    "virtual_name": "EXPECTED_arr[0]",
+                    "dataType": "int",
+                    "realType": "int",
+                    "external": false,
+                    "assertMethod": "ASSERT EQUAL",
+                    "correspondingVar": "./input_source/main.c/uut(int,int,char*,MyStruct*,int*,size_t)/arr/arr[0]",
+                    "correspondingType": "int",
+                    "value": "2"
+                  }
+                ]
+              },
+              {
+                "type": "com.dse.testdata.object.NormalNumberDataNode",
+                "name": "x",
+                "virtual_name": "EXPECTED_x",
+                "dataType": "int",
+                "realType": "int",
+                "external": false,
+                "assertMethod": "ASSERT EQUAL",
+                "correspondingVar": "./input_source/main.c/uut(int,int,char*,MyStruct*,int*,size_t)/x",
+                "correspondingType": "int",
+                "value": "2"
+              },
+              {
+                "type": "com.dse.testdata.object.PointerCharacterDataNode",
+                "name": "msg",
+                "virtual_name": "EXPECTED_msg",
+                "dataType": "char*",
+                "realType": "char*",
+                "external": false,
+                "correspondingVar": "./input_source/main.c/uut(int,int,char*,MyStruct*,int*,size_t)/msg",
+                "correspondingType": "",
+                "level": 1,
+                "size": 1,
+                "children": [
+                  {
+                    "type": "com.dse.testdata.object.NormalCharacterDataNode",
+                    "name": "msg[0]",
+                    "virtual_name": "EXPECTED_msg[0]",
+                    "dataType": "char",
+                    "realType": "char",
+                    "external": false,
+                    "correspondingVar": "./input_source/main.c/uut(int,int,char*,MyStruct*,int*,size_t)/msg/msg[0]",
+                    "correspondingType": "char",
+                    "value": "50"
+                  },
+                  {
+                    "type": "com.dse.testdata.object.NormalCharacterDataNode",
+                    "name": "msg[1]",
+                    "virtual_name": "EXPECTED_msg[1]",
+                    "dataType": "char",
+                    "realType": "char",
+                    "external": false,
+                    "correspondingVar": "./input_source/main.c/uut(int,int,char*,MyStruct*,int*,size_t)/msg/msg[1]",
+                    "correspondingType": "char",
+                    "value": "0"
+                  }
+                ]
+              },
+              {
+                "type": "com.dse.testdata.object.NormalNumberDataNode",
+                "name": "y",
+                "virtual_name": "EXPECTED_y",
+                "dataType": "int",
+                "realType": "int",
+                "external": false,
+                "assertMethod": "ASSERT EQUAL",
+                "correspondingVar": "./input_source/main.c/uut(int,int,char*,MyStruct*,int*,size_t)/y",
+                "correspondingType": "int",
+                "value": "3"
+              },
+              {
+                "type": "com.dse.testdata.object.NormalNumberDataNode",
+                "name": "arr_len",
+                "virtual_name": "EXPECTED_arr_len",
+                "dataType": "size_t",
+                "realType": "size_t",
+                "external": false,
+                "assertMethod": "ASSERT EQUAL",
+                "correspondingVar": "./input_source/main.c/uut(int,int,char*,MyStruct*,int*,size_t)/arr_len",
+                "correspondingType": "size_t",
+                "value": "1"
+              }
+            ],
+            "children": [
+              {
+                "type": "com.dse.testdata.object.RootDataNode",
+                "name": "STATIC",
+                "virtual_name": "NON_VALUE",
+                "functionNode": "./input_source/main.c/uut(int,int,char*,MyStruct*,int*,size_t)",
+                "level": "STATIC"
+              },
+              {
+                "type": "com.dse.testdata.object.NormalNumberDataNode",
+                "name": "x",
+                "virtual_name": "x",
+                "dataType": "int",
+                "realType": "int",
+                "external": false,
+                "assertMethod": "ASSERT EQUAL",
+                "correspondingVar": "./input_source/main.c/uut(int,int,char*,MyStruct*,int*,size_t)/x",
+                "correspondingType": "int",
+                "value": "1"
+              },
+              {
+                "type": "com.dse.testdata.object.NormalNumberDataNode",
+                "name": "y",
+                "virtual_name": "y",
+                "dataType": "int",
+                "realType": "int",
+                "external": false,
+                "assertMethod": "ASSERT EQUAL",
+                "correspondingVar": "./input_source/main.c/uut(int,int,char*,MyStruct*,int*,size_t)/y",
+                "correspondingType": "int",
+                "value": "2"
+              },
+              {
+                "type": "com.dse.testdata.object.PointerCharacterDataNode",
+                "name": "msg",
+                "virtual_name": "msg",
+                "dataType": "char*",
+                "realType": "char*",
+                "external": false,
+                "correspondingVar": "./input_source/main.c/uut(int,int,char*,MyStruct*,int*,size_t)/msg",
+                "correspondingType": "",
+                "level": 1,
+                "size": 1,
+                "children": [
+                  {
+                    "type": "com.dse.testdata.object.NormalCharacterDataNode",
+                    "name": "msg[0]",
+                    "virtual_name": "msg[0]",
+                    "dataType": "char",
+                    "realType": "char",
+                    "external": false,
+                    "correspondingVar": "./input_source/main.c/uut(int,int,char*,MyStruct*,int*,size_t)/msg/msg[0]",
+                    "correspondingType": "char",
+                    "value": "49"
+                  },
+                  {
+                    "type": "com.dse.testdata.object.NormalCharacterDataNode",
+                    "name": "msg[1]",
+                    "virtual_name": "msg[1]",
+                    "dataType": "char",
+                    "realType": "char",
+                    "external": false,
+                    "correspondingVar": "./input_source/main.c/uut(int,int,char*,MyStruct*,int*,size_t)/msg/msg[1]",
+                    "correspondingType": "char",
+                    "value": "0"
+                  }
+                ]
+              },
+              {
+                "type": "com.dse.testdata.object.PointerStructureDataNode",
+                "name": "data",
+                "virtual_name": "data",
+                "dataType": "MyStruct*",
+                "realType": "MyStruct*",
+                "external": false,
+                "correspondingVar": "./input_source/main.c/uut(int,int,char*,MyStruct*,int*,size_t)/data",
+                "correspondingType": "./input_source/main.c/MyStruct",
+                "level": 1,
+                "size": 1,
+                "children": [
+                  {
+                    "type": "com.dse.testdata.object.StructDataNode",
+                    "name": "data[0]",
+                    "virtual_name": "data[0]",
+                    "dataType": "MyStruct",
+                    "realType": "MyStruct",
+                    "external": false,
+                    "correspondingVar": "./input_source/main.c/uut(int,int,char*,MyStruct*,int*,size_t)/data/data[0]",
+                    "correspondingType": "./input_source/main.c/MyStruct",
+                    "children": [
+                      {
+                        "type": "com.dse.testdata.object.NormalNumberDataNode",
+                        "name": "a",
+                        "virtual_name": "data[0].a",
+                        "dataType": "int",
+                        "realType": "int",
+                        "external": false,
+                        "assertMethod": "ASSERT EQUAL",
+                        "correspondingVar": "./input_source/main.c/MyStruct/a",
+                        "correspondingType": "int",
+                        "value": "1"
+                      },
+                      {
+                        "type": "com.dse.testdata.object.NormalNumberDataNode",
+                        "name": "b",
+                        "virtual_name": "data[0].b",
+                        "dataType": "float",
+                        "realType": "float",
+                        "external": false,
+                        "correspondingVar": "./input_source/main.c/MyStruct/b",
+                        "correspondingType": "float",
+                        "value": "null"
+                      },
+                      {
+                        "type": "com.dse.testdata.object.NormalCharacterDataNode",
+                        "name": "c",
+                        "virtual_name": "data[0].c",
+                        "dataType": "char",
+                        "realType": "char",
+                        "external": false,
+                        "assertMethod": "ASSERT EQUAL",
+                        "correspondingVar": "./input_source/main.c/MyStruct/c",
+                        "correspondingType": "char",
+                        "value": "99"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "com.dse.testdata.object.PointerNumberDataNode",
+                "name": "arr",
+                "virtual_name": "arr",
+                "dataType": "int*",
+                "realType": "int*",
+                "external": false,
+                "correspondingVar": "./input_source/main.c/uut(int,int,char*,MyStruct*,int*,size_t)/arr",
+                "correspondingType": "",
+                "level": 1,
+                "size": 1,
+                "children": [
+                  {
+                    "type": "com.dse.testdata.object.NormalNumberDataNode",
+                    "name": "arr[0]",
+                    "virtual_name": "arr[0]",
+                    "dataType": "int",
+                    "realType": "int",
+                    "external": false,
+                    "assertMethod": "ASSERT EQUAL",
+                    "correspondingVar": "./input_source/main.c/uut(int,int,char*,MyStruct*,int*,size_t)/arr/arr[0]",
+                    "correspondingType": "int",
+                    "value": "1"
+                  }
+                ]
+              },
+              {
+                "type": "com.dse.testdata.object.NormalNumberDataNode",
+                "name": "arr_len",
+                "virtual_name": "arr_len",
+                "dataType": "size_t",
+                "realType": "size_t",
+                "external": false,
+                "assertMethod": "ASSERT EQUAL",
+                "correspondingVar": "./input_source/main.c/uut(int,int,char*,MyStruct*,int*,size_t)/arr_len",
+                "correspondingType": "size_t",
+                "value": "1"
+              },
+              {
+                "type": "com.dse.testdata.object.NormalNumberDataNode",
+                "name": "RETURN",
+                "virtual_name": "AKA_EXPECTED_OUTPUT",
+                "dataType": "int",
+                "realType": "int",
+                "external": false,
+                "assertMethod": "ASSERT EQUAL",
+                "correspondingVar": "./input_source/main.c/uut(int,int,char*,MyStruct*,int*,size_t)/RETURN",
+                "correspondingType": "int",
+                "value": "0"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "com.dse.testdata.object.RootDataNode",
+        "name": "STUB",
+        "virtual_name": "NON_VALUE",
+        "functionNode": "./input_source/main.c/uut(int,int,char*,MyStruct*,int*,size_t)",
+        "level": "STUB"
+      }
+    ]
+  },
+  "procedures": [
+    {
+      "className": "com.dse.testdata.functionscalls_and_conditions.ProcedureDataNode",
+      "type": "condition",
+      "value": "msg",
+      "isSelected": false,
+      "location": 28,
+      "calls": [],
+      "children": []
+    },
+    {
+      "className": "com.dse.testdata.functionscalls_and_conditions.ProcedureDataNode",
+      "type": "condition",
+      "value": "i \u003c arr_len",
+      "isSelected": false,
+      "location": 136,
+      "calls": [],
+      "children": []
+    }
+  ]
+}

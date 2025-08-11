@@ -38,6 +38,8 @@ namespace STM32F103C8T6
         uc_engine *uc_engine_;
         uc_hook code_hook_handle_;
         uc_hook invalid_mem_hook_handle_;
+        
+        uint64_t pre_address_;
 
         csh capstone_handle_;
 

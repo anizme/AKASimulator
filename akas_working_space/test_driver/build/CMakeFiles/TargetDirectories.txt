@@ -1,0 +1,3 @@
+/home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/build/CMakeFiles/firmware.elf.dir
+/home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/build/CMakeFiles/edit_cache.dir
+/home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/build/CMakeFiles/rebuild_cache.dir
