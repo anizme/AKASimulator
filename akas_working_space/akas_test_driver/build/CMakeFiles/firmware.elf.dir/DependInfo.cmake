@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_ASM
-  "/home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_test_driver/akas_source/startup.s" "/home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_test_driver/build/CMakeFiles/firmware.elf.dir/akas_source/startup.s.obj"
+  "/home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/akas_test_driver/akas_source/startup.s" "/home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/akas_test_driver/build/CMakeFiles/firmware.elf.dir/akas_source/startup.s.obj"
   )
 set(CMAKE_ASM_COMPILER_ID "GNU")
 
@@ -18,7 +18,7 @@ set(CMAKE_ASM_TARGET_INCLUDE_PATH
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_test_driver/test_driver_uut.c" "CMakeFiles/firmware.elf.dir/test_driver_uut.c.obj" "gcc" "CMakeFiles/firmware.elf.dir/test_driver_uut.c.obj.d"
+  "/home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/akas_test_driver/test_driver_uut.c" "CMakeFiles/firmware.elf.dir/test_driver_uut.c.obj" "gcc" "CMakeFiles/firmware.elf.dir/test_driver_uut.c.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

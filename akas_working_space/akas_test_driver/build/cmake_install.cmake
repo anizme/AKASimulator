@@ -1,4 +1,4 @@
-# Install script for directory: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_test_driver
+# Install script for directory: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/akas_test_driver
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_test_driver/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/akas_test_driver/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -54,10 +54,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_test_driver
+CMAKE_SOURCE_DIR = /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/akas_test_driver
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_test_driver/build
+CMAKE_BINARY_DIR = /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/akas_test_driver/build
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -81,14 +81,14 @@ clean: CMakeFiles/firmware.elf.dir/clean
 CMakeFiles/firmware.elf.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/firmware.elf.dir/build.make CMakeFiles/firmware.elf.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/firmware.elf.dir/build.make CMakeFiles/firmware.elf.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_test_driver/build/CMakeFiles --progress-num=1,2,3 "Built target firmware.elf"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/akas_test_driver/build/CMakeFiles --progress-num=1,2,3 "Built target firmware.elf"
 .PHONY : CMakeFiles/firmware.elf.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/firmware.elf.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_test_driver/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/akas_test_driver/build/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/firmware.elf.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_test_driver/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/akas_test_driver/build/CMakeFiles 0
 .PHONY : CMakeFiles/firmware.elf.dir/rule
 
 # Convenience name for target.
