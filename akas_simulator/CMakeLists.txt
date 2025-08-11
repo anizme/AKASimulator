@@ -1,6 +1,6 @@
 include_directories(
     ${PROJECT_SOURCE_DIR}/lib/elfio
-    ${PROJECT_SOURCE_DIR}/aka_simulator/inc
+    ${PROJECT_SOURCE_DIR}/akas_simulator/inc
 )
 
 file(GLOB_RECURSE SIM_SOURCES
