@@ -17,6 +17,7 @@ echo "[Finish step 3] Simulator is running. You can now interact with it."
 
 echo "[Step 4] Test report genertion"
 g++ akas_reporter/test_report_generator/Generator.cpp -o akas_reporter/Generator
-akas_reporter/Generator akas_working_space/output/emulation_log/code_line_emulation.log akas_working_space/output/test_report
+# akas_reporter/Generator akas_working_space/output/emulation_log/code_line_emulation.log akas_working_space/output/test_report
+akas_reporter/Generator akas_working_space/test_case/uut_int_int_charmul_MyStructmul_intmul_size_t_manual_0.json akas_working_space/output/emulation_log/actuals_emulation.log akas_working_space/output/emulation_log/code_line_emulation.log akas_working_space/output/test_report
 echo "[Finish step 4] Test report generated successfully. Check the akas_output/test_report directory."
 read -p "Press Enter to continue..."

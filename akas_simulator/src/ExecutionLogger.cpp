@@ -143,7 +143,7 @@ namespace STM32F103C8T6
         {
             SourceInfo info = getSourceInfo(address);
             oss << dumpSourceInfo(info);
-            logExecutedCode(dumpSourceInfoOnlyLineOfCode(info));
+            logExecutedCode(dumpSourceInfo(info));
         }
         else
         {
