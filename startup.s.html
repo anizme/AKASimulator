@@ -17,12 +17,18 @@ body {
     border-radius: 5px;
 }
 
-.summary {
+.section {
     background-color: white;
     padding: 15px;
     margin-bottom: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.section h2 {
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .file-list {
@@ -50,6 +56,11 @@ body {
 .filename {
     font-weight: bold;
     color: #2c3e50;
+    text-decoration: none;
+}
+
+.filename:hover {
+    color: #3498db;
 }
 
 .coverage-bar {
@@ -59,6 +70,7 @@ body {
     border-radius: 10px;
     overflow: hidden;
     margin: 0 10px;
+    order: 3;
 }
 
 .coverage-fill {
@@ -71,6 +83,35 @@ body {
     font-weight: bold;
     min-width: 60px;
     text-align: right;
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.comparison-table th,
+.comparison-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.comparison-table th {
+    background-color: #f8f9fa;
+}
+
+.comparison-table td.match {
+    background-color: #d4edda;
+}
+
+.comparison-table td.mismatch {
+    background-color: #f8d7da;
+}
+
+.comparison-table .nested-param {
+    padding-left: 20px;
 }
 
 .source-container {
@@ -164,6 +205,23 @@ body {
 .nav-link:hover {
     text-decoration: underline;
 }
+
+.info-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.info-table th,
+.info-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.info-table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
 </style>
 </head>
 <body>
@@ -171,7 +229,22 @@ body {
 <a href="index.html" class="nav-link">← Back to Index</a>
 </div>
 <div class="header">
-<h1>Coverage: startup.s</h1>
+<h1>Test Report</h1>
+<p>Generated on 2025-08-12 19:56:02</p>
+</div>
+<div class="section">
+<h2>General Information</h2>
+<h3>1. Test report for:</h3>
+<table class="info-table">
+<tr><th>Unit</th><th>Subprogram(s)</th><th>Test case</th></tr>
+<tr><td>main.c</td><td>uut(int,int,char*,MyStruct*,int*,size_t)</td><td>uut_int_int_charmul_MyStructmul_intmul_size_t_manual_0</td></tr>
+</table>
+<h3>2. Simulation status:</h3>
+<p class="status-success">SUCCESS</p>
+<p><strong>Message:</strong>  Main function returned </p>
+</div>
+<div class="section">
+<h2>Coverage: startup.s</h2>
 <p><strong>File:</strong> /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s</p>
 <p><strong>Coverage:</strong> 7.5% (15/199 lines)</p>
 </div>

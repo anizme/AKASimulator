@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Coverage Report</title>
+<title>Test Report</title>
 <style>
 body {
     font-family: Arial, sans-serif;
@@ -17,12 +17,18 @@ body {
     border-radius: 5px;
 }
 
-.summary {
+.section {
     background-color: white;
     padding: 15px;
     margin-bottom: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.section h2 {
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .file-list {
@@ -50,6 +56,11 @@ body {
 .filename {
     font-weight: bold;
     color: #2c3e50;
+    text-decoration: none;
+}
+
+.filename:hover {
+    color: #3498db;
 }
 
 .coverage-bar {
@@ -59,6 +70,7 @@ body {
     border-radius: 10px;
     overflow: hidden;
     margin: 0 10px;
+    order: 3;
 }
 
 .coverage-fill {
@@ -71,6 +83,35 @@ body {
     font-weight: bold;
     min-width: 60px;
     text-align: right;
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.comparison-table th,
+.comparison-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.comparison-table th {
+    background-color: #f8f9fa;
+}
+
+.comparison-table td.match {
+    background-color: #d4edda;
+}
+
+.comparison-table td.mismatch {
+    background-color: #f8d7da;
+}
+
+.comparison-table .nested-param {
+    padding-left: 20px;
 }
 
 .source-container {
@@ -164,27 +205,56 @@ body {
 .nav-link:hover {
     text-decoration: underline;
 }
+
+.info-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.info-table th,
+.info-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.info-table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
 </style>
 </head>
 <body>
 <div class="header">
-<h1>Coverage Report</h1>
-<p>Generated on 2025-08-11 15:18:14</p>
+<h1>Test Report</h1>
+<p>Generated on 2025-08-12 19:56:02</p>
 </div>
-<div class="summary">
-<h2>Execution Status</h2>
+<div class="section">
+<h2>Table of Content</h2>
+<ol>
+<li><a href="#general-info" class="nav-link">General information</a></li>
+<li><a href="#coverage-summary" class="nav-link">Coverage summary</a></li>
+<li><a href="#test-result" class="nav-link">Test simulation result</a></li>
+</ol>
+</div>
+<div id="general-info" class="section">
+<h2>General Information</h2>
+<h3>Test report for:</h3>
+<table class="info-table">
+<tr><th>Unit</th><th>Subprogram(s)</th><th>Test case</th></tr>
+<tr><td>main.c</td><td>uut(int,int,char*,MyStruct*,int*,size_t)</td><td>uut_int_int_charmul_MyStructmul_intmul_size_t_manual_0</td></tr>
+</table>
+<h3>Simulation status:</h3>
 <p class="status-success">✅ SUCCESS</p>
-<p><strong>Message:</strong> Main function returned </p>
+<p><strong>Message:</strong>  Main function returned </p>
 </div>
-<div class="summary">
+<div id="coverage-summary" class="section">
 <h2>Coverage Summary</h2>
-<p><strong>Files:</strong> 3</p>
-<p><strong>Total Lines:</strong> 294</p>
-<p><strong>Covered Lines:</strong> 54</p>
-<p><strong>Coverage:</strong> 18.4%</p>
-</div>
-<div class="file-list">
-<h2 style="margin: 0; padding: 15px; background-color: #34495e; color: white;">Files</h2>
+<p><strong>Files:</strong> 2</p>
+<p><strong>Total Lines:</strong> 227</p>
+<p><strong>Covered Lines:</strong> 24</p>
+<p><strong>Coverage:</strong> 10.6%</p>
+<h3>Files</h3>
 <div class="file-row">
 <a href="main.c.html" class="filename">main.c</a>
 <div class="coverage-bar">
@@ -199,13 +269,174 @@ body {
 </div>
 <span class="coverage-text">7.5%</span>
 </div>
-<div class="file-row">
-<a href="test_driver_uut.c.html" class="filename">test_driver_uut.c</a>
-<div class="coverage-bar">
-<div class="coverage-fill" style="width: 44.8%"></div>
 </div>
-<span class="coverage-text">44.8%</span>
+<div id="test-result" class="section">
+<h2>Test Simulation Result</h2>
+<h3>uut_int_int_charmul_MyStructmul_intmul_size_t_manual_0 Result</h3>
+<table class="info-table">
+<tr><th>Result</th><td>Success</td></tr>
+</table>
+<h3>Coverage of subprogram</h3>
+<p><a href="main.c.html" class="nav-link">View main.c coverage</a></p>
+<div class="source-container">
+<div class="source-line" id="line1">
+<div class="line-number">1</div>
+<div class="line-content">#include &lt;stdint.h&gt;</div>
 </div>
+<div class="source-line" id="line2">
+<div class="line-number">2</div>
+<div class="line-content">#include &lt;stddef.h&gt;</div>
+</div>
+<div class="source-line" id="line3">
+<div class="line-number">3</div>
+<div class="line-content">#include &lt;stdbool.h&gt;</div>
+</div>
+<div class="source-line" id="line4">
+<div class="line-number">4</div>
+<div class="line-content"></div>
+</div>
+<div class="source-line" id="line5">
+<div class="line-number">5</div>
+<div class="line-content">// Struct test</div>
+</div>
+<div class="source-line" id="line6">
+<div class="line-number">6</div>
+<div class="line-content">typedef struct</div>
+</div>
+<div class="source-line" id="line7">
+<div class="line-number">7</div>
+<div class="line-content">{</div>
+</div>
+<div class="source-line" id="line8">
+<div class="line-number">8</div>
+<div class="line-content">    int a;</div>
+</div>
+<div class="source-line" id="line9">
+<div class="line-number">9</div>
+<div class="line-content">    float b;</div>
+</div>
+<div class="source-line" id="line10">
+<div class="line-number">10</div>
+<div class="line-content">    char c;</div>
+</div>
+<div class="source-line" id="line11">
+<div class="line-number">11</div>
+<div class="line-content">} MyStruct;</div>
+</div>
+<div class="source-line" id="line12">
+<div class="line-number">12</div>
+<div class="line-content"></div>
+</div>
+<div class="source-line" id="line13">
+<div class="line-number">13</div>
+<div class="line-content">// Unit Under Test (UUT)</div>
+</div>
+<div class="source-line" id="line14">
+<div class="line-number">14</div>
+<div class="line-content">int uut(int x, int y, char *msg, MyStruct *data, int *arr, size_t arr_len)</div>
+</div>
+<div class="source-line covered" id="line15">
+<div class="line-number">15</div>
+<div class="line-content">{</div>
+</div>
+<div class="source-line covered" id="line16">
+<div class="line-number">16</div>
+<div class="line-content">    int sum = x + (int)y + data-&gt;a;</div>
+</div>
+<div class="source-line covered" id="line17">
+<div class="line-number">17</div>
+<div class="line-content">    for (size_t i = 0; i &lt; arr_len; i++)</div>
+</div>
+<div class="source-line" id="line18">
+<div class="line-number">18</div>
+<div class="line-content">    {</div>
+</div>
+<div class="source-line covered" id="line19">
+<div class="line-number">19</div>
+<div class="line-content">        sum += arr[i];</div>
+</div>
+<div class="source-line" id="line20">
+<div class="line-number">20</div>
+<div class="line-content">    }</div>
+</div>
+<div class="source-line covered" id="line21">
+<div class="line-number">21</div>
+<div class="line-content">    if (msg)</div>
+</div>
+<div class="source-line" id="line22">
+<div class="line-number">22</div>
+<div class="line-content">    {</div>
+</div>
+<div class="source-line" id="line23">
+<div class="line-number">23</div>
+<div class="line-content">        // Giả sử làm gì đó với msg</div>
+</div>
+<div class="source-line covered" id="line24">
+<div class="line-number">24</div>
+<div class="line-content">        sum += (int)msg[0];</div>
+</div>
+<div class="source-line" id="line25">
+<div class="line-number">25</div>
+<div class="line-content">    }</div>
+</div>
+<div class="source-line covered" id="line26">
+<div class="line-number">26</div>
+<div class="line-content">    sum += (int)data-&gt;c;</div>
+</div>
+<div class="source-line covered" id="line27">
+<div class="line-number">27</div>
+<div class="line-content">    return sum;</div>
+</div>
+<div class="source-line covered" id="line28">
+<div class="line-number">28</div>
+<div class="line-content">}</div>
+</div>
+</div>
+<h3>Comparison</h3>
+<h4>	Subprogram: uut(int,int,char*,MyStruct*,int*,size_t)</h4>
+<table class="comparison-table">
+<tr><th>Parameter</th><th>Type</th><th>Expected Value</th><th>Actual Value</th></tr>
+<tr>
+<td>x</td>
+<td>int</td>
+<td class="mismatch">2</td>
+<td class="mismatch">1</td>
+</tr>
+<tr>
+<td>y</td>
+<td>int</td>
+<td class="mismatch">3</td>
+<td class="mismatch">2</td>
+</tr>
+<tr>
+<td>data[0].a</td>
+<td>int</td>
+<td class="mismatch">2</td>
+<td class="mismatch">1</td>
+</tr>
+<tr>
+<td>data[0].c</td>
+<td>char</td>
+<td class="mismatch">97</td>
+<td class="mismatch">99</td>
+</tr>
+<tr>
+<td>arr[0]</td>
+<td>int</td>
+<td class="mismatch">2</td>
+<td class="mismatch">1</td>
+</tr>
+<tr>
+<td>arr_len</td>
+<td>size_t</td>
+<td class="match">1</td>
+<td class="match">1</td>
+</tr>
+<tr class="summary-row">
+<td colspan="2"><strong>Expected Results matched 16.7%</strong></td>
+<td colspan="2"><strong>(1/6) PASS</strong></td>
+</tr>
+</table>
 </div>
 </body>
 </html>
