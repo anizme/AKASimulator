@@ -65,7 +65,7 @@ json JsonParser::searchJsonNode(const json &node, const std::string &realName, c
     {
         if (node.contains("name") && node.contains("virtual_name") &&
             node["name"].is_string() && node["virtual_name"].is_string() &&
-            (node["name"] == realName || node["virtual_name"] == realName))
+            (node["name"] == realName || node["virtual_name"] == realName || node["virtual_name"] == virtualName))
         {
             return node; 
         }

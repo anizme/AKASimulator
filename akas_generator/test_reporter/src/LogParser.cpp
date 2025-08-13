@@ -47,7 +47,6 @@ bool LogParser::parseActualsLog(const std::string &actualsPath, const std::strin
                         {
                             // Parse the actual source code to extract variable names
                             std::string codeLocation = codeLine.substr(11, codeStart - 12);
-                            std::cout << "[PARSE] Code location: " << codeLocation << std::endl;
 
                             // Read the actual source file and line to get variable info
                             std::string varInfo = extractVariableFromSourceCode(codeLocation, actualVal, expectedVal, testCaseJson);
@@ -240,7 +239,6 @@ ComparisonEntry LogParser::parseVariableInfo(const std::string &varInfo,
 
     std::string realVar = varInfo.substr(0, pipePos);
     std::string virtualVar = varInfo.substr(pipePos + 1);
-    std::cout << "[PARSE] Processing variable: " << realVar << ", virtual: " << virtualVar << std::endl;
     
     // Find the corresponding variable in JSON
     auto varNode = JsonParser::findVariableInJson(testCaseJson, realVar, virtualVar);
@@ -251,6 +249,10 @@ ComparisonEntry LogParser::parseVariableInfo(const std::string &varInfo,
     }
 
     entry.paramName = realVar;
+    // TODO: should be change when return value is not primitive type
+    if (realVar == "AKA_ACTUAL_OUTPUT") {
+        entry.paramName = varNode["name"];
+    }
     entry.paramType = varNode.value("dataType", "unknown");
     entry.actualValue = actual;
     entry.expectedValue = expected;
