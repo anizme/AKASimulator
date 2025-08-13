@@ -7,10 +7,10 @@ file(GLOB_RECURSE SIM_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
 )
 
-add_executable(stm32f103c8t6_emulator 
+add_executable(akas_emulator 
     ${SIM_SOURCES}
 )
 
 # Link Unicorn
-target_link_libraries(stm32f103c8t6_emulator PRIVATE unicorn)
-target_link_libraries(stm32f103c8t6_emulator PRIVATE capstone)
+target_link_libraries(akas_emulator PRIVATE unicorn)
+target_link_libraries(akas_emulator PRIVATE capstone)

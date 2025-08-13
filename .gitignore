@@ -1,3 +1,2 @@
 build/*
-elf/build/*
-draft/*
+akas_generator/test_reporter/build/*
