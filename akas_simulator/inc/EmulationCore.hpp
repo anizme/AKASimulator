@@ -14,6 +14,7 @@ namespace STM32F103C8T6
     {
         NONE,
         DIVISION_BY_ZERO,
+        NULL_FUNCTION_CALL,
     };
 
     class EmulationCore
@@ -59,6 +60,7 @@ namespace STM32F103C8T6
         void handleCodeExecution(uint64_t address, const uint8_t *instruction_bytes, uint32_t size);
         void handleInvalidMemory(uint64_t address, int size);
         void detectDivisionByZero(uc_engine *uc, uint64_t address, const uint8_t *code, size_t size);
+        void detectNullFunctionCall(uc_engine *uc, uint64_t address, const uint8_t *code, size_t size);
     };
 
 } // namespace STM32F103C8T6

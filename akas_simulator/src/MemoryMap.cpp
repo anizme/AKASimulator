@@ -4,6 +4,7 @@
 
 namespace STM32F103C8T6
 {
+    uint8_t *MemoryMap::flash_buf = static_cast<uint8_t *>(malloc(MemoryMap::FLASH_SIZE));
 
     void MemoryMap::printLayout()
     {

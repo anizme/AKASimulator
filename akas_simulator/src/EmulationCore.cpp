@@ -218,6 +218,7 @@ namespace STM32F103C8T6
         }
         core->handleCodeExecution(address, instruction_bytes.data(), size);
         core->detectDivisionByZero(uc, address, instruction_bytes.data(), size);
+        core->detectNullFunctionCall(uc, address, instruction_bytes.data(), size);
     }
 
     bool EmulationCore::invalidMemoryCallback(uc_engine *uc, uc_mem_type type, uint64_t address,
@@ -344,6 +345,32 @@ namespace STM32F103C8T6
             }
             cs_free(insn, count);
         }
+    }
+
+    void EmulationCore::detectNullFunctionCall(uc_engine *uc, uint64_t address, const uint8_t *code, size_t size)
+    {
+        if (address >= MemoryMap::BOOT_BASE && address < MemoryMap::BOOT_BASE + elf_info_.vector_table_size_)
+        {
+            std::stringstream ss;
+            ss << "Null function call detected: PC = 0x" << std::hex << address;
+            std::cerr << "[ERROR] " << ss.str() << std::endl;
+            logger_->logError(ss.str());
+            uc_emu_stop(uc);
+            emu_error = EmulationError::NULL_FUNCTION_CALL;
+            return;
+        }
+
+        if (address >= elf_info_.vector_table_addr_ && address < elf_info_.vector_table_addr_ + elf_info_.vector_table_size_)
+        {
+            std::stringstream ss;
+            ss << "Null function call detected: PC = 0x" << std::hex << address
+            << " inside vector table region";
+            std::cerr << "[ERROR] " << ss.str() << std::endl;
+            logger_->logError(ss.str());
+            uc_emu_stop(uc);
+            emu_error = EmulationError::NULL_FUNCTION_CALL;
+            return;
+        }   
     }
 
     void EmulationCore::handleInvalidMemory(uint64_t address, int size)

@@ -1,6 +1,7 @@
 // aka_simulator/src/ELFLoader.cpp
 
 #include "ELFLoader.hpp"
+#include "MemoryManager.hpp"
 #include <elfio/elfio.hpp>
 #include <iostream>
 #include <cstdlib>
@@ -25,7 +26,7 @@ namespace STM32F103C8T6
         elf_info.file_path = elf_path;
 
         // Load segments and get entry point
-        if (!loadSegments(elf_path, elf_info.entry_point))
+        if (!loadSegments(elf_path, elf_info.entry_point, elf_info))
         {
             std::cerr << "Failed to load ELF segments" << std::endl;
             return false;
@@ -57,7 +58,7 @@ namespace STM32F103C8T6
         return true;
     }
 
-    bool ELFLoader::loadSegments(const std::string &elf_path, uint32_t &entry_point)
+    bool ELFLoader::loadSegments(const std::string &elf_path, uint32_t &entry_point, ELFInfo& elf_info)
     {
         ELFIO::elfio reader;
         if (!reader.load(elf_path))
@@ -97,6 +98,27 @@ namespace STM32F103C8T6
             }
         }
 
+        // Vector table setup
+        for (const auto& sec : reader.sections)
+        {
+            if (sec->get_name() == ".isr_vector") {
+                elf_info.vector_table_addr_ = static_cast<uint32_t>(sec->get_address());
+                elf_info.vector_table_size_ = static_cast<uint32_t>(sec->get_size());
+
+                std::cout << "Vector table found at 0x" << std::hex << elf_info.vector_table_addr_
+                        << " size = 0x" << elf_info.vector_table_size_ << std::dec << std::endl;
+                break;
+            }
+        }
+
+        // Default vector table if not found
+        if (elf_info.vector_table_size_ == 0) {
+            elf_info.vector_table_addr_ = 0x08000000; // default Flash start
+            elf_info.vector_table_size_ = 0x150;      // STM32F103C8T6: 16 + 68 entries
+            std::cout << "Vector table not found in ELF, fallback size = 0x"
+                    << std::hex << elf_info.vector_table_size_ << std::dec << std::endl;
+        }
+        
         return true;
     }
 

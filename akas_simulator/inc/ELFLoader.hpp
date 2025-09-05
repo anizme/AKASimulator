@@ -13,6 +13,8 @@ namespace STM32F103C8T6
         uint32_t main_address;
         uint32_t aka_sim_writer_u32_address;
         uint32_t aka_sim_writer_u64_address;
+        uint32_t vector_table_addr_ = 0;
+        uint32_t vector_table_size_ = 0;
         std::string file_path;
         std::string addr2line_command; // Command to call addr2line
     };
@@ -28,7 +30,7 @@ namespace STM32F103C8T6
     private:
         uc_engine *uc_engine_;
 
-        bool loadSegments(const std::string &elf_path, uint32_t &entry_point);
+        bool loadSegments(const std::string &elf_path, uint32_t &entry_point, ELFInfo& elf_info);
         bool findMainSymbol(const std::string &elf_path, uint32_t &main_address);
         bool findAkaWriterSymbol(const std::string &elf_path, uint32_t &address32, uint32_t &address64);
 

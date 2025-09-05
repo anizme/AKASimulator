@@ -10,7 +10,7 @@
 </div>
 <div class="header">
 <h1>Test Report</h1>
-<p>Generated on 2025-08-13 16:22:35</p>
+<p>Generated on 2025-09-04 22:05:49</p>
 </div>
 <div id="general-info" class="section">
 <h2>General Information</h2>
@@ -20,13 +20,14 @@
 <tr><td>main.c</td><td>uut(int,int,char*,MyStruct*,int*,size_t)</td><td>uut_int_int_charmul_MyStructmul_intmul_size_t_manual_0</td></tr>
 </table>
 <h3>Simulation status:</h3>
-<p class="status-success">✅ SUCCESS</p>
-<p><strong>Message:</strong>  Main function returned </p>
+<p class="status-error">❌ ERROR</p>
+<p><strong>Message:</strong>  Null function call detected: PC = 0x0</p>
+<p><strong>Error Location:</strong> <a href="main.c.html#line94" class="nav-link">main.c:94</a></p>
 </div>
 <div class="section">
 <h2>Coverage: startup.s</h2>
 <p><strong>File:</strong> /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s</p>
-<p><strong>Coverage:</strong> 7.5% (15/199 lines)</p>
+<p><strong>Coverage:</strong> 6.5% (13/199 lines)</p>
 </div>
 <div class="source-container">
 <div class="source-line" id="line1">
@@ -525,11 +526,11 @@
 <div class="line-number">124</div>
 <div class="line-content">    bge clear_done</div>
 </div>
-<div class="source-line covered" id="line125">
+<div class="source-line" id="line125">
 <div class="line-number">125</div>
 <div class="line-content">    str r2, [r0], #4    /* Ghi 0 và tăng con trỏ */</div>
 </div>
-<div class="source-line covered" id="line126">
+<div class="source-line" id="line126">
 <div class="line-number">126</div>
 <div class="line-content">    b clear_bss</div>
 </div>

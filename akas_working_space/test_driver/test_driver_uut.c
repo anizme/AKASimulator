@@ -11,57 +11,23 @@ void aka_sim_writer_u64(uint64_t actual, uint64_t expected)
 {
 }
 
-// static buffers for input data
-static char msg[2];
-static MyStruct data[1];
-static int arr[1];
-static size_t arr_len;
+int main(void) {
+    gpio_init();
 
-static char EXPECTED_msg[2];
-static MyStruct EXPECTED_data[1];
-static int EXPECTED_arr[1];
-static size_t EXPECTED_arr_len;
 
-int main(void)
-{
-    int x = 1;
-    int y = 2;
+    // uint32_t x = cause_null_pointer_deref();          // 1. Gây lỗi con trỏ NULL -> Unicorn crash, da bat err de log
+    // cause_invalid_address_access();      // 2. Gây lỗi truy cập địa chỉ không hợp lệ -> Unicorn crash, da bat err de log
+    // cause_divide_by_zero();              // 3. Gây lỗi chia cho 0 -> Unicorn khong crash, da xu ly bang cach decode phat hien instruction devision, da log
+    // cause_stack_overflow();              // 4. Gây tràn stack -> Unicorn crash( Tran stack den muc truy cap vao invalid memory)
+    // cause_buffer_overflow();             // 5. Ghi tràn stack -> Unicorn khong crash
+    // cause_function_pointer_crash();      // 6. Gọi function pointer rác -> Unicorn crash, chua hook log
+    // cause_uninitialized_variable_usage(); // 7. Dùng biến chưa khởi tạo -> Unicorn khong crash, thuc te chay tren chip cung nguy hiem thoi chu khong loi
+    // // cause_invalid_free();             // 8. Gọi free với con trỏ không hợp lệ (bỏ qua nếu không có malloc)
+    // cause_array_out_of_bounds();         // 9. Ghi ngoài mảng -> Unicorn crash, da hook
+    cause_null_function_call();          // 10. Gọi con trỏ hàm NULL -> Unicorn khong crash
 
-    msg[0] = 49;
-    msg[1] = 0;
-
-    data[0].a = 1;
-    data[0].c = 99;
-
-    arr[0] = 1;
-    arr_len = 1;
-
-    int AKA_EXPECTED_OUTPUT = 0;
-    int AKA_ACTUAL_OUTPUT = uut(x, y, msg, data, arr, arr_len);
-
-    aka_sim_writer_u32(AKA_ACTUAL_OUTPUT, AKA_EXPECTED_OUTPUT);
-
-    int EXPECTED_x = 2;
-    int EXPECTED_y = 3;
-
-    aka_sim_writer_u32(x, EXPECTED_x);
-    aka_sim_writer_u32(y, EXPECTED_y);
-
-    EXPECTED_msg[0] = 50;
-    EXPECTED_msg[1] = 0;
-
-    EXPECTED_data[0].a = 2;
-    EXPECTED_data[0].c = 97;
-
-    aka_sim_writer_u32(data[0].a, EXPECTED_data[0].a);
-    aka_sim_writer_u32(data[0].c, EXPECTED_data[0].c);
-
-    EXPECTED_arr[0] = 2;
-
-    aka_sim_writer_u32(arr[0], EXPECTED_arr[0]);
-
-    EXPECTED_arr_len = 1;
-    aka_sim_writer_u32(arr_len, EXPECTED_arr_len);
-
-    return 0; 
+    int res = is_button_pressed(GPIOC_ODR, 13);
+    write_custom(res);
+    set_led(1);
+    return 0;
 }

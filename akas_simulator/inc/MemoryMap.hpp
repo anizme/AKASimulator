@@ -84,6 +84,7 @@ namespace STM32F103C8T6
         static constexpr uint32_t SYSTEM_CONTROL_SPACE_BASE = 0xE000E000;
         static constexpr uint32_t SYSTEM_CONTROL_SPACE_SIZE = 0x1000;
 
+        static uint8_t *flash_buf;
         static void printLayout();
     };
 

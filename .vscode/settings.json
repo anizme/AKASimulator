@@ -52,6 +52,7 @@
         "charconv": "cpp",
         "chrono": "cpp",
         "format": "cpp",
-        "ratio": "cpp"
+        "ratio": "cpp",
+        "stddef.h": "c"
     }
 }

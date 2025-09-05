@@ -50,7 +50,7 @@ namespace STM32F103C8T6
         // Boot region mapping based on boot mode
         if (boot_mode_ == BootMode::Flash)
         {
-            err = uc_mem_map(uc_engine_, MemoryMap::BOOT_BASE, MemoryMap::FLASH_SIZE, UC_PROT_READ | UC_PROT_EXEC);
+            err = uc_mem_map_ptr(uc_engine_, MemoryMap::BOOT_BASE, MemoryMap::FLASH_SIZE, UC_PROT_READ | UC_PROT_EXEC, MemoryMap::flash_buf);
             if (err != UC_ERR_OK)
             {
                 std::cerr << "Failed to map BOOT alias region (Flash mode): " << uc_strerror(err) << std::endl;
@@ -77,7 +77,7 @@ namespace STM32F103C8T6
         uc_err err;
 
         // Map Flash memory (readable + executable)
-        err = uc_mem_map(uc_engine_, MemoryMap::FLASH_BASE, MemoryMap::FLASH_SIZE, UC_PROT_READ | UC_PROT_EXEC);
+        err = uc_mem_map_ptr(uc_engine_, MemoryMap::FLASH_BASE, MemoryMap::FLASH_SIZE, UC_PROT_READ | UC_PROT_EXEC, MemoryMap::flash_buf);
         if (err != UC_ERR_OK)
         {
             std::cerr << "Failed to map Flash memory: " << uc_strerror(err) << std::endl;

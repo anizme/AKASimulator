@@ -111,7 +111,14 @@ bool LogParser::parseCodeLineLog(const std::string &logPath,
         if (lines.size() > 1)
         {
             std::string prevLine = lines[lines.size() - 2];
+            std::cout << "[PARSE] 1 Error at: " << prevLine << std::endl;
             parseCodeLine(prevLine, true, fileInfos, execResult); // Mark as error line
+            if (prevLine.find("unknown (no debug info)") == 0) {
+                // Case: Null function call
+                prevLine = lines[lines.size() - 3];
+                parseCodeLine(prevLine, true, fileInfos, execResult);
+            }
+            std::cout << "[PARSE] 2 Error at: " << prevLine << std::endl;
         }
     }
     else if (lastLine.find("# SUCCESS") == 0)
