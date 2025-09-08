@@ -5,18 +5,20 @@ project(elf_builder C CXX ASM)
 
 # Set output
 set(OUTPUT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/)
+
 # Need debug info and no optimization for easier to mapping address to source code
 set(CORTEX3_FLAGS 
+    --target=arm-none-eabi
     -mcpu=cortex-m3 
     -mthumb 
     -nostdlib 
-    -g 
     -O0 
     -static 
     -g3 
     -fno-inline 
     -fno-common 
-    -fno-builtin)
+    -fno-builtin
+    -gcolumn-info)
 
 set(LINKER_SCRIPT ${CMAKE_CURRENT_SOURCE_DIR}/toolchain/stm32f103c8t6/linker.ld)
 message(STATUS "Using linker script: ${LINKER_SCRIPT}")

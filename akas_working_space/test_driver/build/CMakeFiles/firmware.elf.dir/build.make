@@ -72,29 +72,29 @@ include CMakeFiles/firmware.elf.dir/flags.make
 CMakeFiles/firmware.elf.dir/akas_source/startup.s.obj: CMakeFiles/firmware.elf.dir/flags.make
 CMakeFiles/firmware.elf.dir/akas_source/startup.s.obj: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building ASM object CMakeFiles/firmware.elf.dir/akas_source/startup.s.obj"
-	/usr/bin/arm-none-eabi-gcc $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -o CMakeFiles/firmware.elf.dir/akas_source/startup.s.obj -c /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s
+	/usr/bin/clang $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -o CMakeFiles/firmware.elf.dir/akas_source/startup.s.obj -c /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s
 
 CMakeFiles/firmware.elf.dir/akas_source/startup.s.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing ASM source to CMakeFiles/firmware.elf.dir/akas_source/startup.s.i"
-	/usr/bin/arm-none-eabi-gcc $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -E /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s > CMakeFiles/firmware.elf.dir/akas_source/startup.s.i
+	/usr/bin/clang $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -E /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s > CMakeFiles/firmware.elf.dir/akas_source/startup.s.i
 
 CMakeFiles/firmware.elf.dir/akas_source/startup.s.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling ASM source to assembly CMakeFiles/firmware.elf.dir/akas_source/startup.s.s"
-	/usr/bin/arm-none-eabi-gcc $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -S /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s -o CMakeFiles/firmware.elf.dir/akas_source/startup.s.s
+	/usr/bin/clang $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -S /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/startup.s -o CMakeFiles/firmware.elf.dir/akas_source/startup.s.s
 
 CMakeFiles/firmware.elf.dir/test_driver_uut.c.obj: CMakeFiles/firmware.elf.dir/flags.make
 CMakeFiles/firmware.elf.dir/test_driver_uut.c.obj: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c
 CMakeFiles/firmware.elf.dir/test_driver_uut.c.obj: CMakeFiles/firmware.elf.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/firmware.elf.dir/test_driver_uut.c.obj"
-	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/firmware.elf.dir/test_driver_uut.c.obj -MF CMakeFiles/firmware.elf.dir/test_driver_uut.c.obj.d -o CMakeFiles/firmware.elf.dir/test_driver_uut.c.obj -c /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c
+	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/firmware.elf.dir/test_driver_uut.c.obj -MF CMakeFiles/firmware.elf.dir/test_driver_uut.c.obj.d -o CMakeFiles/firmware.elf.dir/test_driver_uut.c.obj -c /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c
 
 CMakeFiles/firmware.elf.dir/test_driver_uut.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/firmware.elf.dir/test_driver_uut.c.i"
-	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c > CMakeFiles/firmware.elf.dir/test_driver_uut.c.i
+	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c > CMakeFiles/firmware.elf.dir/test_driver_uut.c.i
 
 CMakeFiles/firmware.elf.dir/test_driver_uut.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/firmware.elf.dir/test_driver_uut.c.s"
-	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c -o CMakeFiles/firmware.elf.dir/test_driver_uut.c.s
+	/usr/bin/clang $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c -o CMakeFiles/firmware.elf.dir/test_driver_uut.c.s
 
 # Object files for target firmware.elf
 firmware_elf_OBJECTS = \

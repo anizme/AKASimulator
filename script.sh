@@ -1,12 +1,12 @@
 #!/bin/bash
 
 echo "[Step 1] Build firmware ELF using ARM compiler"
-cmake -S akas_working_space/test_driver -B akas_working_space/test_driver/build -DCMAKE_TOOLCHAIN_FILE=toolchain/gcc-arm-none-eabi.cmake
+cmake -S akas_working_space/test_driver -B akas_working_space/test_driver/build -DCMAKE_TOOLCHAIN_FILE=toolchain/clang-arm-none-eabi.cmake
 cmake --build akas_working_space/test_driver/build
 echo "[Finish step 1] Firmware built successfully."
 
 echo "[Step 2] Build the simulator"
-# cmake -S . -B build
+cmake -S . -B build
 cmake --build build
 echo "[Finish step 2] Build complete. Check if the simulator binary is located in build/akas_simulator/"
 

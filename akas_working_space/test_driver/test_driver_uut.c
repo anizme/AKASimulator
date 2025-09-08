@@ -3,31 +3,78 @@
 #include <stdbool.h>
 #include "akas_source/main.c"  
 
-void aka_sim_writer_u32(uint32_t actual, uint32_t expected)
+
+void aka_sim_writer_u32(uint32_t actual, uint32_t expected) {}
+
+void aka_sim_writer_u64(uint64_t actual, uint64_t expected) {}
+
+
+
+int main()
 {
-}
+    //////////////// TEST SCRIPT //////////////////
 
-void aka_sim_writer_u64(uint64_t actual, uint64_t expected)
-{
-}
-
-int main(void) {
-    gpio_init();
+    // Test case name: uut_int_int_charmul_MyStructmul_intmul_size_t_manual_0
+	
 
 
-    // uint32_t x = cause_null_pointer_deref();          // 1. Gây lỗi con trỏ NULL -> Unicorn crash, da bat err de log
-    // cause_invalid_address_access();      // 2. Gây lỗi truy cập địa chỉ không hợp lệ -> Unicorn crash, da bat err de log
-    // cause_divide_by_zero();              // 3. Gây lỗi chia cho 0 -> Unicorn khong crash, da xu ly bang cach decode phat hien instruction devision, da log
-    // cause_stack_overflow();              // 4. Gây tràn stack -> Unicorn crash( Tran stack den muc truy cap vao invalid memory)
-    // cause_buffer_overflow();             // 5. Ghi tràn stack -> Unicorn khong crash
-    // cause_function_pointer_crash();      // 6. Gọi function pointer rác -> Unicorn crash, chua hook log
-    // cause_uninitialized_variable_usage(); // 7. Dùng biến chưa khởi tạo -> Unicorn khong crash, thuc te chay tren chip cung nguy hiem thoi chu khong loi
-    // // cause_invalid_free();             // 8. Gọi free với con trỏ không hợp lệ (bỏ qua nếu không có malloc)
-    // cause_array_out_of_bounds();         // 9. Ghi ngoài mảng -> Unicorn crash, da hook
-    cause_null_function_call();          // 10. Gọi con trỏ hàm NULL -> Unicorn khong crash
+int x=1;
 
-    int res = is_button_pressed(GPIOC_ODR, 13);
-    write_custom(res);
-    set_led(1);
+
+int y=2;
+static char AKAS_NOMALLOC_msg[2];
+char* msg = AKAS_NOMALLOC_msg;
+
+
+
+static MyStruct AKAS_NOMALLOC_data[1];
+MyStruct* data = AKAS_NOMALLOC_data;
+
+static int AKAS_NOMALLOC_arr[1];
+int* arr = AKAS_NOMALLOC_arr;
+
+
+
+
+
+size_t arr_len=2;
+
+
+int AKA_EXPECTED_OUTPUT=0;
+
+/* RootDataNode STATIC */
+/* NormalNumberDataNode x */
+/* NormalNumberDataNode y */
+/* PointerCharacterDataNode msg */
+/* NormalCharacterDataNode msg[0] */
+msg[0]=97;
+/* NormalCharacterDataNode msg[1] */
+msg[1]=0;
+
+/* PointerStructureDataNode data */
+data[0].a=1;
+/* b : null value -> no code */
+data[0].c=1;
+/* PointerNumberDataNode arr */
+/* NormalNumberDataNode arr[0] */
+arr[0]=1;
+
+/* NormalNumberDataNode arr_len */
+/* NormalNumberDataNode RETURN */
+
+
+	int AKA_ACTUAL_OUTPUT = uut(x,y,msg,data,arr,arr_len);
+	aka_sim_writer_u32(AKA_ACTUAL_OUTPUT, AKA_EXPECTED_OUTPUT);
+
+
+size_t EXPECTED_arr_len=2;
+
+aka_sim_writer_u32(arr_len, EXPECTED_arr_len);
+
+
+
+
+    ///////////////////// END /////////////////////
     return 0;
 }
+

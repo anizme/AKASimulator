@@ -11,6 +11,9 @@ add_executable(akas_emulator
     ${SIM_SOURCES}
 )
 
-# Link Unicorn
-target_link_libraries(akas_emulator PRIVATE unicorn)
-target_link_libraries(akas_emulator PRIVATE capstone)
+# Link libraries
+target_link_libraries(akas_emulator PRIVATE 
+    unicorn
+    capstone
+    dwarf
+)

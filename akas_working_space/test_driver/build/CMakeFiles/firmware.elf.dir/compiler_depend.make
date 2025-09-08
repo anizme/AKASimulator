@@ -3,62 +3,35 @@
 
 CMakeFiles/firmware.elf.dir/test_driver_uut.c.obj: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c \
   /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c \
-  /usr/include/newlib/_ansi.h \
-  /usr/include/newlib/_newlib_version.h \
-  /usr/include/newlib/alloca.h \
-  /usr/include/newlib/machine/_default_types.h \
-  /usr/include/newlib/machine/_types.h \
-  /usr/include/newlib/machine/ieeefp.h \
-  /usr/include/newlib/machine/stdlib.h \
-  /usr/include/newlib/newlib.h \
-  /usr/include/newlib/stdlib.h \
-  /usr/include/newlib/sys/_types.h \
-  /usr/include/newlib/sys/cdefs.h \
-  /usr/include/newlib/sys/config.h \
-  /usr/include/newlib/sys/features.h \
-  /usr/include/newlib/sys/lock.h \
-  /usr/include/newlib/sys/reent.h \
-  /usr/lib/gcc/arm-none-eabi/13.2.1/include/stdbool.h \
-  /usr/lib/gcc/arm-none-eabi/13.2.1/include/stddef.h \
-  /usr/lib/gcc/arm-none-eabi/13.2.1/include/stdint.h
+  /usr/lib/llvm-18/lib/clang/18/include/__stddef_max_align_t.h \
+  /usr/lib/llvm-18/lib/clang/18/include/__stddef_null.h \
+  /usr/lib/llvm-18/lib/clang/18/include/__stddef_offsetof.h \
+  /usr/lib/llvm-18/lib/clang/18/include/__stddef_ptrdiff_t.h \
+  /usr/lib/llvm-18/lib/clang/18/include/__stddef_size_t.h \
+  /usr/lib/llvm-18/lib/clang/18/include/__stddef_wchar_t.h \
+  /usr/lib/llvm-18/lib/clang/18/include/stdbool.h \
+  /usr/lib/llvm-18/lib/clang/18/include/stddef.h \
+  /usr/lib/llvm-18/lib/clang/18/include/stdint.h
 
 
-/usr/include/newlib/sys/lock.h:
+/usr/lib/llvm-18/lib/clang/18/include/stddef.h:
 
-/usr/include/newlib/sys/reent.h:
+/usr/lib/llvm-18/lib/clang/18/include/stdint.h:
 
-/usr/include/newlib/sys/features.h:
+/usr/lib/llvm-18/lib/clang/18/include/stdbool.h:
 
-/home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:
+/usr/lib/llvm-18/lib/clang/18/include/__stddef_ptrdiff_t.h:
 
-/usr/lib/gcc/arm-none-eabi/13.2.1/include/stddef.h:
+/usr/lib/llvm-18/lib/clang/18/include/__stddef_offsetof.h:
 
-/usr/include/newlib/_ansi.h:
+/usr/lib/llvm-18/lib/clang/18/include/__stddef_null.h:
+
+/usr/lib/llvm-18/lib/clang/18/include/__stddef_max_align_t.h:
+
+/usr/lib/llvm-18/lib/clang/18/include/__stddef_wchar_t.h:
 
 /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/akas_source/main.c:
 
-/usr/include/newlib/machine/stdlib.h:
+/usr/lib/llvm-18/lib/clang/18/include/__stddef_size_t.h:
 
-/usr/lib/gcc/arm-none-eabi/13.2.1/include/stdbool.h:
-
-/usr/include/newlib/_newlib_version.h:
-
-/usr/include/newlib/newlib.h:
-
-/usr/include/newlib/sys/_types.h:
-
-/usr/include/newlib/alloca.h:
-
-/usr/include/newlib/sys/cdefs.h:
-
-/usr/include/newlib/machine/_default_types.h:
-
-/usr/include/newlib/machine/_types.h:
-
-/usr/include/newlib/machine/ieeefp.h:
-
-/usr/lib/gcc/arm-none-eabi/13.2.1/include/stdint.h:
-
-/usr/include/newlib/sys/config.h:
-
-/usr/include/newlib/stdlib.h:
+/home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:

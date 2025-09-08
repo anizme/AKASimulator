@@ -7,7 +7,7 @@
 <body>
 <div class="header">
 <h1>Test Report</h1>
-<p>Generated on 2025-09-04 22:05:49</p>
+<p>Generated on 2025-09-08 09:40:08</p>
 </div>
 <div class="section">
 <h2>Table of Content</h2>
@@ -25,37 +25,36 @@
 <tr><td>main.c</td><td>uut(int,int,char*,MyStruct*,int*,size_t)</td><td>uut_int_int_charmul_MyStructmul_intmul_size_t_manual_0</td></tr>
 </table>
 <h3>Simulation status:</h3>
-<p class="status-error">❌ ERROR</p>
-<p><strong>Message:</strong>  Null function call detected: PC = 0x0</p>
-<p><strong>Error Location:</strong> <a href="main.c.html#line94" class="nav-link">main.c:94</a></p>
+<p class="status-success">✅ SUCCESS</p>
+<p><strong>Message:</strong>  Main function returned </p>
 </div>
 <div id="coverage-summary" class="section">
 <h2>Coverage Summary</h2>
 <p><strong>Files:</strong> 2</p>
-<p><strong>Total Lines:</strong> 305</p>
-<p><strong>Covered Lines:</strong> 21</p>
-<p><strong>Coverage:</strong> 6.9%</p>
+<p><strong>Total Lines:</strong> 227</p>
+<p><strong>Covered Lines:</strong> 25</p>
+<p><strong>Coverage:</strong> 11.0%</p>
 <h3>Files</h3>
 <div class="file-row">
 <a href="main.c.html" class="filename">main.c</a>
 <div class="coverage-bar">
-<div class="coverage-fill" style="width: 7.5%"></div>
+<div class="coverage-fill" style="width: 35.7%"></div>
 </div>
-<span class="coverage-text">7.5%</span>
+<span class="coverage-text">35.7%</span>
 </div>
 <div class="file-row">
 <a href="startup.s.html" class="filename">startup.s</a>
 <div class="coverage-bar">
-<div class="coverage-fill" style="width: 6.5%"></div>
+<div class="coverage-fill" style="width: 7.5%"></div>
 </div>
-<span class="coverage-text">6.5%</span>
+<span class="coverage-text">7.5%</span>
 </div>
 </div>
 <div id="test-result" class="section">
 <h2>Test Simulation Result</h2>
 <h3>uut_int_int_charmul_MyStructmul_intmul_size_t_manual_0 Result</h3>
 <table class="info-table">
-<tr><th>Result</th><td>Failed</td></tr>
+<tr><th>Result</th><td>Success</td></tr>
 </table>
 <h3>Coverage of subprogram</h3>
 <p><a href="main.c.html" class="nav-link">View main.c coverage</a></p>
@@ -66,11 +65,11 @@
 </div>
 <div class="source-line" id="line2">
 <div class="line-number">2</div>
-<div class="line-content">#include &lt;stdlib.h&gt; // nếu môi trường có malloc/free</div>
+<div class="line-content">#include &lt;stddef.h&gt;</div>
 </div>
 <div class="source-line" id="line3">
 <div class="line-number">3</div>
-<div class="line-content">#include &lt;stdint.h&gt;</div>
+<div class="line-content">#include &lt;stdbool.h&gt;</div>
 </div>
 <div class="source-line" id="line4">
 <div class="line-number">4</div>
@@ -78,394 +77,122 @@
 </div>
 <div class="source-line" id="line5">
 <div class="line-number">5</div>
-<div class="line-content">// Map thanh ghi ngoại vi</div>
+<div class="line-content">// Struct test</div>
 </div>
 <div class="source-line" id="line6">
 <div class="line-number">6</div>
-<div class="line-content">#define RCC_APB2ENR (*(volatile uint32_t *)0x40021018)</div>
+<div class="line-content">typedef struct</div>
 </div>
 <div class="source-line" id="line7">
 <div class="line-number">7</div>
-<div class="line-content">#define GPIOC_CRH (*(volatile uint32_t *)0x40011004)</div>
+<div class="line-content">{</div>
 </div>
 <div class="source-line" id="line8">
 <div class="line-number">8</div>
-<div class="line-content">#define GPIOC_ODR (*(volatile uint32_t *)0x4001100C)</div>
+<div class="line-content">    int a;</div>
 </div>
 <div class="source-line" id="line9">
 <div class="line-number">9</div>
-<div class="line-content"></div>
+<div class="line-content">    float b;</div>
 </div>
 <div class="source-line" id="line10">
 <div class="line-number">10</div>
-<div class="line-content">// Kiểm tra bit thứ pin có đang bị clear hay không (dạng active-low button)</div>
+<div class="line-content">    char c;</div>
 </div>
 <div class="source-line" id="line11">
 <div class="line-number">11</div>
-<div class="line-content">int is_button_pressed(uint32_t gpio_idr, int pin)</div>
+<div class="line-content">} MyStruct;</div>
 </div>
 <div class="source-line" id="line12">
 <div class="line-number">12</div>
-<div class="line-content">{</div>
+<div class="line-content"></div>
 </div>
 <div class="source-line" id="line13">
 <div class="line-number">13</div>
-<div class="line-content">    return !(gpio_idr &amp; (1 &lt;&lt; pin));</div>
+<div class="line-content">// Unit Under Test (UUT)</div>
 </div>
 <div class="source-line" id="line14">
 <div class="line-number">14</div>
-<div class="line-content">}</div>
+<div class="line-content">int uut(int x, int y, char *msg, MyStruct *data, int *arr, size_t arr_len)</div>
 </div>
-<div class="source-line" id="line15">
+<div class="source-line covered" id="line15">
 <div class="line-number">15</div>
-<div class="line-content"></div>
+<div class="line-content">{</div>
 </div>
-<div class="source-line" id="line16">
+<div class="source-line covered" id="line16">
 <div class="line-number">16</div>
-<div class="line-content">void gpio_init()</div>
+<div class="line-content">    int sum = x + (int)y + data-&gt;a;</div>
 </div>
 <div class="source-line covered" id="line17">
 <div class="line-number">17</div>
-<div class="line-content">{</div>
+<div class="line-content">    for (size_t i = 0; i &lt; arr_len; i++)</div>
 </div>
-<div class="source-line covered" id="line18">
+<div class="source-line" id="line18">
 <div class="line-number">18</div>
-<div class="line-content">    RCC_APB2ENR |= (1 &lt;&lt; 4);   // Bật clock GPIOC</div>
+<div class="line-content">    {</div>
 </div>
 <div class="source-line covered" id="line19">
 <div class="line-number">19</div>
-<div class="line-content">    GPIOC_CRH &amp;= ~(0xF &lt;&lt; 20); // Clear CNF13/MODE13</div>
+<div class="line-content">        sum += arr[i];</div>
 </div>
 <div class="source-line covered" id="line20">
 <div class="line-number">20</div>
-<div class="line-content">    GPIOC_CRH |= (0x1 &lt;&lt; 20);  // MODE13 = 01: output push-pull 10MHz</div>
+<div class="line-content">    }</div>
 </div>
 <div class="source-line covered" id="line21">
 <div class="line-number">21</div>
-<div class="line-content">}</div>
+<div class="line-content">    if (msg)</div>
 </div>
 <div class="source-line" id="line22">
 <div class="line-number">22</div>
-<div class="line-content"></div>
+<div class="line-content">    {</div>
 </div>
 <div class="source-line" id="line23">
 <div class="line-number">23</div>
-<div class="line-content">void set_led(int on)</div>
+<div class="line-content">        // Giả sử làm gì đó với msg</div>
 </div>
-<div class="source-line" id="line24">
+<div class="source-line covered" id="line24">
 <div class="line-number">24</div>
-<div class="line-content">{</div>
+<div class="line-content">        sum += (int)msg[0];</div>
 </div>
-<div class="source-line" id="line25">
+<div class="source-line covered" id="line25">
 <div class="line-number">25</div>
-<div class="line-content">    if (on)</div>
+<div class="line-content">    }</div>
 </div>
-<div class="source-line" id="line26">
+<div class="source-line covered" id="line26">
 <div class="line-number">26</div>
-<div class="line-content">        GPIOC_ODR &amp;= ~(1 &lt;&lt; 13); // LED on (PC13 = 0)</div>
+<div class="line-content">    sum += (int)data-&gt;c;</div>
 </div>
-<div class="source-line" id="line27">
+<div class="source-line covered" id="line27">
 <div class="line-number">27</div>
-<div class="line-content">    else</div>
+<div class="line-content">    return sum;</div>
 </div>
 <div class="source-line" id="line28">
 <div class="line-number">28</div>
-<div class="line-content">        GPIOC_ODR |= (1 &lt;&lt; 13); // LED off (PC13 = 1)</div>
-</div>
-<div class="source-line" id="line29">
-<div class="line-number">29</div>
 <div class="line-content">}</div>
-</div>
-<div class="source-line" id="line30">
-<div class="line-number">30</div>
-<div class="line-content"></div>
-</div>
-<div class="source-line" id="line31">
-<div class="line-number">31</div>
-<div class="line-content">// 1. Truy cập con trỏ NULL</div>
-</div>
-<div class="source-line" id="line32">
-<div class="line-number">32</div>
-<div class="line-content">uint32_t cause_null_pointer_deref() {</div>
-</div>
-<div class="source-line" id="line33">
-<div class="line-number">33</div>
-<div class="line-content">    volatile uint32_t *ptr = NULL;</div>
-</div>
-<div class="source-line" id="line34">
-<div class="line-number">34</div>
-<div class="line-content">    return *ptr;</div>
-</div>
-<div class="source-line" id="line35">
-<div class="line-number">35</div>
-<div class="line-content">}</div>
-</div>
-<div class="source-line" id="line36">
-<div class="line-number">36</div>
-<div class="line-content"></div>
-</div>
-<div class="source-line" id="line37">
-<div class="line-number">37</div>
-<div class="line-content">// 2. Truy cập địa chỉ không hợp lệ</div>
-</div>
-<div class="source-line" id="line38">
-<div class="line-number">38</div>
-<div class="line-content">void cause_invalid_address_access() {</div>
-</div>
-<div class="source-line" id="line39">
-<div class="line-number">39</div>
-<div class="line-content">    volatile uint32_t *ptr = (uint32_t *)0x12345678; // không mapped</div>
-</div>
-<div class="source-line" id="line40">
-<div class="line-number">40</div>
-<div class="line-content">    *ptr = 0xCAFEBABE;</div>
-</div>
-<div class="source-line" id="line41">
-<div class="line-number">41</div>
-<div class="line-content">}</div>
-</div>
-<div class="source-line" id="line42">
-<div class="line-number">42</div>
-<div class="line-content"></div>
-</div>
-<div class="source-line" id="line43">
-<div class="line-number">43</div>
-<div class="line-content">// 3. Chia cho 0</div>
-</div>
-<div class="source-line" id="line44">
-<div class="line-number">44</div>
-<div class="line-content">void cause_divide_by_zero() {</div>
-</div>
-<div class="source-line" id="line45">
-<div class="line-number">45</div>
-<div class="line-content">    volatile int a = 10;</div>
-</div>
-<div class="source-line" id="line46">
-<div class="line-number">46</div>
-<div class="line-content">    volatile int b = 0;</div>
-</div>
-<div class="source-line" id="line47">
-<div class="line-number">47</div>
-<div class="line-content">    volatile int c = a / b;</div>
-</div>
-<div class="source-line" id="line48">
-<div class="line-number">48</div>
-<div class="line-content">    (void)c;</div>
-</div>
-<div class="source-line" id="line49">
-<div class="line-number">49</div>
-<div class="line-content">}</div>
-</div>
-<div class="source-line" id="line50">
-<div class="line-number">50</div>
-<div class="line-content"></div>
-</div>
-<div class="source-line" id="line51">
-<div class="line-number">51</div>
-<div class="line-content">// 4. Stack overflow bằng đệ quy vô hạn</div>
-</div>
-<div class="source-line" id="line52">
-<div class="line-number">52</div>
-<div class="line-content">void cause_stack_overflow() {</div>
-</div>
-<div class="source-line" id="line53">
-<div class="line-number">53</div>
-<div class="line-content">    cause_stack_overflow();</div>
-</div>
-<div class="source-line" id="line54">
-<div class="line-number">54</div>
-<div class="line-content">}</div>
-</div>
-<div class="source-line" id="line55">
-<div class="line-number">55</div>
-<div class="line-content"></div>
-</div>
-<div class="source-line" id="line56">
-<div class="line-number">56</div>
-<div class="line-content">// 5. Buffer overflow</div>
-</div>
-<div class="source-line" id="line57">
-<div class="line-number">57</div>
-<div class="line-content">void cause_buffer_overflow() {</div>
-</div>
-<div class="source-line" id="line58">
-<div class="line-number">58</div>
-<div class="line-content">    char buf[4];</div>
-</div>
-<div class="source-line" id="line59">
-<div class="line-number">59</div>
-<div class="line-content">    for (int i = 0; i &lt; 6; ++i) {</div>
-</div>
-<div class="source-line" id="line60">
-<div class="line-number">60</div>
-<div class="line-content">        buf[i] = &#39;A&#39;;</div>
-</div>
-<div class="source-line" id="line61">
-<div class="line-number">61</div>
-<div class="line-content">    }</div>
-</div>
-<div class="source-line" id="line62">
-<div class="line-number">62</div>
-<div class="line-content">}</div>
-</div>
-<div class="source-line" id="line63">
-<div class="line-number">63</div>
-<div class="line-content"></div>
-</div>
-<div class="source-line" id="line64">
-<div class="line-number">64</div>
-<div class="line-content">// 6. Gọi function pointer chưa khởi tạo</div>
-</div>
-<div class="source-line" id="line65">
-<div class="line-number">65</div>
-<div class="line-content">void cause_function_pointer_crash() {</div>
-</div>
-<div class="source-line" id="line66">
-<div class="line-number">66</div>
-<div class="line-content">    void (*func)() = (void (*)())0xDEADC0DE;</div>
-</div>
-<div class="source-line" id="line67">
-<div class="line-number">67</div>
-<div class="line-content">    func();</div>
-</div>
-<div class="source-line" id="line68">
-<div class="line-number">68</div>
-<div class="line-content">}</div>
-</div>
-<div class="source-line" id="line69">
-<div class="line-number">69</div>
-<div class="line-content"></div>
-</div>
-<div class="source-line" id="line70">
-<div class="line-number">70</div>
-<div class="line-content">// 7. Sử dụng biến chưa khởi tạo (undefined behavior)</div>
-</div>
-<div class="source-line" id="line71">
-<div class="line-number">71</div>
-<div class="line-content">int cause_uninitialized_variable_usage() {</div>
-</div>
-<div class="source-line" id="line72">
-<div class="line-number">72</div>
-<div class="line-content">    int x;  // không khởi tạo</div>
-</div>
-<div class="source-line" id="line73">
-<div class="line-number">73</div>
-<div class="line-content">    if (x == 1234) {</div>
-</div>
-<div class="source-line" id="line74">
-<div class="line-number">74</div>
-<div class="line-content">        return 1;</div>
-</div>
-<div class="source-line" id="line75">
-<div class="line-number">75</div>
-<div class="line-content">    }</div>
-</div>
-<div class="source-line" id="line76">
-<div class="line-number">76</div>
-<div class="line-content">    return 0;</div>
-</div>
-<div class="source-line" id="line77">
-<div class="line-number">77</div>
-<div class="line-content">}</div>
-</div>
-<div class="source-line" id="line78">
-<div class="line-number">78</div>
-<div class="line-content"></div>
-</div>
-<div class="source-line" id="line79">
-<div class="line-number">79</div>
-<div class="line-content">// 8. Free vùng không cấp phát (nếu hệ thống hỗ trợ malloc)</div>
-</div>
-<div class="source-line" id="line80">
-<div class="line-number">80</div>
-<div class="line-content">// void cause_invalid_free() {</div>
-</div>
-<div class="source-line" id="line81">
-<div class="line-number">81</div>
-<div class="line-content">//     int dummy = 42;</div>
-</div>
-<div class="source-line" id="line82">
-<div class="line-number">82</div>
-<div class="line-content">//     free(&amp;dummy); // invalid free</div>
-</div>
-<div class="source-line" id="line83">
-<div class="line-number">83</div>
-<div class="line-content">// }</div>
-</div>
-<div class="source-line" id="line84">
-<div class="line-number">84</div>
-<div class="line-content"></div>
-</div>
-<div class="source-line" id="line85">
-<div class="line-number">85</div>
-<div class="line-content">// 9. Truy cập ngoài mảng</div>
-</div>
-<div class="source-line" id="line86">
-<div class="line-number">86</div>
-<div class="line-content">void cause_array_out_of_bounds() {</div>
-</div>
-<div class="source-line" id="line87">
-<div class="line-number">87</div>
-<div class="line-content">    int arr[2] = {1, 2};</div>
-</div>
-<div class="source-line" id="line88">
-<div class="line-number">88</div>
-<div class="line-content">    arr[2] = 100;</div>
-</div>
-<div class="source-line" id="line89">
-<div class="line-number">89</div>
-<div class="line-content">}</div>
-</div>
-<div class="source-line" id="line90">
-<div class="line-number">90</div>
-<div class="line-content"></div>
-</div>
-<div class="source-line" id="line91">
-<div class="line-number">91</div>
-<div class="line-content">// 10. Truy cập NULL function pointer</div>
-</div>
-<div class="source-line covered" id="line92">
-<div class="line-number">92</div>
-<div class="line-content">void cause_null_function_call() {</div>
-</div>
-<div class="source-line covered" id="line93">
-<div class="line-number">93</div>
-<div class="line-content">    void (*f)() = NULL;</div>
-</div>
-<div class="source-line error-line" id="line94">
-<div class="line-number">94</div>
-<div class="line-content">    f();</div>
-</div>
-<div class="source-line" id="line95">
-<div class="line-number">95</div>
-<div class="line-content">}</div>
-</div>
-<div class="source-line" id="line96">
-<div class="line-number">96</div>
-<div class="line-content"></div>
-</div>
-<div class="source-line" id="line97">
-<div class="line-number">97</div>
-<div class="line-content">///////////////////////////////////////////////////////</div>
-</div>
-<div class="source-line" id="line98">
-<div class="line-number">98</div>
-<div class="line-content">////////////////// TEST DRIVER ////////////////////////</div>
-</div>
-<div class="source-line" id="line99">
-<div class="line-number">99</div>
-<div class="line-content">///////////////////////////////////////////////////////</div>
-</div>
-<div class="source-line" id="line100">
-<div class="line-number">100</div>
-<div class="line-content"></div>
-</div>
-<div style="padding: 10px; text-align: center; color: #666;">
-... (6 more lines)
 </div>
 </div>
 <h3>Comparison</h3>
-<p>No comparison data available.</p>
+<h4>	Subprogram: uut(int,int,char*,MyStruct*,int*,size_t)</h4>
+<table class="comparison-table">
+<tr><th>Parameter</th><th>Type</th><th>Expected Value</th><th>Actual Value</th></tr>
+<tr>
+<td>RETURN</td>
+<td>int</td>
+<td class="mismatch">0</td>
+<td class="mismatch">103</td>
+</tr>
+<tr>
+<td>arr_len</td>
+<td>size_t</td>
+<td class="match">2</td>
+<td class="match">2</td>
+</tr>
+<tr class="summary-row">
+<td colspan="2"><strong>Expected Results matched 50.0%</strong></td>
+<td colspan="2"><strong>(1/2) PASS</strong></td>
+</tr>
+</table>
 </div>
 </body>
 </html>
