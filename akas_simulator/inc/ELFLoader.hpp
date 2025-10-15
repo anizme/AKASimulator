@@ -16,7 +16,6 @@ namespace STM32F103C8T6
         uint32_t vector_table_addr_ = 0;
         uint32_t vector_table_size_ = 0;
         std::string file_path;
-        std::string addr2line_command; // Command to call addr2line
     };
 
     class ELFLoader
@@ -34,8 +33,6 @@ namespace STM32F103C8T6
         bool findMainSymbol(const std::string &elf_path, uint32_t &main_address);
         bool findAkaWriterSymbol(const std::string &elf_path, uint32_t &address32, uint32_t &address64);
 
-        std::string setupAddr2LineCommand(const std::string &elf_path);
-        bool checkAddr2LineAvailable();
         bool findFunctionAddress(const std::string &elf_path, const std::string &function_name, uint32_t &address);
     };
 

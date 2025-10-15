@@ -44,13 +44,6 @@ namespace STM32F103C8T6
             return false;
         }
 
-        // Setup addr2line command
-        elf_info.addr2line_command = setupAddr2LineCommand(elf_path);
-        if (elf_info.addr2line_command.empty())
-        {
-            std::cerr << "Warning: addr2line not available, debug info will be limited" << std::endl;
-        }
-
         std::cout << "ELF loaded successfully" << std::endl;
         std::cout << "Entry point: 0x" << std::hex << elf_info.entry_point << std::endl;
         std::cout << "Main address: 0x" << elf_info.main_address << std::dec << std::endl;
@@ -202,42 +195,6 @@ namespace STM32F103C8T6
             return true;
         }
         return false;
-    }
-
-    std::string ELFLoader::setupAddr2LineCommand(const std::string &elf_path)
-    {
-        if (!checkAddr2LineAvailable())
-        {
-            return "";
-        }
-
-        // Try different addr2line variants (for cross-compilation)
-        std::vector<std::string> addr2line_variants = {
-            "arm-none-eabi-addr2line",       // Most common for ARM embedded
-            "arm-linux-gnueabihf-addr2line", // ARM Linux
-            "addr2line"                      // System default
-        };
-
-        for (const auto &variant : addr2line_variants)
-        {
-            // Test if this variant works
-            std::string test_cmd = variant + " --version > /dev/null 2>&1";
-            if (system(test_cmd.c_str()) == 0)
-            {
-                std::cout << "Using " << variant << " for debug info" << std::endl;
-                return variant + " -e " + elf_path + " -a -f";
-            }
-        }
-
-        std::cerr << "No suitable addr2line found" << std::endl;
-        return "";
-    }
-
-    bool ELFLoader::checkAddr2LineAvailable()
-    {
-        // Check if any addr2line variant is available
-        std::string check_cmd = "which addr2line > /dev/null 2>&1 || which arm-none-eabi-addr2line > /dev/null 2>&1";
-        return system(check_cmd.c_str()) == 0;
     }
 
 } // namespace STM32F103C8T6

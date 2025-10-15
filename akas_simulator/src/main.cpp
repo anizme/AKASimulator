@@ -1,8 +1,10 @@
 // aka_simulator/src/main.cpp
 
 #include "Emulator.hpp"
+#include "SimulationLogRefactor.hpp"
 #include <iostream>
 #include <string>
+#include <filesystem>
 
 void printUsage(const char *program_name)
 {
@@ -16,7 +18,7 @@ void printUsage(const char *program_name)
 
 int main(int argc, char *argv[])
 {
-    // Check command line arguments
+    // ---------------------- Argument handling ----------------------
     if (argc < 2 || argc > 3)
     {
         printUsage(argv[0]);
@@ -24,14 +26,14 @@ int main(int argc, char *argv[])
     }
 
     std::string elf_file = argv[1];
-    std::string log_file = (argc == 3) ? argv[2] : "detail_execution.log";
+    std::string log_file = (argc == 3) ? argv[2] : "execution.log";
 
     std::cout << "=== STM32F103C8T6 Emulator ===" << std::endl;
     std::cout << "ELF File: " << elf_file << std::endl;
     std::cout << "Log File: " << log_file << std::endl;
     std::cout << std::endl;
 
-    // Create and initialize emulator
+    // ---------------------- Emulator initialization ----------------------
     STM32F103C8T6::Emulator emulator;
 
     if (!emulator.initialize())
@@ -40,7 +42,6 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    // Load ELF file
     if (!emulator.loadELF(elf_file))
     {
         std::cerr << "ERROR: Failed to load ELF file: " << elf_file << std::endl;
@@ -52,7 +53,7 @@ int main(int argc, char *argv[])
     emulator.printRegisters();
     std::cout << std::endl;
 
-    // Execute with logging
+    // ---------------------- Execute emulation ----------------------
     std::cout << "Starting emulation (press Ctrl+C to stop)..." << std::endl;
     if (!emulator.execute(log_file))
     {
@@ -66,6 +67,37 @@ int main(int argc, char *argv[])
     emulator.printRegisters();
     std::cout << std::endl;
     std::cout << "Emulation completed. Check log file: " << log_file << std::endl;
+
+    // ---------------------- Post-process log ----------------------
+    std::cout << std::endl;
+    std::cout << "=== Post-processing log file ===" << std::endl;
+
+    namespace fs = std::filesystem;
+
+    // Get base name and directory
+    fs::path logPath(log_file);
+    fs::path dir = logPath.parent_path();
+    std::string baseName = logPath.stem().string(); // "name" if file is ".../name.log"
+
+    // Input for refactor: code_line_name.log
+    std::string codeLineLog = (dir / ("code_line_" + baseName + ".log")).string();
+
+    // Output after refactor: simu_name.log
+    std::string refactoredBase = (dir / ("simu_" + baseName)).string();
+
+    SimulationLogRefactor refactor(codeLineLog);
+
+    if (refactor.process(refactoredBase))
+    {
+        std::cout << "Log refactoring completed successfully!" << std::endl;
+        std::cout << "Output: " << refactoredBase << "_simulation.log" << std::endl;
+    }
+    else
+    {
+        std::cerr << "Log refactoring failed!" << std::endl;
+        std::cerr << "Expected input: " << codeLineLog << std::endl;
+        return 1;
+    }
 
     return 0;
 }

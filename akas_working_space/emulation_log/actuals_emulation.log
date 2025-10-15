@@ -1,4 +1,4 @@
 actual: 103, expected: 0
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:67 (main)
+	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:67:2 (main)
 actual: 2, expected: 2
-	|-> Code: /home/anizme/Documents/AKAUT/simulation/AKA_Simulator/akas_working_space/test_driver/test_driver_uut.c:72 (main)
+	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:72:1 (main)

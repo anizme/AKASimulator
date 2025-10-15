@@ -22,10 +22,10 @@ namespace STM32F103C8T6
     }
 
     bool ExecutionLogger::initialize(const std::string &log_file_path, const std::string &elf_path,
-                                     uint32_t entry_point, const std::string &addr2line_cmd)
+                                     uint32_t entry_point, const std::string &trace_code_command)
     {
         elf_path_ = elf_path;
-        addr2line_command_ = addr2line_cmd;
+        trace_code_command_ = trace_code_command;
         instruction_count_ = 0;
 
         log_file_.open(log_file_path);
@@ -139,7 +139,7 @@ namespace STM32F103C8T6
     void ExecutionLogger::appendSourceInfo(std::ostringstream &oss, uint64_t address)
     {
         oss << "\n\t|-> Code: ";
-        if (!addr2line_command_.empty())
+        if (!trace_code_command_.empty())
         {
             SourceInfo info = getSourceInfo(address);
             oss << dumpSourceInfo(info);
@@ -195,7 +195,7 @@ namespace STM32F103C8T6
         std::string str;
         if (!info.filename.empty() && info.filename != "??")
         {
-            str.append(info.filename).append(":").append(std::to_string(info.line_number));
+            str.append(info.filename).append(":").append(std::to_string(info.line_number)).append(":").append(std::to_string(info.col_number));
             if (!info.function.empty() && info.function != "??")
             {
                 str.append(" (").append(info.function).append(")");
@@ -272,9 +272,9 @@ namespace STM32F103C8T6
         {
             return it->second;
         }
-        // Not in cache, call addr2line
-        std::string output = executeAddr2Line(address);
-        SourceInfo info = parseAddr2LineOutput(output);
+        // Not in cache, call trace code tool
+        std::string output = executeMapping(address);
+        SourceInfo info = parseMappingOutput(output);
 
         // Cache the result (but limit cache size to prevent memory issues)
         if (address_cache_.size() < 10000)
@@ -285,16 +285,16 @@ namespace STM32F103C8T6
         return info;
     }
 
-    std::string ExecutionLogger::executeAddr2Line(uint64_t address)
+    std::string ExecutionLogger::executeMapping(uint64_t address)
     {
-        if (addr2line_command_.empty())
+        if (trace_code_command_.empty())
         {
             return "";
         }
 
         // Create the command with the address
         std::stringstream cmd_ss;
-        cmd_ss << addr2line_command_ << " 0x" << std::hex << address;
+        cmd_ss << trace_code_command_ << " 0x" << std::hex << address;
         std::string command = cmd_ss.str();
 
         // Execute the command and capture output
@@ -303,7 +303,7 @@ namespace STM32F103C8T6
 
         if (!pipe)
         {
-            std::cerr << "Failed to execute addr2line command: " << command << std::endl;
+            std::cerr << "Failed to execute trace code tool command: " << command << std::endl;
             return "";
         }
 
@@ -315,12 +315,13 @@ namespace STM32F103C8T6
         return result;
     }
 
-    SourceInfo ExecutionLogger::parseAddr2LineOutput(const std::string &output)
+    SourceInfo ExecutionLogger::parseMappingOutput(const std::string &output)
     {
         SourceInfo info;
         info.filename = "??";
         info.function = "??";
         info.line_number = 0;
+        info.col_number = 0;
 
         if (output.empty())
         {
@@ -330,50 +331,74 @@ namespace STM32F103C8T6
         std::istringstream stream(output);
         std::string line;
 
-        // addr2line with -a -f outputs: address, function name, then file:line
-        // Skip the first line (address)
-        if (std::getline(stream, line))
-        {
-            // First line is address, ignore it
-        }
+        // llvm-symbolizer output format:
+        // function_name\n
+        // file:line:col\n
+        // (có thể có thêm lines cho inlined functions nếu dùng --inlines)
 
-        // Second line is function name
+        // First line is function name
         if (std::getline(stream, line))
         {
             if (!line.empty() && line != "??")
             {
                 info.function = line;
-                // Remove newline if present
-                if (!info.function.empty() && info.function.back() == '\n')
-                {
-                    info.function.pop_back();
-                }
+                // Remove trailing newline/carriage return
+                info.function.erase(std::remove(info.function.begin(), info.function.end(), '\n'), info.function.end());
+                info.function.erase(std::remove(info.function.begin(), info.function.end(), '\r'), info.function.end());
             }
         }
 
-        // Third line is file:line
+        // Second line is file:line:col
         if (std::getline(stream, line))
         {
-            if (!line.empty() && line != "??:0")
+            if (!line.empty() && line != "??:0:0")
             {
-                // Remove newline if present
-                if (!line.empty() && line.back() == '\n')
-                {
-                    line.pop_back();
-                }
+                // Remove trailing newline/carriage return
+                line.erase(std::remove(line.begin(), line.end(), '\n'), line.end());
+                line.erase(std::remove(line.begin(), line.end(), '\r'), line.end());
 
-                size_t colon_pos = line.find_last_of(':');
-                if (colon_pos != std::string::npos)
+                // Parse file:line:col format
+                size_t first_colon = line.find(':');
+                if (first_colon != std::string::npos)
                 {
-                    info.filename = line.substr(0, colon_pos);
-                    try
+                    info.filename = line.substr(0, first_colon);
+
+                    size_t second_colon = line.find(':', first_colon + 1);
+                    if (second_colon != std::string::npos)
                     {
-                        info.line_number = std::stoi(line.substr(colon_pos + 1));
+                        try
+                        {
+                            // Extract line number
+                            std::string line_str = line.substr(first_colon + 1, second_colon - first_colon - 1);
+                            info.line_number = std::stoi(line_str);
+
+                            // Extract column number
+                            std::string col_str = line.substr(second_colon + 1);
+                            info.col_number = std::stoi(col_str);
+                        }
+                        catch (const std::exception &)
+                        {
+                            info.line_number = 0;
+                            info.col_number = 0;
+                        }
                     }
-                    catch (const std::exception &)
+                    else
                     {
-                        info.line_number = 0;
+                        // Fallback: only line number available
+                        try
+                        {
+                            info.line_number = std::stoi(line.substr(first_colon + 1));
+                        }
+                        catch (const std::exception &)
+                        {
+                            info.line_number = 0;
+                        }
                     }
+                }
+                else
+                {
+                    // No colon found, use whole line as filename
+                    info.filename = line;
                 }
             }
         }

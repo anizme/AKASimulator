@@ -5,6 +5,7 @@
 #include <fstream>
 #include <memory>
 #include <unordered_map>
+#include <algorithm>
 
 namespace STM32F103C8T6
 {
@@ -14,6 +15,7 @@ namespace STM32F103C8T6
         std::string filename;
         std::string function;
         int line_number;
+        int col_number;
     };
 
     class ExecutionLogger
@@ -37,16 +39,16 @@ namespace STM32F103C8T6
         std::ofstream executed_code_log_file_;
         std::ofstream actuals_log_file_;;
         std::string elf_path_;
-        std::string addr2line_command_;
+        std::string trace_code_command_;
         int instruction_count_;
 
-        // Cache for address-to-source mapping to avoid repeated addr2line calls
+        // Cache for address-to-source mapping to avoid repeated calls
         std::unordered_map<uint64_t, SourceInfo> address_cache_;
 
         void writeHeader(uint32_t entry_point);
         SourceInfo getSourceInfo(uint64_t address);
-        std::string executeAddr2Line(uint64_t address);
-        SourceInfo parseAddr2LineOutput(const std::string &output);
+        std::string executeMapping(uint64_t address);
+        SourceInfo parseMappingOutput(const std::string &output);
 
         std::string dumpSourceInfo(const SourceInfo &info);
         std::string dumpSourceInfoOnlyLineOfCode(const SourceInfo &info);

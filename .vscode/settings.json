@@ -53,6 +53,23 @@
         "chrono": "cpp",
         "format": "cpp",
         "ratio": "cpp",
-        "stddef.h": "c"
+        "stddef.h": "c",
+        "regex": "cpp",
+        "bitset": "cpp",
+        "codecvt": "cpp",
+        "condition_variable": "cpp",
+        "cstring": "cpp",
+        "ctime": "cpp",
+        "forward_list": "cpp",
+        "list": "cpp",
+        "map": "cpp",
+        "set": "cpp",
+        "future": "cpp",
+        "mutex": "cpp",
+        "ranges": "cpp",
+        "semaphore": "cpp",
+        "stop_token": "cpp",
+        "thread": "cpp",
+        "valarray": "cpp"
     }
 }

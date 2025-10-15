@@ -80,8 +80,10 @@ namespace STM32F103C8T6
         }
 
         // Initialize logger with addr2line command instead of backtrace state
+        std::string trace_code_command = "llvm-symbolizer -e " + elf_info_.file_path + " ";
+        std::cout << "[LOG] command: " << trace_code_command;
         if (!logger_->initialize(log_file_path, elf_info_.file_path,
-                                 elf_info_.entry_point, elf_info_.addr2line_command))
+                                 elf_info_.entry_point, trace_code_command))
         {
             std::cerr << "Failed to initialize logger" << std::endl;
             return false;
