@@ -55,7 +55,7 @@ std::vector<std::string> SimulationLogRefactor::filterDuplicateLines()
 
 bool SimulationLogRefactor::process(const std::string &fileName)
 {
-    outputFileName = fileName + "_simulation.log";
+    outputFileName = fileName + ".log";
 
     if (!readInputFile())
     {
