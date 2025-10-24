@@ -1,6 +1,6 @@
 # STM32F103C8T6 Emulation Log
 # ELF File: akas_working_space/test_driver/firmware.elf
-# Start Time: 2025-10-16 00:21:46
+# Start Time: 2025-10-25 00:45:30
 # Entry Point: 0x8000119
 # Memory Layout:
 # 	Flash: 0x8000000 - 0x801ffff
@@ -9,339 +9,607 @@
 #
 
 [0x08000118] ldr.w    sp, [pc, #0x2c]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:102:0 (Reset_Handler)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:102:0 (Reset_Handler)
 [0x0800011c] ldr      r0, [pc, #0x2c]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:105:0 (Reset_Handler)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:105:0 (Reset_Handler)
 [0x0800011e] ldr      r1, [pc, #0x30]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:106:0 (Reset_Handler)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:106:0 (Reset_Handler)
 [0x08000120] ldr      r2, [pc, #0x30]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:107:0 (Reset_Handler)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:107:0 (Reset_Handler)
 [0x08000122] movs     r3, #0
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:108:0 (Reset_Handler)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:108:0 (Reset_Handler)
 [0x08000124] cmp      r1, r2
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:110:0 (copy_data)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:110:0 (copy_data)
 [0x08000126] bge      0x8000130
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:111:0 (copy_data)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:111:0 (copy_data)
 [0x08000130] ldr      r0, [pc, #0x24]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:119:0 (copy_done)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:119:0 (copy_done)
 [0x08000132] ldr      r1, [pc, #0x28]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:120:0 (copy_done)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:120:0 (copy_done)
 [0x08000134] movs     r2, #0
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:121:0 (copy_done)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:121:0 (copy_done)
 [0x08000136] cmp      r0, r1
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:123:0 (clear_bss)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:123:0 (clear_bss)
 [0x08000138] bge      0x8000140
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:124:0 (clear_bss)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:124:0 (clear_bss)
 [0x0800013a] str      r2, [r0], #4
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:125:0 (clear_bss)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:125:0 (clear_bss)
 [0x0800013e] b        0x8000136
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:126:0 (clear_bss)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:126:0 (clear_bss)
 [0x08000136] cmp      r0, r1
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:123:0 (clear_bss)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:123:0 (clear_bss)
 [0x08000138] bge      0x8000140
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:124:0 (clear_bss)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:124:0 (clear_bss)
 [0x0800013a] str      r2, [r0], #4
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:125:0 (clear_bss)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:125:0 (clear_bss)
 [0x0800013e] b        0x8000136
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:126:0 (clear_bss)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:126:0 (clear_bss)
 [0x08000136] cmp      r0, r1
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:123:0 (clear_bss)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:123:0 (clear_bss)
 [0x08000138] bge      0x8000140
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:124:0 (clear_bss)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:124:0 (clear_bss)
 [0x0800013a] str      r2, [r0], #4
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:125:0 (clear_bss)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:125:0 (clear_bss)
 [0x0800013e] b        0x8000136
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:126:0 (clear_bss)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:126:0 (clear_bss)
 [0x08000136] cmp      r0, r1
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:123:0 (clear_bss)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:123:0 (clear_bss)
 [0x08000138] bge      0x8000140
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:124:0 (clear_bss)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:124:0 (clear_bss)
 [0x0800013a] str      r2, [r0], #4
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:125:0 (clear_bss)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:125:0 (clear_bss)
 [0x0800013e] b        0x8000136
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:126:0 (clear_bss)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:126:0 (clear_bss)
 [0x08000136] cmp      r0, r1
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:123:0 (clear_bss)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:123:0 (clear_bss)
 [0x08000138] bge      0x8000140
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:124:0 (clear_bss)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:124:0 (clear_bss)
 [0x0800013a] str      r2, [r0], #4
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:125:0 (clear_bss)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:125:0 (clear_bss)
 [0x0800013e] b        0x8000136
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:126:0 (clear_bss)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:126:0 (clear_bss)
 [0x08000136] cmp      r0, r1
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:123:0 (clear_bss)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:123:0 (clear_bss)
 [0x08000138] bge      0x8000140
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:124:0 (clear_bss)
-[0x08000140] bl       0x80001e6
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:130:0 (clear_done)
-[0x080001e6] push     {r4, r6, r7, lr}
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:14:0 (main)
-[0x080001e8] add      r7, sp, #8
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:14:0 (main)
-[0x080001ea] sub      sp, #0x38
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:14:0 (main)
-[0x080001ec] movs     r1, #0
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:14:0 (main)
-[0x080001ee] str      r1, [sp, #0xc]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:14:0 (main)
-[0x080001f0] str      r1, [sp, #0x34]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:14:0 (main)
-[0x080001f2] movs     r0, #1
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:14:0 (main)
-[0x080001f4] str      r0, [sp, #0x30]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:21:5 (main)
-[0x080001f6] movs     r2, #2
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:21:5 (main)
-[0x080001f8] str      r2, [sp, #8]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:24:5 (main)
-[0x080001fa] str      r2, [sp, #0x2c]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:24:5 (main)
-[0x080001fc] movw     r3, #0
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:26:7 (main)
-[0x08000200] movt     r3, #0x2000
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:26:7 (main)
-[0x08000204] str      r3, [sp, #0x28]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:26:7 (main)
-[0x08000206] movw     r3, #4
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:31:11 (main)
-[0x0800020a] movt     r3, #0x2000
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:31:11 (main)
-[0x0800020e] str      r3, [sp, #0x24]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:31:11 (main)
-[0x08000210] movw     r3, #0x10
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:34:6 (main)
-[0x08000214] movt     r3, #0x2000
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:34:6 (main)
-[0x08000218] str      r3, [sp, #0x20]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:34:6 (main)
-[0x0800021a] str      r2, [sp, #0x1c]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:40:8 (main)
-[0x0800021c] str      r1, [sp, #0x18]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:43:5 (main)
-[0x0800021e] ldr      r3, [sp, #0x28]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:50:1 (main)
-[0x08000220] movs     r2, #0x61
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:50:1 (main)
-[0x08000222] strb     r2, [r3]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:50:7 (main)
-[0x08000224] ldr      r2, [sp, #0x28]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:52:1 (main)
-[0x08000226] strb     r1, [r2, #1]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:52:7 (main)
-[0x08000228] ldr      r1, [sp, #0x24]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:55:1 (main)
-[0x0800022a] str      r0, [r1]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:55:10 (main)
-[0x0800022c] ldr      r1, [sp, #0x24]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:57:1 (main)
-[0x0800022e] strb     r0, [r1, #8]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:57:10 (main)
-[0x08000230] ldr      r1, [sp, #0x20]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:60:1 (main)
-[0x08000232] str      r0, [r1]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:60:7 (main)
-[0x08000234] ldr      r0, [sp, #0x30]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:66:30 (main)
-[0x08000236] ldr      r1, [sp, #0x2c]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:66:32 (main)
-[0x08000238] ldr      r2, [sp, #0x28]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:66:34 (main)
-[0x0800023a] ldr      r3, [sp, #0x24]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:66:38 (main)
-[0x0800023c] ldr.w    r12, [sp, #0x20]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:66:43 (main)
-[0x08000240] ldr      r4, [sp, #0x1c]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:66:47 (main)
-[0x08000242] mov      lr, sp
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:66:26 (main)
-[0x08000244] str.w    r4, [lr, #4]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:66:26 (main)
-[0x08000248] str.w    r12, [lr]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:66:26 (main)
-[0x0800024c] bl       0x8000164
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:66:26 (main)
-[0x08000164] sub      sp, #0x18
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:15:0 (uut)
-[0x08000166] ldr.w    r12, [sp, #0x1c]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:15:0 (uut)
-[0x0800016a] ldr.w    r12, [sp, #0x18]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:15:0 (uut)
-[0x0800016e] str      r0, [sp, #0x14]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:15:0 (uut)
-[0x08000170] str      r1, [sp, #0x10]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:15:0 (uut)
-[0x08000172] str      r2, [sp, #0xc]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:15:0 (uut)
-[0x08000174] str      r3, [sp, #8]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:15:0 (uut)
-[0x08000176] ldr      r0, [sp, #0x14]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:16:15 (uut)
-[0x08000178] ldr      r1, [sp, #0x10]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:16:24 (uut)
-[0x0800017a] add      r0, r1
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:16:17 (uut)
-[0x0800017c] ldr      r1, [sp, #8]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:16:28 (uut)
-[0x0800017e] ldr      r1, [r1]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:16:34 (uut)
-[0x08000180] add      r0, r1
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:16:26 (uut)
-[0x08000182] str      r0, [sp, #4]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:16:9 (uut)
-[0x08000184] movs     r0, #0
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:16:9 (uut)
-[0x08000186] str      r0, [sp]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:17:17 (uut)
-[0x08000188] b        0x800018a
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:17:10 (uut)
-[0x0800018a] ldr      r0, [sp]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:17:24 (uut)
-[0x0800018c] ldr      r1, [sp, #0x1c]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:17:28 (uut)
-[0x0800018e] cmp      r0, r1
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:17:5 (uut)
-[0x08000190] bhs      0x80001ac
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:17:5 (uut)
-[0x08000192] b        0x8000194
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:17:5 (uut)
-[0x08000194] ldr      r0, [sp, #0x18]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:19:16 (uut)
-[0x08000196] ldr      r1, [sp]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:19:20 (uut)
-[0x08000198] ldr.w    r1, [r0, r1, lsl #2]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:19:16 (uut)
-[0x0800019c] ldr      r0, [sp, #4]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:19:13 (uut)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:124:0 (clear_bss)
+[0x08000140] bl       0x8000288
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/startup.s:130:0 (clear_done)
+[0x08000288] push     {r4, r6, r7, lr}
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:16:0 (main)
+[0x0800028a] add      r7, sp, #8
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:16:0 (main)
+[0x0800028c] sub      sp, #0x50
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:16:0 (main)
+[0x0800028e] movs     r1, #0
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:16:0 (main)
+[0x08000290] str      r1, [sp, #0x10]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:16:0 (main)
+[0x08000292] str      r1, [sp, #0x4c]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:16:0 (main)
+[0x08000294] movs     r0, #1
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:16:0 (main)
+[0x08000296] str      r0, [sp, #0x48]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:23:5 (main)
+[0x08000298] str      r0, [sp, #0x44]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:26:5 (main)
+[0x0800029a] movw     r2, #4
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:28:7 (main)
+[0x0800029e] movt     r2, #0x2000
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:28:7 (main)
+[0x080002a2] str      r2, [sp, #0x40]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:28:7 (main)
+[0x080002a4] str      r1, [sp, #0x3c]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:32:11 (main)
+[0x080002a6] movw     r2, #8
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:34:6 (main)
+[0x080002aa] movt     r2, #0x2000
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:34:6 (main)
+[0x080002ae] str      r2, [sp, #0x38]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:34:6 (main)
+[0x080002b0] str      r0, [sp, #0x34]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:40:8 (main)
+[0x080002b2] str      r1, [sp, #0x30]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:43:5 (main)
+[0x080002b4] ldr      r3, [sp, #0x40]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:50:1 (main)
+[0x080002b6] movs     r2, #0x61
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:50:1 (main)
+[0x080002b8] strb     r2, [r3]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:50:7 (main)
+[0x080002ba] ldr      r2, [sp, #0x40]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:52:1 (main)
+[0x080002bc] strb     r1, [r2, #1]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:52:7 (main)
+[0x080002be] ldr      r1, [sp, #0x38]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:57:1 (main)
+[0x080002c0] str      r0, [r1]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:57:7 (main)
+[0x080002c2] ldr      r0, [sp, #0x48]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:63:30 (main)
+[0x080002c4] ldr      r1, [sp, #0x44]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:63:32 (main)
+[0x080002c6] ldr      r2, [sp, #0x40]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:63:34 (main)
+[0x080002c8] ldr      r3, [sp, #0x3c]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:63:38 (main)
+[0x080002ca] ldr.w    r12, [sp, #0x38]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:63:43 (main)
+[0x080002ce] ldr      r4, [sp, #0x34]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:63:47 (main)
+[0x080002d0] mov      lr, sp
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:63:26 (main)
+[0x080002d2] str.w    r4, [lr, #4]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:63:26 (main)
+[0x080002d6] str.w    r12, [lr]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:63:26 (main)
+[0x080002da] bl       0x8000164
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:63:26 (main)
+[0x08000164] push     {r7, lr}
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:23:0 (uut)
+[0x08000166] mov      r7, sp
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:23:0 (uut)
+[0x08000168] sub      sp, #0x30
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:23:0 (uut)
+[0x0800016a] ldr.w    r12, [r7, #0xc]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:23:0 (uut)
+[0x0800016e] ldr.w    r12, [r7, #8]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:23:0 (uut)
+[0x08000172] str      r0, [sp, #0x2c]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:23:0 (uut)
+[0x08000174] str      r1, [sp, #0x28]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:23:0 (uut)
+[0x08000176] str      r2, [sp, #0x24]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:23:0 (uut)
+[0x08000178] str      r3, [sp, #0x20]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:23:0 (uut)
+[0x0800017a] bl       0x800026c
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:24:5 (uut)
+[0x0800026c] movs     r0, #1
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:0 (AKA_mark)
+[0x0800026e] bx       lr
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:17 (AKA_mark)
+[0x0800017e] movw     r1, #0
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:25:14 (uut)
+[0x08000182] movt     r1, #0x2000
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:25:14 (uut)
+[0x08000186] ldr      r0, [r1]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:25:14 (uut)
+[0x08000188] adds     r0, #1
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:25:14 (uut)
+[0x0800018a] str      r0, [r1]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:25:14 (uut)
+[0x0800018c] bl       0x800026c
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:26:5 (uut)
+[0x0800026c] movs     r0, #1
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:0 (AKA_mark)
+[0x0800026e] bx       lr
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:17 (AKA_mark)
+[0x08000190] bl       0x800026c
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:27:5 (uut)
+[0x0800026c] movs     r0, #1
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:0 (AKA_mark)
+[0x0800026e] bx       lr
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:17 (AKA_mark)
+[0x08000194] ldr      r0, [sp, #0x2c]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:28:15 (uut)
+[0x08000196] ldr      r1, [sp, #0x28]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:28:24 (uut)
+[0x08000198] add      r0, r1
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:28:17 (uut)
+[0x0800019a] ldr      r1, [sp, #0x20]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:28:28 (uut)
+[0x0800019c] ldr      r1, [r1]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:28:34 (uut)
 [0x0800019e] add      r0, r1
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:19:13 (uut)
-[0x080001a0] str      r0, [sp, #4]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:19:13 (uut)
-[0x080001a2] b        0x80001a4
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:20:5 (uut)
-[0x080001a4] ldr      r0, [sp]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:17:38 (uut)
-[0x080001a6] adds     r0, #1
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:17:38 (uut)
-[0x080001a8] str      r0, [sp]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:17:38 (uut)
-[0x080001aa] b        0x800018a
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:17:5 (uut)
-[0x0800018a] ldr      r0, [sp]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:17:24 (uut)
-[0x0800018c] ldr      r1, [sp, #0x1c]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:17:28 (uut)
-[0x0800018e] cmp      r0, r1
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:17:5 (uut)
-[0x08000190] bhs      0x80001ac
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:17:5 (uut)
-[0x08000192] b        0x8000194
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:17:5 (uut)
-[0x08000194] ldr      r0, [sp, #0x18]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:19:16 (uut)
-[0x08000196] ldr      r1, [sp]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:19:20 (uut)
-[0x08000198] ldr.w    r1, [r0, r1, lsl #2]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:19:16 (uut)
-[0x0800019c] ldr      r0, [sp, #4]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:19:13 (uut)
-[0x0800019e] add      r0, r1
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:19:13 (uut)
-[0x080001a0] str      r0, [sp, #4]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:19:13 (uut)
-[0x080001a2] b        0x80001a4
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:20:5 (uut)
-[0x080001a4] ldr      r0, [sp]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:17:38 (uut)
-[0x080001a6] adds     r0, #1
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:17:38 (uut)
-[0x080001a8] str      r0, [sp]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:17:38 (uut)
-[0x080001aa] b        0x800018a
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:17:5 (uut)
-[0x0800018a] ldr      r0, [sp]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:17:24 (uut)
-[0x0800018c] ldr      r1, [sp, #0x1c]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:17:28 (uut)
-[0x0800018e] cmp      r0, r1
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:17:5 (uut)
-[0x08000190] bhs      0x80001ac
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:17:5 (uut)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:28:26 (uut)
+[0x080001a0] str      r0, [sp, #0x1c]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:28:9 (uut)
+[0x080001a2] movs     r0, #0
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:28:9 (uut)
+[0x080001a4] str      r0, [sp, #0xc]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:29:9 (uut)
+[0x080001a6] str      r0, [sp, #0x18]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:29:9 (uut)
+[0x080001a8] bl       0x800026c
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:30:5 (uut)
+[0x0800026c] movs     r0, #1
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:0 (AKA_mark)
+[0x0800026e] bx       lr
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:17 (AKA_mark)
 [0x080001ac] ldr      r0, [sp, #0xc]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:21:9 (uut)
-[0x080001ae] cbz      r0, 0x80001be
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:21:9 (uut)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:17 (uut)
+[0x080001ae] str      r0, [sp, #0x14]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:17 (uut)
 [0x080001b0] b        0x80001b2
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:21:9 (uut)
-[0x080001b2] ldr      r0, [sp, #0xc]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:24:21 (uut)
-[0x080001b4] ldrb     r1, [r0]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:24:21 (uut)
-[0x080001b6] ldr      r0, [sp, #4]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:24:13 (uut)
-[0x080001b8] add      r0, r1
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:24:13 (uut)
-[0x080001ba] str      r0, [sp, #4]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:24:13 (uut)
-[0x080001bc] b        0x80001be
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:25:5 (uut)
-[0x080001be] ldr      r0, [sp, #8]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:26:17 (uut)
-[0x080001c0] ldrb     r1, [r0, #8]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:26:23 (uut)
-[0x080001c2] ldr      r0, [sp, #4]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:26:9 (uut)
-[0x080001c4] add      r0, r1
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:26:9 (uut)
-[0x080001c6] str      r0, [sp, #4]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:26:9 (uut)
-[0x080001c8] ldr      r0, [sp, #4]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:27:12 (uut)
-[0x080001ca] add      sp, #0x18
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:27:5 (uut)
-[0x080001cc] bx       lr
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:27:5 (uut)
-[0x08000250] str      r0, [sp, #0x14]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:66:6 (main)
-[0x08000252] ldr      r0, [sp, #0x14]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:67:21 (main)
-[0x08000254] ldr      r1, [sp, #0x18]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:67:40 (main)
-[0x08000256] bl       0x80001ce
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:67:2 (main)
-[0x080001ce] sub      sp, #8
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:0 (aka_sim_writer_u32)
-[0x080001d0] str      r0, [sp, #4]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:0 (aka_sim_writer_u32)
-[0x080001d2] str      r1, [sp]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:0 (aka_sim_writer_u32)
-[0x080001d4] add      sp, #8
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:62 (aka_sim_writer_u32)
-[0x080001d6] bx       lr
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:62 (aka_sim_writer_u32)
-[0x0800025a] ldr      r0, [sp, #8]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:67:2 (main)
-[0x0800025c] str      r0, [sp, #0x10]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:70:8 (main)
-[0x0800025e] ldr      r0, [sp, #0x1c]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:72:20 (main)
-[0x08000260] ldr      r1, [sp, #0x10]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:72:29 (main)
-[0x08000262] bl       0x80001ce
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:72:1 (main)
-[0x080001ce] sub      sp, #8
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:0 (aka_sim_writer_u32)
-[0x080001d0] str      r0, [sp, #4]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:0 (aka_sim_writer_u32)
-[0x080001d2] str      r1, [sp]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:0 (aka_sim_writer_u32)
-[0x080001d4] add      sp, #8
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:62 (aka_sim_writer_u32)
-[0x080001d6] bx       lr
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:62 (aka_sim_writer_u32)
-[0x08000266] ldr      r0, [sp, #0xc]
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:72:1 (main)
-[0x08000268] add      sp, #0x38
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:78:5 (main)
-[0x0800026a] pop      {r4, r6, r7, pc}
-	|-> Code: /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:78:5 (main)
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:10 (uut)
+[0x080001b2] bl       0x800026c
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:24 (uut)
+[0x0800026c] movs     r0, #1
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:0 (AKA_mark)
+[0x0800026e] bx       lr
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:17 (AKA_mark)
+[0x080001b6] mov      r1, r0
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:24 (uut)
+[0x080001b8] movs     r0, #0
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:24 (uut)
+[0x080001ba] str      r0, [sp, #8]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:198 (uut)
+[0x080001bc] cbz      r1, 0x80001e4
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:198 (uut)
+[0x080001be] b        0x80001c0
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:198 (uut)
+[0x080001c0] bl       0x800026c
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:202 (uut)
+[0x0800026c] movs     r0, #1
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:0 (AKA_mark)
+[0x0800026e] bx       lr
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:17 (AKA_mark)
+[0x080001c4] mov      r1, r0
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:202 (uut)
+[0x080001c6] movs     r0, #0
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:202 (uut)
+[0x080001c8] str      r0, [sp, #4]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:376 (uut)
+[0x080001ca] cbz      r1, 0x80001de
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:376 (uut)
+[0x080001cc] b        0x80001ce
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:376 (uut)
+[0x080001ce] ldr      r1, [sp, #0x14]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:380 (uut)
+[0x080001d0] ldr      r2, [r7, #0xc]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:384 (uut)
+[0x080001d2] movs     r0, #0
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:384 (uut)
+[0x080001d4] cmp      r1, r2
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:382 (uut)
+[0x080001d6] it       lo
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:382 (uut)
+[0x080001d8] movlo    r0, #1
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:382 (uut)
+[0x080001da] str      r0, [sp, #4]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:382 (uut)
+[0x080001dc] b        0x80001de
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:382 (uut)
+[0x080001de] ldr      r0, [sp, #4]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:0:0 (uut)
+[0x080001e0] str      r0, [sp, #8]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:0:0 (uut)
+[0x080001e2] b        0x80001e4
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:0:0 (uut)
+[0x080001e4] ldr      r0, [sp, #8]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:0:0 (uut)
+[0x080001e6] lsls     r0, r0, #0x1f
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:5 (uut)
+[0x080001e8] cbz      r0, 0x8000224
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:5 (uut)
+[0x080001ea] b        0x80001ec
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:5 (uut)
+[0x080001ec] ldr      r0, [sp, #0x18]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:33:27 (uut)
+[0x080001ee] adds     r0, #1
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:33:27 (uut)
+[0x080001f0] str      r0, [sp, #0x18]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:33:27 (uut)
+[0x080001f2] ldr      r0, [sp, #0x18]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:34:13 (uut)
+[0x080001f4] cmp.w    r0, #0x3e8
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:34:13 (uut)
+[0x080001f8] ble      0x80001fe
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:34:13 (uut)
+[0x080001fe] bl       0x800026c
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:38:9 (uut)
+[0x0800026c] movs     r0, #1
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:0 (AKA_mark)
+[0x0800026e] bx       lr
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:17 (AKA_mark)
+[0x08000202] bl       0x800026c
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:39:9 (uut)
+[0x0800026c] movs     r0, #1
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:0 (AKA_mark)
+[0x0800026e] bx       lr
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:17 (AKA_mark)
+[0x08000206] ldr      r0, [r7, #8]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:40:16 (uut)
+[0x08000208] ldr      r1, [sp, #0x14]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:40:20 (uut)
+[0x0800020a] ldr.w    r1, [r0, r1, lsl #2]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:40:16 (uut)
+[0x0800020e] ldr      r0, [sp, #0x1c]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:40:13 (uut)
+[0x08000210] add      r0, r1
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:40:13 (uut)
+[0x08000212] str      r0, [sp, #0x1c]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:40:13 (uut)
+[0x08000214] b        0x8000216
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:41:5 (uut)
+[0x08000216] bl       0x800026c
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:397 (uut)
+[0x0800026c] movs     r0, #1
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:0 (AKA_mark)
+[0x0800026e] bx       lr
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:17 (AKA_mark)
+[0x0800021a] ldr      r0, [sp, #0x14]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:571 (uut)
+[0x0800021c] adds     r1, r0, #1
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:571 (uut)
+[0x0800021e] str      r1, [sp, #0x14]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:571 (uut)
+[0x08000220] str      r0, [sp, #0x10]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:397 (uut)
+[0x08000222] b        0x80001b2
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:5 (uut)
+[0x080001b2] bl       0x800026c
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:24 (uut)
+[0x0800026c] movs     r0, #1
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:0 (AKA_mark)
+[0x0800026e] bx       lr
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:17 (AKA_mark)
+[0x080001b6] mov      r1, r0
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:24 (uut)
+[0x080001b8] movs     r0, #0
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:24 (uut)
+[0x080001ba] str      r0, [sp, #8]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:198 (uut)
+[0x080001bc] cbz      r1, 0x80001e4
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:198 (uut)
+[0x080001be] b        0x80001c0
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:198 (uut)
+[0x080001c0] bl       0x800026c
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:202 (uut)
+[0x0800026c] movs     r0, #1
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:0 (AKA_mark)
+[0x0800026e] bx       lr
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:17 (AKA_mark)
+[0x080001c4] mov      r1, r0
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:202 (uut)
+[0x080001c6] movs     r0, #0
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:202 (uut)
+[0x080001c8] str      r0, [sp, #4]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:376 (uut)
+[0x080001ca] cbz      r1, 0x80001de
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:376 (uut)
+[0x080001cc] b        0x80001ce
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:376 (uut)
+[0x080001ce] ldr      r1, [sp, #0x14]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:380 (uut)
+[0x080001d0] ldr      r2, [r7, #0xc]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:384 (uut)
+[0x080001d2] movs     r0, #0
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:384 (uut)
+[0x080001d4] cmp      r1, r2
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:382 (uut)
+[0x080001d6] it       lo
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:382 (uut)
+[0x080001da] strlo    r0, [sp, #4]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:382 (uut)
+[0x080001dc] b        0x80001de
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:382 (uut)
+[0x080001de] ldr      r0, [sp, #4]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:0:0 (uut)
+[0x080001e0] str      r0, [sp, #8]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:0:0 (uut)
+[0x080001e2] b        0x80001e4
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:0:0 (uut)
+[0x080001e4] ldr      r0, [sp, #8]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:0:0 (uut)
+[0x080001e6] lsls     r0, r0, #0x1f
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:5 (uut)
+[0x080001e8] cbz      r0, 0x8000224
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:31:5 (uut)
+[0x08000224] bl       0x800026c
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:42:9 (uut)
+[0x0800026c] movs     r0, #1
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:0 (AKA_mark)
+[0x0800026e] bx       lr
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:17 (AKA_mark)
+[0x08000228] cbz      r0, 0x800024e
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:42:183 (uut)
+[0x0800022a] b        0x800022c
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:42:183 (uut)
+[0x0800022c] bl       0x800026c
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:42:187 (uut)
+[0x0800026c] movs     r0, #1
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:0 (AKA_mark)
+[0x0800026e] bx       lr
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:17 (AKA_mark)
+[0x08000230] cbz      r0, 0x800024e
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:42:361 (uut)
+[0x08000232] b        0x8000234
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:42:361 (uut)
+[0x08000234] ldr      r0, [sp, #0x24]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:42:365 (uut)
+[0x08000236] cbz      r0, 0x800024e
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:42:9 (uut)
+[0x08000238] b        0x800023a
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:42:9 (uut)
+[0x0800023a] bl       0x800026c
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:44:9 (uut)
+[0x0800026c] movs     r0, #1
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:0 (AKA_mark)
+[0x0800026e] bx       lr
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:17 (AKA_mark)
+[0x0800023e] bl       0x800026c
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:46:9 (uut)
+[0x0800026c] movs     r0, #1
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:0 (AKA_mark)
+[0x0800026e] bx       lr
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:17 (AKA_mark)
+[0x08000242] ldr      r0, [sp, #0x24]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:47:21 (uut)
+[0x08000244] ldrb     r1, [r0]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:47:21 (uut)
+[0x08000246] ldr      r0, [sp, #0x1c]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:47:13 (uut)
+[0x08000248] add      r0, r1
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:47:13 (uut)
+[0x0800024a] str      r0, [sp, #0x1c]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:47:13 (uut)
+[0x0800024c] b        0x8000254
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:48:5 (uut)
+[0x08000254] bl       0x800026c
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:53:5 (uut)
+[0x0800026c] movs     r0, #1
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:0 (AKA_mark)
+[0x0800026e] bx       lr
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:17 (AKA_mark)
+[0x08000258] ldr      r0, [sp, #0x20]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:54:17 (uut)
+[0x0800025a] ldrb     r1, [r0, #8]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:54:23 (uut)
+[0x0800025c] ldr      r0, [sp, #0x1c]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:54:9 (uut)
+[0x0800025e] add      r0, r1
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:54:9 (uut)
+[0x08000260] str      r0, [sp, #0x1c]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:54:9 (uut)
+[0x08000262] bl       0x800026c
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:55:5 (uut)
+[0x0800026c] movs     r0, #1
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:0 (AKA_mark)
+[0x0800026e] bx       lr
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:7:17 (AKA_mark)
+[0x08000266] ldr      r0, [sp, #0x1c]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:56:12 (uut)
+[0x08000268] add      sp, #0x30
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:56:5 (uut)
+[0x0800026a] pop      {r7, pc}
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c:56:5 (uut)
+[0x080002de] str      r0, [sp, #0x2c]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:63:6 (main)
+[0x080002e0] ldr      r0, [sp, #0x2c]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:64:18 (main)
+[0x080002e2] ldr      r1, [sp, #0x30]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:64:37 (main)
+[0x080002e4] bl       0x8000270
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:64:2 (main)
+[0x08000270] sub      sp, #8
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:9:0 (AKAS_assert_u32)
+[0x08000272] str      r0, [sp, #4]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:9:0 (AKAS_assert_u32)
+[0x08000274] str      r1, [sp]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:9:0 (AKAS_assert_u32)
+[0x08000276] add      sp, #8
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:9:59 (AKAS_assert_u32)
+[0x08000278] bx       lr
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:9:59 (AKAS_assert_u32)
+[0x080002e8] movs     r0, #2
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:64:2 (main)
+[0x080002ea] str      r0, [sp, #0xc]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:67:5 (main)
+[0x080002ec] str      r0, [sp, #0x28]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:67:5 (main)
+[0x080002ee] ldr      r0, [sp, #0x48]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:69:17 (main)
+[0x080002f0] ldr      r1, [sp, #0x28]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:69:20 (main)
+[0x080002f2] bl       0x8000270
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:69:1 (main)
+[0x08000270] sub      sp, #8
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:9:0 (AKAS_assert_u32)
+[0x08000272] str      r0, [sp, #4]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:9:0 (AKAS_assert_u32)
+[0x08000274] str      r1, [sp]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:9:0 (AKAS_assert_u32)
+[0x08000276] add      sp, #8
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:9:59 (AKAS_assert_u32)
+[0x08000278] bx       lr
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:9:59 (AKAS_assert_u32)
+[0x080002f6] ldr      r0, [sp, #0xc]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:69:1 (main)
+[0x080002f8] str      r0, [sp, #0x24]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:71:5 (main)
+[0x080002fa] ldr      r0, [sp, #0x44]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:73:17 (main)
+[0x080002fc] ldr      r1, [sp, #0x24]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:73:20 (main)
+[0x080002fe] bl       0x8000270
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:73:1 (main)
+[0x08000270] sub      sp, #8
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:9:0 (AKAS_assert_u32)
+[0x08000272] str      r0, [sp, #4]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:9:0 (AKAS_assert_u32)
+[0x08000274] str      r1, [sp]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:9:0 (AKAS_assert_u32)
+[0x08000276] add      sp, #8
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:9:59 (AKAS_assert_u32)
+[0x08000278] bx       lr
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:9:59 (AKAS_assert_u32)
+[0x08000302] ldr      r0, [sp, #0xc]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:73:1 (main)
+[0x08000304] ldr      r1, [sp, #0x10]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:73:1 (main)
+[0x08000306] movw     r2, #0xc
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:74:7 (main)
+[0x0800030a] movt     r2, #0x2000
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:74:7 (main)
+[0x0800030e] str      r2, [sp, #0x20]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:74:7 (main)
+[0x08000310] ldr      r3, [sp, #0x20]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:78:1 (main)
+[0x08000312] movs     r2, #0x32
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:78:1 (main)
+[0x08000314] strb     r2, [r3]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:78:16 (main)
+[0x08000316] ldr      r2, [sp, #0x20]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:80:1 (main)
+[0x08000318] strb     r1, [r2, #1]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:80:16 (main)
+[0x0800031a] str      r1, [sp, #0x1c]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:84:11 (main)
+[0x0800031c] movw     r1, #0x10
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:87:6 (main)
+[0x08000320] movt     r1, #0x2000
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:87:6 (main)
+[0x08000324] str      r1, [sp, #0x18]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:87:6 (main)
+[0x08000326] ldr      r1, [sp, #0x18]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:91:1 (main)
+[0x08000328] str      r0, [r1]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:91:16 (main)
+[0x0800032a] ldr      r0, [sp, #0x38]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:95:17 (main)
+[0x0800032c] ldr      r0, [r0]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:95:17 (main)
+[0x0800032e] ldr      r1, [sp, #0x18]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:95:25 (main)
+[0x08000330] ldr      r1, [r1]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:95:25 (main)
+[0x08000332] bl       0x8000270
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:95:1 (main)
+[0x08000270] sub      sp, #8
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:9:0 (AKAS_assert_u32)
+[0x08000272] str      r0, [sp, #4]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:9:0 (AKAS_assert_u32)
+[0x08000274] str      r1, [sp]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:9:0 (AKAS_assert_u32)
+[0x08000276] add      sp, #8
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:9:59 (AKAS_assert_u32)
+[0x08000278] bx       lr
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:9:59 (AKAS_assert_u32)
+[0x08000336] ldr      r0, [sp, #0xc]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:95:1 (main)
+[0x08000338] str      r0, [sp, #0x14]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:97:8 (main)
+[0x0800033a] ldr      r0, [sp, #0x34]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:99:17 (main)
+[0x0800033c] ldr      r1, [sp, #0x14]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:99:26 (main)
+[0x0800033e] bl       0x8000270
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:99:1 (main)
+[0x08000270] sub      sp, #8
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:9:0 (AKAS_assert_u32)
+[0x08000272] str      r0, [sp, #4]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:9:0 (AKAS_assert_u32)
+[0x08000274] str      r1, [sp]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:9:0 (AKAS_assert_u32)
+[0x08000276] add      sp, #8
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:9:59 (AKAS_assert_u32)
+[0x08000278] bx       lr
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:9:59 (AKAS_assert_u32)
+[0x08000342] ldr      r0, [sp, #0x10]
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:99:1 (main)
+[0x08000344] add      sp, #0x50
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:105:5 (main)
+[0x08000346] pop      {r4, r6, r7, pc}
+	# CodePos:/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c:105:5 (main)
 # SUCCESS: Main function returned  at 0x8000144

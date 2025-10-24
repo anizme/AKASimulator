@@ -12,6 +12,7 @@
 #include <string>
 #include <cstring>
 #include <filesystem>
+#include <regex>
 
 namespace STM32F103C8T6
 {
@@ -35,19 +36,19 @@ namespace STM32F103C8T6
             return false;
         }
 
-        std::string executed_code_log_file_path = generateExecutedCodePath(log_file_path);
-        executed_code_log_file_.open(executed_code_log_file_path);
-        if (!executed_code_log_file_.is_open())
+        std::string trace_file_path = generateTraceFilePath(log_file_path);
+        trace_file_.open(trace_file_path);
+        if (!trace_file_.is_open())
         {
-            std::cerr << "Failed to open log file: " << executed_code_log_file_path << std::endl;
+            std::cerr << "Failed to open log file: " << trace_file_path << std::endl;
             return false;
         }
 
-        std::string actuals_log_file_path = generateActualsPath(log_file_path);
-        actuals_log_file_.open(actuals_log_file_path);
-        if (!actuals_log_file_.is_open())
+        std::string testPath_file_path = generateTestPathFilePath(log_file_path);
+        test_path_file_.open(testPath_file_path);
+        if (!test_path_file_.is_open())
         {
-            std::cerr << "Failed to open log file: " << actuals_log_file_path << std::endl;
+            std::cerr << "Failed to open log file: " << testPath_file_path << std::endl;
             return false;
         }
 
@@ -56,7 +57,7 @@ namespace STM32F103C8T6
         return true;
     }
 
-    std::string ExecutionLogger::generateExecutedCodePath(const std::string &filePath)
+    std::string ExecutionLogger::generateTraceFilePath(const std::string &filePath)
     {
         std::filesystem::path path(filePath);
 
@@ -65,14 +66,14 @@ namespace STM32F103C8T6
 
         std::filesystem::path parentPath = path.parent_path();
 
-        std::string newFileName = "code_line_" + fileName + ".log";
+        std::string newFileName = fileName + ".trc";
 
         std::filesystem::path outputPath = parentPath / newFileName;
 
         return outputPath.string();
     }
 
-    std::string ExecutionLogger::generateActualsPath(const std::string &filePath)
+    std::string ExecutionLogger::generateTestPathFilePath(const std::string &filePath)
     {
         std::filesystem::path path(filePath);
 
@@ -81,22 +82,11 @@ namespace STM32F103C8T6
 
         std::filesystem::path parentPath = path.parent_path();
 
-        std::string newFileName = "actuals_" + fileName + ".log";
+        std::string newFileName = fileName + ".tp";
 
         std::filesystem::path outputPath = parentPath / newFileName;
 
         return outputPath.string();
-    }
-
-    void ExecutionLogger::logExecutedCode(const std::string &message)
-    {
-        if (!executed_code_log_file_.is_open())
-        {
-            return;
-        }
-        std::ostringstream oss;
-        oss << message << std::endl;
-        executed_code_log_file_ << oss.str();
     }
 
     void ExecutionLogger::logInstructionRaw(uint64_t address, const uint8_t *instruction_bytes, uint32_t size)
@@ -113,6 +103,23 @@ namespace STM32F103C8T6
 
         appendSourceInfo(oss, address);
         writeLogLine(oss.str());
+    }
+
+    void ExecutionLogger::logAkaMark(uint64_t address) {
+        if (!test_path_file_.is_open())
+        {
+            return;
+        }
+
+        std::string line = readSourceLineAt(previousSourceInfo_);
+
+        // Tìm vị trí của /*...*/
+        std::smatch match;
+        if (std::regex_search(line, match, std::regex(R"(/\*(.*?)\*/)")))
+        {
+            test_path_file_ << match[1].str() << "\n";
+            test_path_file_.flush();
+        }
     }
 
     void ExecutionLogger::logInstructionAsm(uint64_t address, const char *mnemonic, const char *op_str)
@@ -138,22 +145,21 @@ namespace STM32F103C8T6
 
     void ExecutionLogger::appendSourceInfo(std::ostringstream &oss, uint64_t address)
     {
-        oss << "\n\t|-> Code: ";
+        oss << "\n\t# CodePos:";
         if (!trace_code_command_.empty())
         {
-            SourceInfo info = getSourceInfo(address);
-            oss << dumpSourceInfo(info);
-            logExecutedCode(dumpSourceInfo(info));
+            previousSourceInfo_ = getSourceInfo(address);
+            oss << dumpSourceInfo(previousSourceInfo_);
         }
         else
         {
-            oss << "unknown (addr2line not available)";
+            oss << "unknown (llvm-symbolier not available)";
         }
     }
 
     void ExecutionLogger::writeLogLine(const std::string &line)
     {
-        log_file_ << line << std::endl;
+        log_file_ << line << "\n";
 
         if (++instruction_count_ % 100 == 0)
         {
@@ -168,11 +174,6 @@ namespace STM32F103C8T6
             log_file_ << "# ERROR: " << message << std::endl;
             log_file_.flush();
         }
-        if (executed_code_log_file_.is_open())
-        {
-            executed_code_log_file_ << "# ERROR: " << message << std::endl;
-            executed_code_log_file_.flush();
-        }
         std::cerr << "[LOG] " + message << std::endl;
     }
 
@@ -182,11 +183,6 @@ namespace STM32F103C8T6
         {
             log_file_ << message << " at 0x" << std::hex << address << std::dec << std::endl;
             log_file_.flush();
-        }
-        if (executed_code_log_file_.is_open())
-        {
-            executed_code_log_file_ << message << std::endl;
-            executed_code_log_file_.flush();
         }
     }
 
@@ -224,20 +220,64 @@ namespace STM32F103C8T6
 
     void ExecutionLogger::logAssert(const std::string &assertion, uint64_t address)
     {
-        if (!actuals_log_file_.is_open())
-        {
+        if (!trace_file_.is_open()) {
             return;
         }
 
-        std::ostringstream oss;
-        oss << assertion;
-        appendSourceInfo(oss, address);
+        std::string line = readSourceLineAt(previousSourceInfo_);
 
-        if (actuals_log_file_.is_open())
+        // Parse hàm assert: ví dụ akas_assert_u32(arr_len, EXPECTED_arr_len);
+        std::smatch match;
+        if (std::regex_search(line, match,
+            std::regex(R"(\((\s*\w+\s*),\s*(\w+)\s*\))")))
         {
-            actuals_log_file_ << oss.str() << std::endl;
-            actuals_log_file_.flush();
+            std::string actualName   = match[1];
+            std::string expectedName = match[2];
+
+            // Parse assertion string
+            std::smatch values;
+            std::regex_search(assertion, values,
+                std::regex(R"(# ACTUAL: (\d+), # EXPECTED: (\d+), # FCALL: (\d+))"));
+            
+            std::ostringstream oss;
+            oss << "{\n"
+                << "\"tag\": \"Aka function calls: " << values[3].str() << "\",\n"
+                << "\"actualName\": \"" << actualName << "\",\n"
+                << "\"actualVal\": \"" << values[1].str() << "\",\n"
+                << "\"expectedName\": \"" << expectedName << "\",\n"
+                << "\"expectedVal\": \"" << values[2].str() << "\"\n"
+                << "},";
+
+            trace_file_ << oss.str() << "\n";
+            trace_file_.flush();
         }
+    }
+
+    std::string ExecutionLogger::readSourceLineAt(const SourceInfo &info)
+    {
+        std::ifstream src(info.filename);
+        if (!src.is_open()) {
+            std::cerr << "[WARN] Cannot open source file: " << info.filename << std::endl;
+            return "";
+        }
+
+        std::string line = "";
+        for (int i = 1; i <= info.line_number && std::getline(src, line); ++i) {
+            // dừng tại dòng cần thiết
+        }
+
+        if (line.empty()) {
+            std::cerr << "[WARN] Empty or invalid line at "
+                    << info.filename << ":" << info.line_number << std::endl;
+            return "";
+        }
+
+        // Nếu col_number hợp lệ -> cắt phần sau đó
+        if (info.col_number > 0 && info.col_number < (int)line.size()) {
+            line = line.substr(info.col_number);
+        }
+
+        return line;
     }
 
     void ExecutionLogger::close()

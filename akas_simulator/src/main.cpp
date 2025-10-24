@@ -1,7 +1,6 @@
 // aka_simulator/src/main.cpp
 
 #include "Emulator.hpp"
-#include "SimulationLogRefactor.hpp"
 #include <iostream>
 #include <string>
 #include <filesystem>
@@ -67,37 +66,6 @@ int main(int argc, char *argv[])
     emulator.printRegisters();
     std::cout << std::endl;
     std::cout << "Emulation completed. Check log file: " << log_file << std::endl;
-
-    // ---------------------- Post-process log ----------------------
-    std::cout << std::endl;
-    std::cout << "=== Post-processing log file ===" << std::endl;
-
-    namespace fs = std::filesystem;
-
-    // Get base name and directory
-    fs::path logPath(log_file);
-    fs::path dir = logPath.parent_path();
-    std::string baseName = logPath.stem().string(); // "name" if file is ".../name.log"
-
-    // Input for refactor: code_line_name.log
-    std::string codeLineLog = (dir / ("code_line_" + baseName + ".log")).string();
-
-    // Output after refactor: simu_name.log
-    std::string refactoredBase = (dir / ("simu_" + baseName)).string();
-
-    SimulationLogRefactor refactor(codeLineLog);
-
-    if (refactor.process(refactoredBase))
-    {
-        std::cout << "Log refactoring completed successfully!" << std::endl;
-        std::cout << "Output: " << refactoredBase << "_simulation.log" << std::endl;
-    }
-    else
-    {
-        std::cerr << "Log refactoring failed!" << std::endl;
-        std::cerr << "Expected input: " << codeLineLog << std::endl;
-        return 1;
-    }
 
     return 0;
 }

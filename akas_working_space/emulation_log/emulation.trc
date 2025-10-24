@@ -1,0 +1,28 @@
+{
+"tag": "Aka function calls: 1",
+"actualName": "AKA_ACTUAL_OUTPUT",
+"actualVal": "536891588",
+"expectedName": "AKA_EXPECTED_OUTPUT",
+"expectedVal": "0"
+},
+{
+"tag": "Aka function calls: 1",
+"actualName": "x",
+"actualVal": "1",
+"expectedName": "EXPECTED_x",
+"expectedVal": "2"
+},
+{
+"tag": "Aka function calls: 1",
+"actualName": "y",
+"actualVal": "1",
+"expectedName": "EXPECTED_y",
+"expectedVal": "2"
+},
+{
+"tag": "Aka function calls: 1",
+"actualName": "arr_len",
+"actualVal": "1",
+"expectedName": "EXPECTED_arr_len",
+"expectedVal": "2"
+},

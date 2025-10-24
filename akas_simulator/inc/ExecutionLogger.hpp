@@ -30,17 +30,18 @@ namespace STM32F103C8T6
         void logInstructionAsm(uint64_t address, const char* mnemonic, const char* op_str);
         void logError(const std::string &message);
         void logInfo(const std::string &message, uint64_t address);
-        void logExecutedCode(const std::string &message);
         void logAssert(const std::string &assertion, uint64_t address);
+        void logAkaMark(uint64_t address);
         void close();
 
     private:
         std::ofstream log_file_;
-        std::ofstream executed_code_log_file_;
-        std::ofstream actuals_log_file_;;
+        std::ofstream trace_file_;
+        std::ofstream test_path_file_;
         std::string elf_path_;
         std::string trace_code_command_;
         int instruction_count_;
+        SourceInfo previousSourceInfo_;
 
         // Cache for address-to-source mapping to avoid repeated calls
         std::unordered_map<uint64_t, SourceInfo> address_cache_;
@@ -56,8 +57,10 @@ namespace STM32F103C8T6
         void appendSourceInfo(std::ostringstream &oss, uint64_t address);
         void writeLogLine(const std::string &line);
 
-        std::string generateExecutedCodePath(const std::string& filePath);
-        std::string generateActualsPath(const std::string &filePath);
+        std::string generateTraceFilePath(const std::string &filePath);
+        std::string generateTestPathFilePath(const std::string &filePath);
+
+        std::string readSourceLineAt(const SourceInfo &src);
     };
 
 } // namespace STM32F103C8T6

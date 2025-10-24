@@ -232,7 +232,7 @@ namespace STM32F103C8T6
     void EmulationCore::handleCodeExecution(uint64_t address, const uint8_t *instruction_bytes, uint32_t size)
     {
         // Assign LR to stop address when entering main
-        if (address == elf_info_.main_address)
+        if (address == elf_info_.main_addr)
         {
             uc_err err = uc_reg_read(uc_engine_, UC_ARM_REG_LR, &main_return_address_);
             main_return_address_ &= ~1U; // Clear Thumb bit
@@ -250,25 +250,39 @@ namespace STM32F103C8T6
             return;
         }
 
-        if (address == elf_info_.aka_sim_writer_u32_address) {
+        if (address == elf_info_.akas_assert_u32_addr) {
             uint32_t actual;
             uint32_t expected;
+            uint32_t aka_fcall_value;
             uc_err err = uc_reg_read(uc_engine_, UC_ARM_REG_R0, &actual);
             if (err != UC_ERR_OK) {
                 std::cerr << "[ERROR] Failed to read R0 register: " << uc_strerror(err) << std::endl;
                 return;
             }
-            std::cout << "[HOOK] aka_sim_writer_u32 called with actual value: " << std::dec << actual << std::endl;
+            std::cout << "[HOOK] akas_assert_u32 called with actual value: " << std::dec << actual << std::endl;
             
             err = uc_reg_read(uc_engine_, UC_ARM_REG_R1, &expected);
             if (err != UC_ERR_OK) {
                 std::cerr << "[ERROR] Failed to read R1 register: " << uc_strerror(err) << std::endl;
                 return;
             }
-            std::cout << "[HOOK] aka_sim_writer_u32 called with expected value: " << std::dec << expected << std::endl;
-            logger_->logAssert("actual: " + std::to_string(actual) + ", expected: " + std::to_string(expected), pre_address_);
-        } else if (address == elf_info_.aka_sim_writer_u64_address) {
+            std::cout << "[HOOK] akas_assert_u32 called with expected value: " << std::dec << expected << std::endl;
+
+            err = uc_mem_read(uc_engine_, elf_info_.aka_fCall_addr, &aka_fcall_value, sizeof(aka_fcall_value));
+            if (err != UC_ERR_OK) {
+                std::cerr << "[ERROR] Failed to read AKA_fCall at 0x" << std::hex << elf_info_.aka_fCall_addr
+                        << ": " << uc_strerror(err) << std::endl;
+            } else {
+                std::cout << "[HOOK] AKA_fCall value = " << std::dec << aka_fcall_value << std::endl;
+            }
+            logger_->logAssert("# ACTUAL: " + std::to_string(actual) + 
+                                ", # EXPECTED: " + std::to_string(expected) + 
+                                ", # FCALL: " + std::to_string(aka_fcall_value), 
+                                address);
+        } else if (address == elf_info_.akas_assert_u64_addr) {
             // TODO: support later
+        } else if (address == elf_info_.aka_mark_addr) {
+            logger_->logAkaMark(address);
         }
 
         // Log the instruction if logger is available

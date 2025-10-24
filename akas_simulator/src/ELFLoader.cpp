@@ -33,12 +33,14 @@ namespace STM32F103C8T6
         }
 
         // Find function symbol
-        if (!findMainSymbol(elf_path, elf_info.main_address))
+        if (!findMainSymbol(elf_path, elf_info.main_addr))
         {
             std::cerr << "Failed to find main symbol" << std::endl;
             return false;
         }
-        if (!findAkaWriterSymbol(elf_path, elf_info.aka_sim_writer_u32_address, elf_info.aka_sim_writer_u64_address))
+        if (!findAkaUTSymbol(elf_path, 
+                            elf_info.akas_assert_u32_addr, elf_info.akas_assert_u64_addr, 
+                            elf_info.aka_fCall_addr, elf_info.aka_mark_addr))
         {
             std::cerr << "Failed to find aka_sim_writer symbols" << std::endl;
             return false;
@@ -46,12 +48,12 @@ namespace STM32F103C8T6
 
         std::cout << "ELF loaded successfully" << std::endl;
         std::cout << "Entry point: 0x" << std::hex << elf_info.entry_point << std::endl;
-        std::cout << "Main address: 0x" << elf_info.main_address << std::dec << std::endl;
+        std::cout << "Main address: 0x" << elf_info.main_addr << std::dec << std::endl;
 
         return true;
     }
 
-    bool ELFLoader::loadSegments(const std::string &elf_path, uint32_t &entry_point, ELFInfo& elf_info)
+    bool ELFLoader::loadSegments(const std::string &elf_path, uint32_t &entry_point, ELFInfo &elf_info)
     {
         ELFIO::elfio reader;
         if (!reader.load(elf_path))
@@ -92,44 +94,58 @@ namespace STM32F103C8T6
         }
 
         // Vector table setup
-        for (const auto& sec : reader.sections)
+        for (const auto &sec : reader.sections)
         {
-            if (sec->get_name() == ".isr_vector") {
+            if (sec->get_name() == ".isr_vector")
+            {
                 elf_info.vector_table_addr_ = static_cast<uint32_t>(sec->get_address());
                 elf_info.vector_table_size_ = static_cast<uint32_t>(sec->get_size());
 
                 std::cout << "Vector table found at 0x" << std::hex << elf_info.vector_table_addr_
-                        << " size = 0x" << elf_info.vector_table_size_ << std::dec << std::endl;
+                          << " size = 0x" << elf_info.vector_table_size_ << std::dec << std::endl;
                 break;
             }
         }
 
         // Default vector table if not found
-        if (elf_info.vector_table_size_ == 0) {
+        if (elf_info.vector_table_size_ == 0)
+        {
             elf_info.vector_table_addr_ = 0x08000000; // default Flash start
             elf_info.vector_table_size_ = 0x150;      // STM32F103C8T6: 16 + 68 entries
             std::cout << "Vector table not found in ELF, fallback size = 0x"
-                    << std::hex << elf_info.vector_table_size_ << std::dec << std::endl;
+                      << std::hex << elf_info.vector_table_size_ << std::dec << std::endl;
         }
-        
+
         return true;
     }
 
-    bool ELFLoader::findMainSymbol(const std::string &elf_path, uint32_t &main_address)
+    bool ELFLoader::findMainSymbol(const std::string &elf_path, uint32_t &main_addr)
     {
-        return findFunctionAddress(elf_path, "main", main_address);
+        return findFunctionAddress(elf_path, "main", main_addr);
     }
 
-    bool ELFLoader::findAkaWriterSymbol(const std::string &elf_path, uint32_t &address32, uint32_t &address64)
+    bool ELFLoader::findAkaUTSymbol(const std::string &elf_path, 
+                                    uint32_t &address32, uint32_t &address64, 
+                                    uint32_t &aka_fCall_addr, uint32_t &aka_mark)
     {
-        if (!findFunctionAddress(elf_path, "aka_sim_writer_u32", address32))
+        if (!findFunctionAddress(elf_path, "AKAS_assert_u32", address32))
         {
-            std::cerr << "Failed to find aka_sim_writer_u32 symbol" << std::endl;
+            std::cerr << "Failed to find AKAS_assert_u32 symbol" << std::endl;
             return false;
         }
-        if (!findFunctionAddress(elf_path, "aka_sim_writer_u64", address64))
+        if (!findFunctionAddress(elf_path, "AKAS_assert_u64", address64))
         {
-            std::cerr << "Failed to find aka_sim_writer_u64 symbol" << std::endl;
+            std::cerr << "Failed to find AKAS_assert_u64 symbol" << std::endl;
+            return false;
+        }
+        if (!findGlobalVariableAddress(elf_path, "AKA_fCall", aka_fCall_addr))
+        {
+            std::cerr << "Failed to find AKA_fCall global variable" << std::endl;
+            return false;
+        }
+        if (!findFunctionAddress(elf_path, "AKA_mark", aka_mark))
+        {
+            std::cerr << "Failed to find AKA_mark symbol" << std::endl;
             return false;
         }
         return true;
@@ -194,6 +210,69 @@ namespace STM32F103C8T6
             addr = tmp_addr;
             return true;
         }
+        return false;
+    }
+
+    bool ELFLoader::findGlobalVariableAddress(const std::string &elf_path,
+                                              const std::string &var_name,
+                                              uint32_t &addr)
+    {
+        ELFIO::elfio reader;
+        if (!reader.load(elf_path))
+            return false;
+
+        ELFIO::section *symtab = nullptr;
+        for (int i = 0; i < reader.sections.size(); ++i)
+        {
+            ELFIO::section *sec = reader.sections[i];
+            if (sec->get_type() == ELFIO::SHT_SYMTAB)
+            {
+                symtab = sec;
+                break;
+            }
+        }
+
+        if (!symtab)
+            return false;
+
+        ELFIO::symbol_section_accessor symbols(reader, symtab);
+
+        bool found_weak = false;
+        uint32_t tmp_addr = 0;
+
+        for (unsigned int j = 0; j < symbols.get_symbols_num(); ++j)
+        {
+            std::string name;
+            ELFIO::Elf64_Addr value;
+            ELFIO::Elf_Xword size;
+            unsigned char bind, type, other;
+            ELFIO::Elf_Half section_index;
+
+            symbols.get_symbol(j, name, value, size, bind, type, section_index, other);
+
+            if (name == var_name &&
+                type == ELFIO::STT_OBJECT &&
+                section_index != ELFIO::SHN_UNDEF)
+            {
+                if (bind == ELFIO::STB_GLOBAL)
+                {
+                    addr = static_cast<uint32_t>(value);
+                    return true;
+                }
+                else if (bind == ELFIO::STB_WEAK && !found_weak)
+                {
+                    tmp_addr = static_cast<uint32_t>(value);
+                    found_weak = true;
+                }
+            }
+        }
+
+        if (found_weak)
+        {
+            addr = tmp_addr;
+            return true;
+        }
+
         return false;
     }
 
