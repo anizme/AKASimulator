@@ -41,6 +41,7 @@ namespace STM32F103C8T6
         if (!trace_file_.is_open())
         {
             std::cerr << "Failed to open log file: " << trace_file_path << std::endl;
+            trace_file_ << "[";
             return false;
         }
 
@@ -246,11 +247,19 @@ namespace STM32F103C8T6
                 << "\"actualVal\": \"" << values[1].str() << "\",\n"
                 << "\"expectedName\": \"" << expectedName << "\",\n"
                 << "\"expectedVal\": \"" << values[2].str() << "\"\n"
-                << "},";
-
-            trace_file_ << oss.str() << "\n";
-            trace_file_.flush();
+                << "}";
+            traces_.push_back(oss.str());
         }
+    }
+
+    void ExecutionLogger::endTraceFile() {
+        trace_file_ << "[";
+        for (size_t i = 0; i < traces_.size(); ++i) {
+            trace_file_ << traces_[i];
+            if (i != traces_.size() - 1)
+                trace_file_ << ",\n";
+        }
+        trace_file_ << "]";
     }
 
     std::string ExecutionLogger::readSourceLineAt(const SourceInfo &info)

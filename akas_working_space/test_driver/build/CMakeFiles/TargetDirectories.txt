@@ -1,3 +1,0 @@
-/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/build/CMakeFiles/firmware.elf.dir
-/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/build/CMakeFiles/edit_cache.dir
-/home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/build/CMakeFiles/rebuild_cache.dir

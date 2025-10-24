@@ -32,6 +32,7 @@ namespace STM32F103C8T6
         void logInfo(const std::string &message, uint64_t address);
         void logAssert(const std::string &assertion, uint64_t address);
         void logAkaMark(uint64_t address);
+        void endTraceFile();
         void close();
 
     private:
@@ -42,6 +43,7 @@ namespace STM32F103C8T6
         std::string trace_code_command_;
         int instruction_count_;
         SourceInfo previousSourceInfo_;
+        std::vector<std::string> traces_;
 
         // Cache for address-to-source mapping to avoid repeated calls
         std::unordered_map<uint64_t, SourceInfo> address_cache_;

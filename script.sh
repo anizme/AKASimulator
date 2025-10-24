@@ -4,7 +4,7 @@ cmake --build akas_working_space/test_driver/build
 echo "[Finish step 1] Firmware built successfully."
 
 echo "[Step 2] Build the simulator"
-cmake -S . -B build
+# cmake -S . -B build
 cmake --build build
 echo "[Finish step 2] Build complete. Check if the simulator binary is located in build/akas_simulator/"
 

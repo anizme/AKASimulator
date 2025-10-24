@@ -1,7 +1,0 @@
-CMakeFiles/firmware.elf.dir/test_driver_uut.c.obj: \
-  /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/test_driver_uut.c \
-  /usr/lib/llvm-14/lib/clang/14.0.0/include/stdint.h \
-  /usr/lib/llvm-14/lib/clang/14.0.0/include/stddef.h \
-  /usr/lib/llvm-14/lib/clang/14.0.0/include/__stddef_max_align_t.h \
-  /usr/lib/llvm-14/lib/clang/14.0.0/include/stdbool.h \
-  /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/akas_source/main.c

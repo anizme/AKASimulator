@@ -142,6 +142,7 @@ namespace STM32F103C8T6
 
         // Start emulation
         uc_err err = uc_emu_start(uc_engine_, entry_point | 1, 0xFFFFFFFF, 0, instruction_limit);
+        logger_->endTraceFile();
         std::cout << "[Result] ";
         if (emu_error == EmulationError::DIVISION_BY_ZERO)
         {
