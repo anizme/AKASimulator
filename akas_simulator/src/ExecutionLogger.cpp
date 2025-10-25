@@ -58,37 +58,38 @@ namespace STM32F103C8T6
         return true;
     }
 
-    std::string ExecutionLogger::generateTraceFilePath(const std::string &filePath)
+        std::string ExecutionLogger::generateTraceFilePath(const std::string &filePath)
     {
         std::filesystem::path path(filePath);
+        std::string fileName = path.stem().string(); // "name"
+        std::filesystem::path parentPath = path.parent_path(); // "r1/r2/simulation"
 
-        // Remove extionsion
-        std::string fileName = path.stem().string();
+        std::filesystem::path grandParent = parentPath.parent_path(); // "r1/r2"
+        std::filesystem::path outputDir = grandParent / "execution-results";
 
-        std::filesystem::path parentPath = path.parent_path();
+        std::error_code ec;
+        std::filesystem::create_directories(outputDir, ec);
 
-        std::string newFileName = fileName + ".trc";
-
-        std::filesystem::path outputPath = parentPath / newFileName;
-
+        std::filesystem::path outputPath = outputDir / (fileName + ".trc");
         return outputPath.string();
     }
 
     std::string ExecutionLogger::generateTestPathFilePath(const std::string &filePath)
     {
         std::filesystem::path path(filePath);
+        std::string fileName = path.stem().string(); // "name"
+        std::filesystem::path parentPath = path.parent_path(); // "r1/r2/simulation"
 
-        // Remove extionsion
-        std::string fileName = path.stem().string();
+        std::filesystem::path grandParent = parentPath.parent_path(); // "r1/r2"
+        std::filesystem::path outputDir = grandParent / "test-paths";
 
-        std::filesystem::path parentPath = path.parent_path();
+        std::error_code ec;
+        std::filesystem::create_directories(outputDir, ec);
 
-        std::string newFileName = fileName + ".tp";
-
-        std::filesystem::path outputPath = parentPath / newFileName;
-
+        std::filesystem::path outputPath = outputDir / (fileName + ".tp");
         return outputPath.string();
     }
+
 
     void ExecutionLogger::logInstructionRaw(uint64_t address, const uint8_t *instruction_bytes, uint32_t size)
     {
