@@ -28,7 +28,18 @@ namespace STM32F103C8T6
         elf_path_ = elf_path;
         trace_code_command_ = trace_code_command;
         instruction_count_ = 0;
+    {
+            std::filesystem::path logPath(log_file_path);
+            std::filesystem::path logDir = logPath.parent_path();
 
+            std::error_code ec;
+            std::filesystem::create_directories(logDir, ec);
+            if (ec)
+            {
+                std::cerr << "[Warn]: Failed to create directory for log file: "
+                        << logDir << " (" << ec.message() << ")" << std::endl;
+            }
+    }
         log_file_.open(log_file_path);
         if (!log_file_.is_open())
         {
