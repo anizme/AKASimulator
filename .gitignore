@@ -1,2 +1,5 @@
 build/*
 akas_working_space/test_driver/build/*
+akas_working_space/simulation/*
+akas_working_space/execution-results/*
+akas_working_space/test-paths/*
