@@ -284,6 +284,11 @@ namespace STM32F103C8T6
             // TODO: support later
         } else if (address == elf_info_.aka_mark_addr) {
             logger_->logAkaMark(address);
+        } else if (address == elf_info_.aka_sum_addr) {
+            u_int32_t stub_addr_thumb = elf_info_.aka_stub_function_addr | 1; // Set Thumb bit
+            uc_reg_write(uc_engine_, UC_ARM_REG_PC, &stub_addr_thumb);
+            std::cout << "[HOOK] sum called, redirecting to stub_function at 0x" 
+                      << std::hex << elf_info_.aka_stub_function_addr << std::dec << std::endl;
         }
 
         // Log the instruction if logger is available

@@ -15,6 +15,8 @@ namespace STM32F103C8T6
         uint32_t akas_assert_u64_addr;
         uint32_t aka_fCall_addr;
         uint32_t aka_mark_addr;
+        uint32_t aka_sum_addr;
+        uint32_t aka_stub_function_addr;
         uint32_t vector_table_addr_ = 0;
         uint32_t vector_table_size_ = 0;
         std::string file_path;
@@ -36,6 +38,7 @@ namespace STM32F103C8T6
         bool findAkaUTSymbol(const std::string &elf_path,
                              uint32_t &address32, uint32_t &address64,
                              uint32_t &aka_fCall_addr, uint32_t &aka_mark);
+        bool findAkaStubFunctionSymbol(const std::string &elf_path, uint32_t &stub_func_addr, uint32_t &sum_addr);
 
         bool findFunctionAddress(const std::string &elf_path, const std::string &function_name, uint32_t &address);
         bool findGlobalVariableAddress(const std::string &elf_path,

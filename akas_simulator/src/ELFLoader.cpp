@@ -46,6 +46,12 @@ namespace STM32F103C8T6
             return false;
         }
 
+        if (!findAkaStubFunctionSymbol(elf_path, elf_info.aka_stub_function_addr, elf_info.aka_sum_addr))
+        {
+            std::cerr << "Failed to find aka_stub_function symbol" << std::endl;
+            return false;
+        }
+
         std::cout << "ELF loaded successfully" << std::endl;
         std::cout << "Entry point: 0x" << std::hex << elf_info.entry_point << std::endl;
         std::cout << "Main address: 0x" << elf_info.main_addr << std::dec << std::endl;
@@ -148,6 +154,25 @@ namespace STM32F103C8T6
             std::cerr << "Failed to find AKA_mark symbol" << std::endl;
             return false;
         }
+        return true;
+    }
+
+    bool ELFLoader::findAkaStubFunctionSymbol(const std::string &elf_path, uint32_t &stub_func_addr, uint32_t &sum_addr)
+    {
+        if (!findFunctionAddress(elf_path, "sum", sum_addr))
+        {
+            std::cerr << "Failed to find sum symbol" << std::endl;
+            return false;
+        }
+        std::cout << "sum address: 0x" << std::hex << sum_addr << std::dec << std::endl;
+        
+        if (!findFunctionAddress(elf_path, "stub_function", stub_func_addr))
+        {
+            std::cerr << "Failed to find stub_function symbol" << std::endl;
+            return false;
+        }
+        std::cout << "stub_function address: 0x" << std::hex << stub_func_addr << std::dec << std::endl;
+
         return true;
     }
 
