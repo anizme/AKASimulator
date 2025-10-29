@@ -12,7 +12,7 @@ namespace STM32F103C8T6
         // They will be created in initialize()
     }
 
-    bool Emulator::initialize(BootMode boot_mode)
+    bool Emulator::initialize(std::string stub_file, BootMode boot_mode)
     {
         std::cout << "[Initialize] STM32F103C8T6 Emulator..." << std::endl;
 
@@ -23,6 +23,11 @@ namespace STM32F103C8T6
         if (!core_->initialize(boot_mode))
         {
             std::cerr << "Failed to initialize emulation core" << std::endl;
+            return false;
+        }
+
+        if (!core_->initializeStubManager(stub_file)) {
+            std::cerr << "Failed to initialize stub manager" << std::endl;
             return false;
         }
 
@@ -65,6 +70,11 @@ namespace STM32F103C8T6
         if (!core_->setupInitialState(elf_info_))
         {
             std::cerr << "Failed to setup initial CPU state" << std::endl;
+            return false;
+        }
+
+        if (!core_->setAddressForStubFunctions(elf_info_)) {
+            std::cerr << "Failed to setup address for stub functions" << std::endl;
             return false;
         }
 

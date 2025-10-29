@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug akas_emulator",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/akas_simulator/akas_emulator",
+      "args": [
+        "${workspaceFolder}/akas_working_space/test_driver/firmware.elf",
+        "${workspaceFolder}/akas_working_space/emulation_log/emulation.log"
+      ],
+      "cwd": "${workspaceFolder}",
+      "stopAtEntry": true,
+      "MIMode": "gdb"
+    }
+  ]
+}

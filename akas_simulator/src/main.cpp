@@ -18,24 +18,26 @@ void printUsage(const char *program_name)
 int main(int argc, char *argv[])
 {
     // ---------------------- Argument handling ----------------------
-    if (argc < 2 || argc > 3)
+    if (argc < 3 || argc > 4)
     {
         printUsage(argv[0]);
         return 1;
     }
 
     std::string elf_file = argv[1];
-    std::string log_file = (argc == 3) ? argv[2] : "execution.log";
+    std::string stub_file = argv[2];
+    std::string log_file = (argc == 4) ? argv[3] : "execution.log";
 
     std::cout << "=== STM32F103C8T6 Emulator ===" << std::endl;
     std::cout << "ELF File: " << elf_file << std::endl;
+    std::cout << "Stub File: " << stub_file << std::endl;
     std::cout << "Log File: " << log_file << std::endl;
     std::cout << std::endl;
 
     // ---------------------- Emulator initialization ----------------------
     STM32F103C8T6::Emulator emulator;
 
-    if (!emulator.initialize())
+    if (!emulator.initialize(stub_file))
     {
         std::cerr << "ERROR: Failed to initialize emulator" << std::endl;
         return 1;

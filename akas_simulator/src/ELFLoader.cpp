@@ -1,7 +1,9 @@
 // aka_simulator/src/ELFLoader.cpp
 
 #include "ELFLoader.hpp"
+#include "StubManager.hpp"
 #include "MemoryManager.hpp"
+#include "Utils.hpp"
 #include <elfio/elfio.hpp>
 #include <iostream>
 #include <cstdlib>
@@ -43,12 +45,6 @@ namespace STM32F103C8T6
                             elf_info.aka_fCall_addr, elf_info.aka_mark_addr))
         {
             std::cerr << "Failed to find aka_sim_writer symbols" << std::endl;
-            return false;
-        }
-
-        if (!findAkaStubFunctionSymbol(elf_path, elf_info.aka_stub_function_addr, elf_info.aka_sum_addr))
-        {
-            std::cerr << "Failed to find aka_stub_function symbol" << std::endl;
             return false;
         }
 
@@ -127,115 +123,34 @@ namespace STM32F103C8T6
 
     bool ELFLoader::findMainSymbol(const std::string &elf_path, uint32_t &main_addr)
     {
-        return findFunctionAddress(elf_path, "main", main_addr);
+        return Utils::findFunctionAddress(elf_path, "main", main_addr);
     }
 
     bool ELFLoader::findAkaUTSymbol(const std::string &elf_path, 
                                     uint32_t &address32, uint32_t &address64, 
                                     uint32_t &aka_fCall_addr, uint32_t &aka_mark)
     {
-        if (!findFunctionAddress(elf_path, "AKAS_assert_u32", address32))
+        if (!Utils::findFunctionAddress(elf_path, "AKAS_assert_u32", address32))
         {
             std::cerr << "Failed to find AKAS_assert_u32 symbol" << std::endl;
             return false;
         }
-        if (!findFunctionAddress(elf_path, "AKAS_assert_u64", address64))
+        if (!Utils::findFunctionAddress(elf_path, "AKAS_assert_u64", address64))
         {
             std::cerr << "Failed to find AKAS_assert_u64 symbol" << std::endl;
             return false;
         }
-        if (!findGlobalVariableAddress(elf_path, "AKA_fCall", aka_fCall_addr))
+        if (!Utils::findFunctionAddress(elf_path, "AKA_fCall", aka_fCall_addr))
         {
             std::cerr << "Failed to find AKA_fCall global variable" << std::endl;
             return false;
         }
-        if (!findFunctionAddress(elf_path, "AKA_mark", aka_mark))
+        if (!Utils::findFunctionAddress(elf_path, "AKA_mark", aka_mark))
         {
             std::cerr << "Failed to find AKA_mark symbol" << std::endl;
             return false;
         }
         return true;
-    }
-
-    bool ELFLoader::findAkaStubFunctionSymbol(const std::string &elf_path, uint32_t &stub_func_addr, uint32_t &sum_addr)
-    {
-        if (!findFunctionAddress(elf_path, "sum", sum_addr))
-        {
-            std::cerr << "Failed to find sum symbol" << std::endl;
-            return false;
-        }
-        std::cout << "sum address: 0x" << std::hex << sum_addr << std::dec << std::endl;
-        
-        if (!findFunctionAddress(elf_path, "stub_function", stub_func_addr))
-        {
-            std::cerr << "Failed to find stub_function symbol" << std::endl;
-            return false;
-        }
-        std::cout << "stub_function address: 0x" << std::hex << stub_func_addr << std::dec << std::endl;
-
-        return true;
-    }
-
-    bool ELFLoader::findFunctionAddress(const std::string &elf_path, const std::string &func_name, uint32_t &addr)
-    {
-        ELFIO::elfio reader;
-        if (!reader.load(elf_path))
-            return false;
-
-        ELFIO::section *symtab = nullptr;
-        for (int i = 0; i < reader.sections.size(); ++i)
-        {
-            ELFIO::section *sec = reader.sections[i];
-            if (sec->get_type() == ELFIO::SHT_SYMTAB)
-            {
-                symtab = sec;
-                break;
-            }
-        }
-        if (!symtab)
-            return false;
-
-        ELFIO::symbol_section_accessor symbols(reader, symtab);
-
-        bool found = false;
-        bool found_weak = false;
-        uint32_t tmp_addr = 0;
-
-        for (unsigned int j = 0; j < symbols.get_symbols_num(); ++j)
-        {
-            std::string name;
-            ELFIO::Elf64_Addr value;
-            ELFIO::Elf_Xword size;
-            unsigned char bind, type, other;
-            ELFIO::Elf_Half section_index;
-
-            symbols.get_symbol(j, name, value, size, bind, type, section_index, other);
-
-            if (name == func_name &&
-                type == ELFIO::STT_FUNC &&
-                section_index != ELFIO::SHN_UNDEF)
-            {
-                uint32_t aligned = static_cast<uint32_t>(value & ~1U);
-
-                if (bind == ELFIO::STB_GLOBAL)
-                {
-                    addr = aligned;
-                    return true;
-                }
-                else if (bind == ELFIO::STB_WEAK && !found_weak)
-                {
-                    tmp_addr = aligned;
-                    found_weak = true;
-                }
-            }
-        }
-
-        if (found_weak)
-        {
-            addr = tmp_addr;
-            return true;
-        }
-        return false;
     }
 
     bool ELFLoader::findGlobalVariableAddress(const std::string &elf_path,

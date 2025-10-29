@@ -1,6 +1,7 @@
 // aka_simulator/inc/EmulationCore.hpp
 #pragma once
 #include "MemoryManager.hpp"
+#include "StubManager.hpp"
 #include "ELFLoader.hpp"
 #include "ExecutionLogger.hpp"
 #include "Utils.hpp"
@@ -26,11 +27,13 @@ namespace STM32F103C8T6
         EmulationError emu_error = EmulationError::NONE;
 
         bool initialize(BootMode boot_mode = BootMode::Flash);
+        bool initializeStubManager(std::string &stub_file);
         bool setupInitialState(const ELFInfo &elf_info);
         bool execute(uint32_t entry_point, uint32_t instruction_limit = 1000);
         void printRegisters() const;
 
         void setLogger(ExecutionLogger *logger) { logger_ = logger; }
+        bool setAddressForStubFunctions(const ELFInfo &elf_info);
 
         // Engine access (needed for other components)
         uc_engine *getEngine() const { return uc_engine_; }
@@ -47,6 +50,7 @@ namespace STM32F103C8T6
         ELFInfo elf_info_;
         uint32_t main_return_address_ = -1;
         ExecutionLogger *logger_;
+        StubManager *stub_manager_;
 
         bool setupHooks();
         bool setupCPUState(const ELFInfo &elf_info);

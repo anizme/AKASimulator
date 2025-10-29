@@ -190,4 +190,66 @@ namespace Utils
         ss << std::put_time(std::localtime(&now_time_t), "%Y-%m-%d %H:%M:%S");
         return ss.str();
     }
+
+    bool findFunctionAddress(const std::string &elf_path, const std::string &func_name, uint32_t &addr)
+    {
+        ELFIO::elfio reader;
+        if (!reader.load(elf_path))
+            return false;
+
+        ELFIO::section *symtab = nullptr;
+        for (int i = 0; i < reader.sections.size(); ++i)
+        {
+            ELFIO::section *sec = reader.sections[i];
+            if (sec->get_type() == ELFIO::SHT_SYMTAB)
+            {
+                symtab = sec;
+                break;
+            }
+        }
+        if (!symtab)
+            return false;
+
+        ELFIO::symbol_section_accessor symbols(reader, symtab);
+
+        bool found = false;
+        bool found_weak = false;
+        uint32_t tmp_addr = 0;
+
+        for (unsigned int j = 0; j < symbols.get_symbols_num(); ++j)
+        {
+            std::string name;
+            ELFIO::Elf64_Addr value;
+            ELFIO::Elf_Xword size;
+            unsigned char bind, type, other;
+            ELFIO::Elf_Half section_index;
+
+            symbols.get_symbol(j, name, value, size, bind, type, section_index, other);
+
+            if (name == func_name &&
+                type == ELFIO::STT_FUNC &&
+                section_index != ELFIO::SHN_UNDEF)
+            {
+                uint32_t aligned = static_cast<uint32_t>(value & ~1U);
+
+                if (bind == ELFIO::STB_GLOBAL)
+                {
+                    addr = aligned;
+                    return true;
+                }
+                else if (bind == ELFIO::STB_WEAK && !found_weak)
+                {
+                    tmp_addr = aligned;
+                    found_weak = true;
+                }
+            }
+        }
+
+        if (found_weak)
+        {
+            addr = tmp_addr;
+            return true;
+        }
+        return false;
+    }
 } // namespace Utils

@@ -3,6 +3,7 @@
 
 #include <capstone/capstone.h>
 #include <unicorn/unicorn.h>
+#include <elfio/elfio.hpp>
 #include <string>
 
 namespace Utils {
@@ -12,4 +13,6 @@ namespace Utils {
     std::string formatHexBytes(const uint8_t *bytes, uint32_t size);
 
     std::string getCurrentTimestamp();
+
+    bool findFunctionAddress(const std::string &elf_path, const std::string &function_name, uint32_t &address);
 }

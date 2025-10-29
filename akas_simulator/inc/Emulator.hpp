@@ -17,7 +17,7 @@ namespace STM32F103C8T6
         ~Emulator() = default;
 
         // Main interface
-        bool initialize(BootMode boot_mode = BootMode::Flash);
+        bool initialize(std::string stub_file, BootMode boot_mode = BootMode::Flash);
         bool loadELF(const std::string &elf_path);
         bool execute(const std::string &log_file_path);
         void cleanup();
