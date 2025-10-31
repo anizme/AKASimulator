@@ -1,5 +1,9 @@
 #include "StubManager.hpp"
 #include "Utils.hpp"
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <string>
 
 namespace STM32F103C8T6
 {
@@ -12,9 +16,24 @@ namespace STM32F103C8T6
     {
     }
 
+    const std::string StubManager::STUB_FUNCTION_PREFIX = "AKA_stub_";
+
     bool StubManager::initialize(std::string &stub_file)
     {
-        //Todo
+        std::ifstream file(stub_file);
+        if (!file.is_open()) {
+            std::cerr << "Failed to open " << stub_file << "\n";
+            return false;
+        }
+
+        std::string function_signature;
+        int number_of_calls;
+
+        while (file >> function_signature >> number_of_calls) {
+            FunctionInfo func {function_signature, 0, number_of_calls, 0};
+            called_functions_.push_back(func);
+        }
+
         return true;
     }
 
@@ -45,10 +64,10 @@ namespace STM32F103C8T6
     }
 
     void StubManager::redirectCall(uc_engine* engine, FunctionInfo* funcInfo) {
-        ++funcInfo->number_of_calls;
+        ++funcInfo->currentCall;
 
         std::string stub_func_signature = StubManager::STUB_FUNCTION_PREFIX 
-                                            + std::to_string(funcInfo->number_of_calls) 
+                                            + std::to_string(funcInfo->currentCall) 
                                             + "_" + funcInfo->signature;
 
         uint32_t stub_address = getStubFunctionAddress(stub_func_signature);
@@ -84,7 +103,7 @@ namespace STM32F103C8T6
             }
             func_info.address = addr;
             
-            if (!(findStubFunctionAddressByNumberOfCalls(elf_path, func_info.signature, func_info.number_of_calls)))
+            if (!(findStubFunctionAddressByNumberOfCalls(elf_path, func_info.signature, func_info.numberOfCalls)))
             {
                 return false;
             }
@@ -95,7 +114,7 @@ namespace STM32F103C8T6
 
     bool StubManager::findStubFunctionAddressByNumberOfCalls(const std::string &elf_path, std::string &signature, int number_of_calls)
     {
-        for (int i = 0; i < number_of_calls; ++i)
+        for (int i = 1; i <= number_of_calls; ++i)
         {
             uint32_t addr = 0;
             std::string stub_func_signature = StubManager::STUB_FUNCTION_PREFIX + std::to_string(i) + "_" + signature;

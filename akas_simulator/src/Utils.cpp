@@ -252,4 +252,66 @@ namespace Utils
         }
         return false;
     }
+
+    bool findGlobalVariableAddress(const std::string &elf_path, const std::string &var_name, uint32_t &addr)
+    {
+        ELFIO::elfio reader;
+        if (!reader.load(elf_path))
+            return false;
+
+        ELFIO::section *symtab = nullptr;
+        for (int i = 0; i < reader.sections.size(); ++i)
+        {
+            ELFIO::section *sec = reader.sections[i];
+            if (sec->get_type() == ELFIO::SHT_SYMTAB)
+            {
+                symtab = sec;
+                break;
+            }
+        }
+
+        if (!symtab)
+            return false;
+
+        ELFIO::symbol_section_accessor symbols(reader, symtab);
+
+        bool found_weak = false;
+        uint32_t tmp_addr = 0;
+
+        for (unsigned int j = 0; j < symbols.get_symbols_num(); ++j)
+        {
+            std::string name;
+            ELFIO::Elf64_Addr value;
+            ELFIO::Elf_Xword size;
+            unsigned char bind, type, other;
+            ELFIO::Elf_Half section_index;
+
+            symbols.get_symbol(j, name, value, size, bind, type, section_index, other);
+
+            if (name == var_name &&
+                type == ELFIO::STT_OBJECT &&
+                section_index != ELFIO::SHN_UNDEF)
+            {
+                if (bind == ELFIO::STB_GLOBAL)
+                {
+                    addr = static_cast<uint32_t>(value);
+                    return true;
+                }
+                else if (bind == ELFIO::STB_WEAK && !found_weak)
+                {
+                    tmp_addr = static_cast<uint32_t>(value);
+                    found_weak = true;
+                }
+            }
+        }
+
+        if (found_weak)
+        {
+            addr = tmp_addr;
+            return true;
+        }
+
+        return false;
+    }
+
 } // namespace Utils

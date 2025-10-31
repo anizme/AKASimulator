@@ -2,6 +2,7 @@
 #include <stddef.h>
 #include <stdbool.h>
 #include "akas_source/main.c"  
+#include "stub.h"
 
 
 int AKA_mark() {return 1;}
@@ -22,10 +23,10 @@ int main()
 	
 
 
-int a=8;
+int a=1;
 
 
-int b=9;
+int b=2;
 
 /* RootDataNode STATIC */
 /* NormalNumberDataNode a */

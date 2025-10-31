@@ -15,4 +15,6 @@ namespace Utils {
     std::string getCurrentTimestamp();
 
     bool findFunctionAddress(const std::string &elf_path, const std::string &function_name, uint32_t &address);
+
+    bool findGlobalVariableAddress(const std::string &elf_path, const std::string &var_name, uint32_t &addr);
 }

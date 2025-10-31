@@ -8,6 +8,7 @@
       "program": "${workspaceFolder}/build/akas_simulator/akas_emulator",
       "args": [
         "${workspaceFolder}/akas_working_space/test_driver/firmware.elf",
+        "${workspaceFolder}/akas_working_space/test_driver/stub_info.txt",
         "${workspaceFolder}/akas_working_space/emulation_log/emulation.log"
       ],
       "cwd": "${workspaceFolder}",

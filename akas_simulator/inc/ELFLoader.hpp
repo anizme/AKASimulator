@@ -39,12 +39,6 @@ namespace STM32F103C8T6
         bool findAkaUTSymbol(const std::string &elf_path,
                              uint32_t &address32, uint32_t &address64,
                              uint32_t &aka_fCall_addr, uint32_t &aka_mark);
-        
-
-        
-        bool findGlobalVariableAddress(const std::string &elf_path,
-                                       const std::string &var_name,
-                                       uint32_t &addr);
     };
 
 } // namespace STM32F103C8T6

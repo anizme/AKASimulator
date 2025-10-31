@@ -12,7 +12,8 @@ namespace STM32F103C8T6
     {
         std::string signature;
         uint32_t address;
-        int number_of_calls = 0;
+        int numberOfCalls = 0;
+        int currentCall = 0;
     };
 
     class StubManager
@@ -37,9 +38,7 @@ namespace STM32F103C8T6
         std::vector<FunctionInfo> called_functions_ {};
         std::unordered_map<std::string, uint32_t> stub_function_map_ {};
         
-        bool findStubFunctionAddressByNumberOfCalls(const std::string &elf_path, std::string &signature, int number_of_calls);
+        bool findStubFunctionAddressByNumberOfCalls(const std::string &elf_path, std::string &signature, int numberOfCalls);
     };
-
-    const std::string StubManager::STUB_FUNCTION_PREFIX = "AKA_stub_";
-
+    
 } // namespace STM32F103C8T6
