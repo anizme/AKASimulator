@@ -1,4 +1,5 @@
 build/*
+simulator/build/*
 akas_working_space/test_driver/build/*
 akas_working_space/simulation/*
 akas_working_space/execution-results/*

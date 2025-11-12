@@ -12,4 +12,4 @@ add_subdirectory(lib/unicorn)
 add_subdirectory(lib/capstone)
 add_subdirectory(lib/libdwarf)
 
-add_subdirectory(akas_simulator)
+add_subdirectory(simulator)
