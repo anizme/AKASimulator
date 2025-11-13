@@ -59,6 +59,25 @@ namespace Simulator
         ARMCortexM3,
         ARMCortexM4,
         ARMCortexM7,
+        ARMCortexA,
+        RISCV32,
+        RISCV64,
+        AVR,
+        x86,
+        Unknown
+    };
+
+    enum class ISA
+    {
+        ARM,    // 32-bit ARM
+        Thumb,  // ARM Thumb (16-bit)
+        Thumb2, // ARM Thumb-2 (mixed 16/32-bit)
+        ARM64,  // 64-bit ARM
+        RISCV32,
+        RISCV64,
+        AVR,
+        x86,
+        x86_64,
         Unknown
     };
 

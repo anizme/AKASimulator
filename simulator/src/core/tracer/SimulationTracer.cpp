@@ -1,5 +1,6 @@
 #include "SimulationTracer.hpp"
 #include "io/utils/StringUtils.hpp"
+#include "core/ArchitectureMapper.hpp"
 #include <fstream>
 #include <regex>
 
@@ -8,10 +9,12 @@ namespace Simulator
 
     SimulationTracer::SimulationTracer(uc_engine *uc,
                                        const BinaryInfo &binary_info,
-                                       LoggerPtr logger)
+                                       LoggerPtr logger,
+                                       CPUDescriptor cpu_descriptor)
         : uc_(uc), binary_info_(binary_info), logger_(logger),
           capstone_handle_(0), enable_instruction_trace_(true),
-          instruction_count_(0), main_return_address_(0)
+          instruction_count_(0), main_return_address_(0),
+          cpu_descriptor_(cpu_descriptor)
     {
     }
 
@@ -27,8 +30,15 @@ namespace Simulator
     {
         LOG_INFO(logger_, "Initializing SimulationTracer...");
 
-        // Initialize Capstone for ARM Thumb mode
-        cs_err err = cs_open(CS_ARCH_ARM, CS_MODE_THUMB, &capstone_handle_);
+        // Map architecture metadata to Capstone constants
+        cs_arch arch = ArchitectureMapper::getCapstoneArch(cpu_descriptor_.arch_type);
+        cs_mode mode = ArchitectureMapper::getCapstoneMode(cpu_descriptor_.isa);
+
+        LOG_DEBUG_F(logger_) << "  Capstone config: arch=" << arch
+                             << ", mode=" << mode
+                             << " (ISA: " << ArchitectureMapper::getISAName(cpu_descriptor_.isa) << ")";
+
+        cs_err err = cs_open(arch, mode, &capstone_handle_);
         if (err != CS_ERR_OK)
         {
             return Result<void>::Error("Failed to initialize Capstone: " +
@@ -45,7 +55,6 @@ namespace Simulator
         LOG_INFO(logger_, "SimulationTracer ready");
         return Result<void>::Success();
     }
-
     void SimulationTracer::onCodeExecution(const CodeHookEvent &event)
     {
         instruction_count_++;

@@ -2,6 +2,7 @@
 #include "architecture/arm/chips/STM32F103C8T6.hpp"
 #include "architecture/arm/chips/STM32F407VG.hpp"
 #include "io/logging/ConsoleLogger.hpp"
+#include "core/ArchitectureMapper.hpp"
 #include <iostream>
 #include <iomanip>
 
@@ -22,11 +23,8 @@ void printMemoryMap(const MemoryMapDescriptor &map, LoggerPtr logger)
 void printCPUInfo(const CPUDescriptor &cpu, LoggerPtr logger)
 {
     LOG_INFO(logger, "CPU Info:");
-    LOG_INFO_F(logger) << "  Architecture: " << cpu.architecture;
-    LOG_INFO_F(logger) << "  Instruction Set: " << cpu.instruction_set;
-    LOG_INFO_F(logger) << "  Frequency: " << cpu.core_frequency_mhz << " MHz";
-    LOG_INFO_F(logger) << "  Registers: " << cpu.num_general_registers
-                       << " x " << cpu.register_width_bits << "-bit";
+    LOG_INFO_F(logger) << "  Architecture: " << ArchitectureMapper::getArchitectureName(cpu.arch_type);
+    LOG_INFO_F(logger) << "  Instruction Set: " << ArchitectureMapper::getISAName(cpu.isa);
     LOG_INFO_F(logger) << "  FPU: " << (cpu.has_fpu ? "Yes" : "No");
     LOG_INFO_F(logger) << "  DSP: " << (cpu.has_dsp ? "Yes" : "No");
 }

@@ -1,7 +1,3 @@
-# Find dependencies
-# find_package(PkgConfig REQUIRED)
-# pkg_check_modules(UNICORN REQUIRED unicorn)
-
 # Core module library
 add_library(simulator_core
     loader/ELFLoader.cpp

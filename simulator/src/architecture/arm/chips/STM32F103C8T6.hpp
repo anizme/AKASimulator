@@ -102,6 +102,8 @@ namespace Simulator
 
                 // Boot alias points to Flash
                 boot.boot_alias_target = 0x08000000;
+                // boot.boot_alias_size = 128 * 1024; 
+                // Equal to Flash size, but if so, it would overlap with SRAM. This should be implemented by uc_mem_map_ptr
 
                 return boot;
             }

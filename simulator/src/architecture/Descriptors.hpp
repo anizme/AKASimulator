@@ -102,23 +102,20 @@ namespace Simulator
      */
     struct CPUDescriptor
     {
-        std::string architecture;    // "ARM Cortex-M3"
-        std::string instruction_set; // "Thumb-2"
-        uint32_t core_frequency_mhz; // Default frequency
-
-        // Register info
-        int num_general_registers; // 13 for ARM (R0-R12)
-        int register_width_bits;   // 32
+        ArchitectureType arch_type; // Enum for type
+        ISA isa;                    // Enum for ISA
 
         // Features
         bool has_fpu;
         bool has_mpu;
         bool has_dsp;
 
-        CPUDescriptor()
-            : core_frequency_mhz(0), num_general_registers(0),
-              register_width_bits(0), has_fpu(false),
-              has_mpu(false), has_dsp(false) {}
+        CPUDescriptor(ArchitectureType arch_type_, ISA isa_) : has_fpu(false),
+                                                               has_mpu(false), has_dsp(false)
+        {
+            arch_type = arch_type_;
+            isa = isa_;
+        }
     };
 
     // ============================================================================

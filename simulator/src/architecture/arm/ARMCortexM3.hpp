@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../IArchitecture.hpp"
+#include "simulator/Types.hpp"
 
 namespace Simulator
 {
@@ -23,12 +24,7 @@ namespace Simulator
 
             CPUDescriptor getCPUDescriptor() const override
             {
-                CPUDescriptor cpu;
-                cpu.architecture = "ARM Cortex-M3";
-                cpu.instruction_set = "Thumb-2";
-                cpu.core_frequency_mhz = 72;    // Common for STM32F1
-                cpu.num_general_registers = 13; // R0-R12
-                cpu.register_width_bits = 32;
+                CPUDescriptor cpu(ArchitectureType::ARMCortexM3, ISA::Thumb2);
                 cpu.has_fpu = false; // M3 doesn't have FPU
                 cpu.has_mpu = true;  // M3 has optional MPU
                 cpu.has_dsp = false;

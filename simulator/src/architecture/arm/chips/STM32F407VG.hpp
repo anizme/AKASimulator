@@ -39,8 +39,6 @@ namespace Simulator
             CPUDescriptor getCPUDescriptor() const override
             {
                 CPUDescriptor cpu = ARMCortexM3Base::getCPUDescriptor();
-                cpu.architecture = "ARM Cortex-M4F";
-                cpu.core_frequency_mhz = 168; // Faster than M3
                 cpu.has_fpu = true;           // M4F has FPU!
                 cpu.has_dsp = true;           // M4 has DSP instructions
                 return cpu;

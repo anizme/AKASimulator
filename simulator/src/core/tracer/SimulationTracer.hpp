@@ -2,6 +2,7 @@
 
 #include "simulator/Types.hpp"
 #include "core/hooks/HookDispatcher.hpp"
+#include "architecture/Descriptors.hpp"
 #include "io/logging/ILogger.hpp"
 #include "io/utils/Symbolizer.hpp"
 #include <unicorn/unicorn.h>
@@ -34,7 +35,8 @@ namespace Simulator
          */
         SimulationTracer(uc_engine *uc,
                          const BinaryInfo &binary_info,
-                         LoggerPtr logger);
+                         LoggerPtr logger,
+                         CPUDescriptor cpu_descriptor);
 
         ~SimulationTracer();
 
@@ -90,6 +92,7 @@ namespace Simulator
         uc_engine *uc_;
         BinaryInfo binary_info_;
         LoggerPtr logger_;
+        CPUDescriptor cpu_descriptor_;
 
         csh capstone_handle_;
         std::unique_ptr<Symbolizer> symbolizer_;

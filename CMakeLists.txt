@@ -29,6 +29,7 @@ if(BUILD_TESTS)
     target_link_libraries(test_step2 
         simulator_io
         simulator_architecture
+        simulator_core
     )
     add_test(NAME Step2Test COMMAND test_step2)
     
