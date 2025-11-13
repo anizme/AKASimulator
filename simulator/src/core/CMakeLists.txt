@@ -6,6 +6,7 @@ add_library(simulator_core
     tracer/SimulationTracer.cpp
     errors/ErrorDetector.cpp
     stubs/StubManager.cpp
+    SimulationEngine.cpp
 )
 
 target_include_directories(simulator_core PUBLIC

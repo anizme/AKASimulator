@@ -114,7 +114,7 @@ No simulation or execution logic.
      └──> Binary data + symbol table
      │
      ▼
-[5] Core Module: ExecutionEngine.initialize()
+[5] Core Module: SimulationEngine.initialize()
      │
      ├──> MemoryManager.setup(MemoryMapDescriptor)
      ├──> Write binary data to memory
@@ -123,7 +123,7 @@ No simulation or execution logic.
      └──> SimulationTracer.initialize()
      │
      ▼
-[6] Core Module: ExecutionEngine.run()
+[6] Core Module: SimulationEngine.run()
      │ Unicorn executes
      │
      ├──> Each instruction → Hook triggered

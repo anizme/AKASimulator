@@ -4,7 +4,6 @@
 #include <capstone/capstone.h>
 #include <unicorn/unicorn.h>
 
-
 namespace Simulator
 {
 
@@ -206,6 +205,17 @@ namespace Simulator
             default:
                 return "Unknown Architecture";
             }
+        }
+
+        /**
+         * @brief Get CPU info string for logging
+         */
+        static std::string getCPUInfo(const CPUDescriptor &cpu)
+        {
+            std::ostringstream oss;
+            oss << getArchitectureName(cpu.arch_type)
+                << " (" << getISAName(cpu.isa) << ")";
+            return oss.str();
         }
     };
 

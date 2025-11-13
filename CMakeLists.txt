@@ -45,4 +45,10 @@ if(BUILD_TESTS)
     )
     add_test(NAME Step3_2Test COMMAND test_step3_2)
     
+    add_executable(test_step3_3 simulator/tests/test_step3_3_engine.cpp)
+    target_link_libraries(test_step3_3
+        simulator_core
+    )
+    add_test(NAME Step3_3Test COMMAND test_step3_3)
+    
 endif()

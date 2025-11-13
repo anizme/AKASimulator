@@ -27,5 +27,17 @@ build/test_step3_1 /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_worki
 ```
 cmake -S . -B build
 cmake --build build
-build//test_step3_2
+build/test_step3_2
+```
+3. Test step 3.4 - Simulation engine
+```
+cmake -S . -B build
+cmake --build build
+build//test_step3_3 /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/firmware.elf
+```
+or with stubs
+```
+cmake -S . -B build
+cmake --build build
+build//test_step3_3 /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/firmware.elf /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/stub_info.txt
 ```
