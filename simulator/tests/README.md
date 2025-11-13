@@ -22,3 +22,10 @@ cmake -S . -B build
 cmake --build build
 build/test_step3_1 /home/anizme/Documents/AKA/Simulation/AKASimulator/akas_working_space/test_driver/firmware.elf
 ```
+
+2. Test step 3.2 - Memory mapping
+```
+cmake -S . -B build
+cmake --build build
+build//test_step3_2
+```

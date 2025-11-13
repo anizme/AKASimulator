@@ -5,6 +5,8 @@
 # Core module library
 add_library(simulator_core
     loader/ELFLoader.cpp
+    memory/MemoryManager.cpp
+    hooks/HookDispatcher.cpp
 )
 
 target_include_directories(simulator_core PUBLIC

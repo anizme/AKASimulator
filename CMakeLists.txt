@@ -37,4 +37,11 @@ if(BUILD_TESTS)
         simulator_core
     )
     add_test(NAME Step3_1Test COMMAND test_step3_1)
+
+        add_executable(test_step3_2 simulator/tests/test_step3_2_memory.cpp)
+    target_link_libraries(test_step3_2
+        simulator_core
+    )
+    add_test(NAME Step3_2Test COMMAND test_step3_2)
+    
 endif()
