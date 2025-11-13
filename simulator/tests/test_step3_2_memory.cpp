@@ -143,6 +143,7 @@ int main()
     if (!hook_result)
     {
         LOG_ERROR_F(logger) << "Failed: " << hook_result.errorMessage();
+        dispatcher.removeHooks();
         uc_close(uc);
         return 1;
     }
@@ -186,6 +187,7 @@ int main()
     }
 
     // Cleanup
+    dispatcher.removeHooks();
     uc_close(uc);
 
     LOG_INFO(logger, "\n=== All tests passed! ===");

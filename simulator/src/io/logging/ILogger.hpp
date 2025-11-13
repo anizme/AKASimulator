@@ -132,6 +132,10 @@ namespace Simulator
     Simulator::LogStream(logger, Simulator::ILogger::Level::Error, \
                          Simulator::LogLocation(__FILE__, __LINE__, __func__))
 
+#define LOG_WARNING_F(logger)                           \
+    Simulator::LogStream(logger, Simulator::ILogger::Level::Warning, \
+                         Simulator::LogLocation(__FILE__, __LINE__, __func__))
+
 // Helper class for formatted logging
 namespace Simulator
 {

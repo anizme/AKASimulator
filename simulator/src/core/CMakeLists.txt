@@ -7,6 +7,9 @@ add_library(simulator_core
     loader/ELFLoader.cpp
     memory/MemoryManager.cpp
     hooks/HookDispatcher.cpp
+    tracer/SimulationTracer.cpp
+    errors/ErrorDetector.cpp
+    stubs/StubManager.cpp
 )
 
 target_include_directories(simulator_core PUBLIC

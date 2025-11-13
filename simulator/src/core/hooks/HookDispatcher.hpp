@@ -74,7 +74,7 @@ namespace Simulator
         Result<void> setupHooks();
 
         /**
-         * @brief Remove all hooks
+         * @brief Remove all hooks. Remember calling this before calling uc_close!
          */
         void removeHooks();
 
