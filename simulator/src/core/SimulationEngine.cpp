@@ -71,7 +71,7 @@ namespace Simulator
         elf_loader_ = std::make_shared<ELFLoader>(uc_, logger_);
         hook_dispatcher_ = std::make_shared<HookDispatcher>(uc_, logger_);
 
-        LOG_INFO(logger_, "\n=== Initialization Complete ===");
+        LOG_INFO(logger_, "=== Initialization Complete ===");
 
         return Result<void>::Success();
     }
@@ -111,7 +111,7 @@ namespace Simulator
 
     Result<void> SimulationEngine::loadBinary(const std::string &elf_path)
     {
-        LOG_INFO(logger_, "\n=== Loading Binary ===");
+        LOG_INFO(logger_, "=== Loading Binary ===");
 
         if (!uc_initialized_)
         {
@@ -142,7 +142,7 @@ namespace Simulator
             return alias_result;
         }
 
-        LOG_INFO(logger_, "\n=== Binary Loaded Successfully ===");
+        LOG_INFO(logger_, "=== Binary Loaded Successfully ===");
 
         return Result<void>::Success();
     }
@@ -263,7 +263,7 @@ namespace Simulator
 
     Result<void> SimulationEngine::loadStubs(const std::string &stub_file)
     {
-        LOG_INFO(logger_, "\n=== Loading Stubs ===");
+        LOG_INFO(logger_, "=== Loading Stubs ===");
 
         if (!binary_loaded_)
         {
@@ -287,7 +287,7 @@ namespace Simulator
         }
 
         stubs_loaded_ = true;
-        LOG_INFO(logger_, "\n=== Stubs Loaded Successfully ===");
+        LOG_INFO(logger_, "=== Stubs Loaded Successfully ===");
 
         return Result<void>::Success();
     }
@@ -345,7 +345,7 @@ namespace Simulator
 
     Result<SimulationStatus> SimulationEngine::execute(const ExecutionConfig &config)
     {
-        LOG_INFO(logger_, "\n=== Starting Execution ===");
+        LOG_INFO(logger_, "=== Starting Execution ===");
 
         if (!binary_loaded_)
         {
@@ -441,7 +441,7 @@ namespace Simulator
         const std::string &testpath_file)
     {
 
-        LOG_INFO(logger_, "\n=== Generating Output Files ===");
+        LOG_INFO(logger_, "=== Generating Output Files ===");
 
         if (!tracer_)
         {

@@ -31,7 +31,7 @@ namespace Simulator
         }
 
         LOG_INFO(logger_, "========================================");
-        LOG_INFO(logger_, "   Embedded Firmware Simulator");
+        LOG_INFO(logger_, "            AKA Simulator");
         LOG_INFO(logger_, "========================================");
 
         // Step 2: Setup architecture
@@ -43,7 +43,7 @@ namespace Simulator
         }
 
         // Step 3: Create execution engine
-        LOG_INFO(logger_, "\n=== Creating Execution Engine ===");
+        LOG_INFO(logger_, "=== Creating Execution Engine ===");
         engine_ = std::make_unique<SimulationEngine>(architecture_, logger_);
 
         // Step 4: Initialize engine
@@ -55,7 +55,7 @@ namespace Simulator
         }
 
         // Step 5: Load binary
-        LOG_INFO(logger_, "\n=== Loading Binary ===");
+        LOG_INFO(logger_, "=== Loading Binary ===");
         auto load_result = engine_->loadBinary(config_.elf_file);
         if (!load_result)
         {
@@ -66,7 +66,7 @@ namespace Simulator
         // Step 6: Load stubs (optional)
         if (!config_.stub_file.empty())
         {
-            LOG_INFO(logger_, "\n=== Loading Stubs ===");
+            LOG_INFO(logger_, "=== Loading Stubs ===");
             auto stub_result = engine_->loadStubs(config_.stub_file);
             if (!stub_result)
             {
@@ -76,7 +76,7 @@ namespace Simulator
         }
 
         // Step 7: Execute
-        LOG_INFO(logger_, "\n=== Starting Simulation ===");
+        LOG_INFO(logger_, "=== Starting Simulation ===");
 
         ExecutionConfig exec_config;
         exec_config.instruction_limit = config_.instruction_limit;
@@ -97,7 +97,7 @@ namespace Simulator
         // Step 8: Generate outputs
         if (status == SimulationStatus::Success || status == SimulationStatus::Error)
         {
-            LOG_INFO(logger_, "\n=== Generating Output Files ===");
+            LOG_INFO(logger_, "=== Generating Output Files ===");
 
             auto output_result = engine_->generateOutputs(
                 config_.log_file,
@@ -112,7 +112,7 @@ namespace Simulator
         }
 
         // Step 9: Summary
-        LOG_INFO(logger_, "\n========================================");
+        LOG_INFO(logger_, "========================================");
         LOG_INFO(logger_, "   Simulation Summary");
         LOG_INFO(logger_, "========================================");
 
@@ -186,7 +186,7 @@ namespace Simulator
 
     Result<void> AKASimulator::setupArchitecture()
     {
-        LOG_INFO(logger_, "\n=== Setting up Architecture ===");
+        LOG_INFO(logger_, "=== Setting up Architecture ===");
 
         // Create requested architecture
         auto &factory = ArchitectureFactory::instance();

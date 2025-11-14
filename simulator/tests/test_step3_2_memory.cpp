@@ -190,7 +190,7 @@ int main()
     dispatcher.removeHooks();
     uc_close(uc);
 
-    LOG_INFO(logger, "\n=== All tests passed! ===");
+    LOG_INFO(logger, "=== All tests passed! ===");
 
     return 0;
 }

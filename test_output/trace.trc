@@ -1,9 +1,0 @@
-[
-  {
-    "tag": "Aka function calls: 2",
-    "actualName": "AKA_ACTUAL_OUTPUT",
-    "actualVal": "13",
-    "expectedName": "AKA_EXPECTED_OUTPUT",
-    "expectedVal": "0"
-  }
-]

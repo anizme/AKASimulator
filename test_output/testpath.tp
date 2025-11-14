@@ -1,6 +1,0 @@
-<<PRE-CALLING>> Test uut_int_manual_0
-Calling: ./stub/teststub.c/uut(int)
-lis===12###sois===155###eois===201###lif===1###soif===15###eoif===61###function===./stub/teststub.c/uut(int)
-lis===13###sois===161###eois===181###lif===2###soif===21###eoif===41###ins===true###function===./stub/teststub.c/uut(int)
-lis===14###sois===186###eois===199###lif===3###soif===46###eoif===59###ins===true###function===./stub/teststub.c/uut(int)
-Return from: ./stub/teststub.c/uut(int)

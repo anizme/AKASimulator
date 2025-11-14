@@ -26,7 +26,7 @@ namespace Simulator
 
             std::string getDescription() const override
             {
-                return "STM32F103C8T6 (ARM Cortex-M3, 64KB Flash, 20KB SRAM)";
+                return "STM32F103C8T6";
             }
 
             MemoryMapDescriptor getMemoryMap() const override

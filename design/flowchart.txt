@@ -1,0 +1,19 @@
+@startuml
+title Firmware Simulation Flow
+
+start
+:User Input;
+note right: Config + ELF
+
+:Simulator;
+:Architecture Setup;
+:Load Binary;
+:Initialize Engine;
+:Execute Firmware;
+:Collect Traces;
+:Generate Outputs;
+:Output Files;
+
+stop
+
+@enduml

@@ -137,7 +137,7 @@ int main() {
         std::cout << "  ✓ Composite logger works" << std::endl;
     }
     
-    std::cout << "\n=== All tests passed! ===" << std::endl;
+    std::cout << "=== All tests passed! ===" << std::endl;
     
     return 0;
 }

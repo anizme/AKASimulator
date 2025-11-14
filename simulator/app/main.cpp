@@ -1,6 +1,7 @@
 #include "AKASimulator.hpp"
 #include <iostream>
 #include <cstring>
+#include <filesystem>
 
 void printUsage(const char *program_name)
 {
@@ -32,9 +33,6 @@ int main(int argc, char *argv[])
 
     // Parse command line arguments
     SimulatorConfig config;
-    config.log_file = "execution.log";
-    config.trace_file = "trace.trc";
-    config.testpath_file = "testpath.tp";
 
     for (int i = 1; i < argc; ++i)
     {
@@ -116,6 +114,29 @@ int main(int argc, char *argv[])
             printUsage(argv[0]);
             return 1;
         }
+    }
+
+    if (!config.log_file.empty() && config.testpath_file.empty() && config.trace_file.empty())
+    {
+        std::filesystem::path p(config.log_file);                    // /a/b/c/name.log
+
+        std::filesystem::path parent = p.parent_path();              // /a/b/c
+        std::filesystem::path grandparent = parent.parent_path();    // /a/b
+        std::string name = p.stem().string();           // name
+
+        config.trace_file = (grandparent / "execution-results" / (name + ".trc")).string(); // /a/b/execution-results/name.trc
+
+        config.testpath_file = (grandparent / "test-paths" / (name + ".tp")).string();      // /a/b/test-paths/name.tp
+    }
+
+    if (config.log_file.empty()) {
+        config.log_file = "simulation.log";
+    }
+    if (config.testpath_file.empty()) {
+        config.testpath_file = "testpath.tp";
+    }
+    if (config.trace_file.empty()) {
+        config.trace_file = "trace.trc";
     }
 
     // Validate required arguments

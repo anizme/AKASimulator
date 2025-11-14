@@ -108,7 +108,7 @@ int main(int argc, char **argv)
         LOG_INFO_F(logger) << "  Markers: " << tracer->getMarkers().size();
     }
 
-    LOG_INFO(logger, "\n=== All tests passed! ===");
+    LOG_INFO(logger, "=== All tests passed! ===");
 
     return 0;
 }

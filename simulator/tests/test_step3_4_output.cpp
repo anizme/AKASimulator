@@ -74,12 +74,12 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    LOG_INFO(logger, "\n=== Check output files ===");
+    LOG_INFO(logger, "=== Check output files ===");
     LOG_INFO(logger, "  - test_output/execution.log");
     LOG_INFO(logger, "  - test_output/trace.trc");
     LOG_INFO(logger, "  - test_output/testpath.tp");
 
-    LOG_INFO(logger, "\n=== All tests passed! ===");
+    LOG_INFO(logger, "=== All tests passed! ===");
 
     return 0;
 }

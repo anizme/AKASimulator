@@ -140,7 +140,7 @@ int main()
         printBootInfo(arch->getBootDescriptor(), logger);
     }
 
-    LOG_INFO(logger, "\n=== All tests passed! ===");
+    LOG_INFO(logger, "=== All tests passed! ===");
 
     return 0;
 }
