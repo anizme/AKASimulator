@@ -20,7 +20,7 @@ AKA_Simulator is a chip simulator built on top of the **Unicorn Engine**, curren
 3. **Configuration** - Chip selection, (optional) execution limits, (optional) output paths
 
 ### Output
-1. **Execution log** (`*.log`) - Instruction-by-instruction trace with source mapping
+1. **Simulation log** (`*.log`) - Instruction-by-instruction trace with source mapping at simulation runtime
 2. **Trace file** (`*.trc`) - JSON format with assertion results
 3. **Test path** (`*.tp`) - Execution path markers for coverage analysis
 
@@ -144,6 +144,8 @@ Result Simulator::registerAllArchitectures() {
 }
 ```
 
+
+**Adding new chips:** Just implement descriptor - no code changes needed!
 ---
 
 ## Architecture
@@ -169,8 +171,6 @@ Architecture Module
         ├── STM32F103C8T6   # Cortex-M3, 128KB Flash, 20KB SRAM
         └── STM32F407VG     # Cortex-M4, 1MB Flash, 192KB SRAM
 ```
-
-**Adding new chips:** Just implement descriptor - no code changes needed!
 
 #### 2. **Core Engine Module** (Simulation Logic)
 Handles all execution and tracing.
