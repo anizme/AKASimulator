@@ -34,7 +34,7 @@ namespace Simulator
                 MemoryMapDescriptor map;
 
                 // Flash memory
-                map.addFlash(0x08000000, 128 * 1024); // 128KB - Some might say 64KB, but it depends on the variant
+                map.addFlash(0x08000000, 64 * 1024); // 64KB - Some might say 128KB, but it depends on the variant
 
                 // SRAM
                 map.addSRAM(0x20000000, 20 * 1024); // 20KB

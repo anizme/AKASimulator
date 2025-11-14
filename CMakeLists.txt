@@ -64,6 +64,10 @@ add_executable(AKASimulator
     simulator/app/main.cpp
 )
 
+set_target_properties(AKASimulator PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}
+)
+
 target_include_directories(AKASimulator PRIVATE
     simulator/include
     simulator/src
