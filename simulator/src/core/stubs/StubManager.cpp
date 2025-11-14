@@ -110,7 +110,11 @@ namespace Simulator
                                  << " to stub at " << Utils::formatHex(stub->stub_address);
 
             // Redirect PC to stub function (with Thumb bit set)
-            uint32_t stub_pc = stub->stub_address | 1;
+            if (isa == ISA::Thumb || isa == ISA::Thumb2)
+            {
+                stub->stub_address |= 1; // Set Thumb bit
+            }
+            uint32_t stub_pc = stub->stub_address;
             uc_reg_write(uc_, UC_ARM_REG_PC, &stub_pc);
         }
     }
@@ -158,9 +162,12 @@ namespace Simulator
                 type == ELFIO::STT_FUNC &&
                 section_index != ELFIO::SHN_UNDEF)
             {
+                if (isa == ISA::Thumb || isa == ISA::Thumb2)
+                {
+                    // Clear Thumb bit
+                    address = static_cast<Address>(value & ~1U);
+                }
 
-                // Clear Thumb bit
-                address = static_cast<Address>(value & ~1U);
                 return true;
             }
         }

@@ -65,6 +65,8 @@ namespace Simulator
          */
         size_t getStubCount() const { return stubs_.size(); }
 
+        ArchitectureType arch_type; // Enum for type
+        ISA isa;                    // Enum for ISA
     private:
         uc_engine *uc_;
         LoggerPtr logger_;
