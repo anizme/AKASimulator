@@ -5,6 +5,8 @@
 #include <sstream>
 #include <iomanip>
 #include <algorithm>
+#include <chrono>
+#include <ctime>
 
 namespace Simulator
 {
@@ -90,6 +92,19 @@ namespace Simulator
         {
             return str.size() >= suffix.size() &&
                    str.compare(str.size() - suffix.size(), suffix.size(), suffix) == 0;
+        }
+
+        inline std::string getCurrentTimestamp()
+        {
+            auto now = std::chrono::system_clock::now();
+            auto time = std::chrono::system_clock::to_time_t(now);
+
+            std::tm tm = *std::localtime(&time);
+
+            char buffer[32];
+            std::strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", &tm);
+
+            return std::string(buffer);
         }
 
     } // namespace Utils

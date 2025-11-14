@@ -1,6 +1,7 @@
 #pragma once
 
 #include "simulator/Types.hpp"
+#include "io/utils/StringUtils.hpp"
 #include <string>
 #include <memory>
 #include <sstream>

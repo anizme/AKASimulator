@@ -78,7 +78,7 @@ No simulation or execution logic.
 - ConfigurationManager — Read and validate config.json
 - Logging — Colored console & file logging (Debug → Error)
 - Output Writers
-- ExecutionLogWriter → execution.log
+- SimulationLogWriter → execution.log
 - TraceFileWriter → trace.trc
 - TestPathWriter → testpath.tp
 - Utilities — String formatting, file helpers, symbolizer wrapper
@@ -148,7 +148,7 @@ No simulation or execution logic.
 [8] I/O Module: Output Writers
      │ Fetch data from SimulationTracer
      │
-     ├──> ExecutionLogWriter.write(instruction_traces)
+     ├──> SimulationLogWriter.write(instruction_traces)
      │    → execution.log
      │
      ├──> TraceFileWriter.write(assertion_events)

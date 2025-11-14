@@ -106,6 +106,17 @@ namespace Simulator
          */
         void printRegisters() const;
 
+        /**
+         * @brief Generate output files
+         * @param log_file Execution log path
+         * @param trace_file Trace file path (JSON)
+         * @param testpath_file Test path file path
+         * @return Success or error
+         */
+        Result<void> generateOutputs(const std::string &log_file,
+                                     const std::string &trace_file,
+                                     const std::string &testpath_file);
+
     private:
         ArchitecturePtr architecture_;
         LoggerPtr logger_;
@@ -115,12 +126,12 @@ namespace Simulator
         bool uc_initialized_;
 
         // Components
-        std::unique_ptr<ELFLoader> elf_loader_;
-        std::unique_ptr<MemoryManager> memory_manager_;
-        std::unique_ptr<HookDispatcher> hook_dispatcher_;
-        std::unique_ptr<SimulationTracer> tracer_;
-        std::unique_ptr<ErrorDetector> error_detector_;
-        std::unique_ptr<StubManager> stub_manager_;
+        std::shared_ptr<ELFLoader> elf_loader_;
+        std::shared_ptr<MemoryManager> memory_manager_;
+        std::shared_ptr<HookDispatcher> hook_dispatcher_;
+        std::shared_ptr<SimulationTracer> tracer_;
+        std::shared_ptr<ErrorDetector> error_detector_;
+        std::shared_ptr<StubManager> stub_manager_;
 
         // State
         BinaryInfo binary_info_;

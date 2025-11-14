@@ -91,7 +91,7 @@ namespace Simulator
         char buffer[32];
         std::strftime(buffer, sizeof(buffer), "%H:%M:%S", &tm);
 
-        std::string result = buffer;
+        std::string result = Utils::getCurrentTimestamp();
 
         // Format milliseconds with leading zeros
         char ms_buffer[8];

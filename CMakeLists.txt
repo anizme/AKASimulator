@@ -50,5 +50,11 @@ if(BUILD_TESTS)
         simulator_core
     )
     add_test(NAME Step3_3Test COMMAND test_step3_3)
+
+    add_executable(test_step3_4 simulator/tests/test_step3_4_output.cpp)
+    target_link_libraries(test_step3_4
+        simulator_core
+    )
+    add_test(NAME Step3_5Test COMMAND test_step3_4)
     
 endif()

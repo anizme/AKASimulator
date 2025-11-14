@@ -1,6 +1,9 @@
 #include "SimulationEngine.hpp"
 #include "core/ArchitectureMapper.hpp"
 #include "io/utils/StringUtils.hpp"
+#include "io/writers/SimulationLogWriter.hpp"
+#include "io/writers/TraceFileWriter.hpp"
+#include "io/writers/TestPathWriter.hpp"
 
 namespace Simulator
 {
@@ -56,7 +59,7 @@ namespace Simulator
 
         // 2. Setup memory regions
         LOG_INFO(logger_, "\n[Step 2/4] Setting up memory regions...");
-        memory_manager_ = std::make_unique<MemoryManager>(uc_, architecture_, logger_);
+        memory_manager_ = std::make_shared<MemoryManager>(uc_, architecture_, logger_);
         auto mem_result = memory_manager_->setupMemoryRegions(boot_mode_);
         if (!mem_result)
         {
@@ -65,8 +68,8 @@ namespace Simulator
 
         // 3. Create components
         LOG_INFO(logger_, "\n[Step 3/4] Creating components...");
-        elf_loader_ = std::make_unique<ELFLoader>(uc_, logger_);
-        hook_dispatcher_ = std::make_unique<HookDispatcher>(uc_, logger_);
+        elf_loader_ = std::make_shared<ELFLoader>(uc_, logger_);
+        hook_dispatcher_ = std::make_shared<HookDispatcher>(uc_, logger_);
 
         LOG_INFO(logger_, "\n=== Initialization Complete ===");
 
@@ -267,7 +270,7 @@ namespace Simulator
             return Result<void>::Error("Binary not loaded. Call loadBinary() first.");
         }
 
-        stub_manager_ = std::make_unique<StubManager>(uc_, logger_);
+        stub_manager_ = std::make_shared<StubManager>(uc_, logger_);
 
         // Load stub definitions
         auto load_result = stub_manager_->loadStubFile(stub_file);
@@ -296,35 +299,35 @@ namespace Simulator
         // Create tracer
         if (config.enable_instruction_trace)
         {
-            tracer_ = std::make_unique<SimulationTracer>(
+            tracer_ = std::make_shared<SimulationTracer>(
                 uc_, binary_info_, logger_, cpu_descriptor_);
             auto tracer_result = tracer_->initialize();
             if (!tracer_result)
             {
                 return tracer_result;
             }
-            hook_dispatcher_->registerHandler(std::shared_ptr<IHookHandler>(std::move(tracer_)));
+            hook_dispatcher_->registerHandler(tracer_);
             LOG_DEBUG(logger_, "  ✓ Tracer registered");
         }
 
         // Create error detector
         if (config.enable_error_detection)
         {
-            error_detector_ = std::make_unique<ErrorDetector>(
+            error_detector_ = std::make_shared<ErrorDetector>(
                 uc_, binary_info_, logger_);
             auto error_result = error_detector_->initialize();
             if (!error_result)
             {
                 return error_result;
             }
-            hook_dispatcher_->registerHandler(std::shared_ptr<IHookHandler>(std::move(error_detector_)));
+            hook_dispatcher_->registerHandler(error_detector_);
             LOG_DEBUG(logger_, "  ✓ Error detector registered");
         }
 
         // Register stub manager
         if (config.enable_stubs && stubs_loaded_)
         {
-            hook_dispatcher_->registerHandler(std::shared_ptr<IHookHandler>(std::move(stub_manager_)));
+            hook_dispatcher_->registerHandler(stub_manager_);
             LOG_DEBUG(logger_, "  ✓ Stub manager registered");
         }
 
@@ -430,6 +433,73 @@ namespace Simulator
         LOG_INFO_F(logger_) << "  SP = " << Utils::formatHex(regs[13]);
         LOG_INFO_F(logger_) << "  LR = " << Utils::formatHex(regs[14]);
         LOG_INFO_F(logger_) << "  PC = " << Utils::formatHex(regs[15]);
+    }
+
+    Result<void> SimulationEngine::generateOutputs(
+        const std::string &log_file,
+        const std::string &trace_file,
+        const std::string &testpath_file)
+    {
+
+        LOG_INFO(logger_, "\n=== Generating Output Files ===");
+
+        if (!tracer_)
+        {
+            return Result<void>::Error("No tracer available. Enable instruction tracing.");
+        }
+
+        // 1. Execution log
+        if (!log_file.empty())
+        {
+            SimulationLogWriter log_writer(
+                log_file,
+                tracer_->getInstructionTraces(),
+                binary_info_,
+                logger_);
+
+            auto result = log_writer.write();
+            if (!result)
+            {
+                LOG_ERROR_F(logger_) << "Failed to write execution log: "
+                                     << result.errorMessage();
+            }
+        }
+
+        // 2. Trace file (JSON)
+        if (!trace_file.empty())
+        {
+            TraceFileWriter trace_writer(
+                trace_file,
+                tracer_->getAssertionEvents(),
+                logger_);
+
+            auto result = trace_writer.write();
+            if (!result)
+            {
+                LOG_ERROR_F(logger_) << "Failed to write trace file: "
+                                     << result.errorMessage();
+            }
+        }
+
+        // 3. Test path file
+        if (!testpath_file.empty())
+        {
+            TestPathWriter path_writer(
+                testpath_file,
+                tracer_->getMarkers(),
+                logger_);
+
+            auto result = path_writer.write();
+            if (!result)
+            {
+                LOG_ERROR_F(logger_) << "Failed to write test path file: "
+                                     << result.errorMessage();
+            }
+        }
+
+        LOG_INFO(logger_, "=== Output Generation Complete ===");
+
+        return Result<void>::Success();
     }
 
 } // namespace Simulator
