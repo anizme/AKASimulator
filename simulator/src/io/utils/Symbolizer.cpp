@@ -27,13 +27,12 @@ namespace Simulator
 
         // Parse output
         SourceInfo info = parseOutput(output);
-
         // Cache result (limit cache size to avoid memory issues)
         if (cache_.size() < 10000)
         {
             cache_[address] = info;
         }
-
+        
         return info;
     }
 

@@ -108,11 +108,14 @@ namespace Simulator
         // For detecting main return
         Address main_return_address_;
 
+        // Track previous instruction for parsing caller of AKA_mark, AKAS_assert
+        Address previous_instruction_address_;
+
         // Handle specific hooks
         void handleInstructionTrace(const CodeHookEvent &event);
-        void handleAssertU32(Address address);
-        void handleAssertU64(Address address);
-        void handleMark(Address address);
+        void handleAssertU32(Address caller_address);
+        void handleAssertU64(Address caller_address);
+        void handleMark(Address caller_address);
 
         // Disassemble instruction
         bool disassembleInstruction(const CodeHookEvent &event, InstructionTrace &trace);

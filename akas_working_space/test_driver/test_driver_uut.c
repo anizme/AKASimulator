@@ -19,23 +19,23 @@ int main()
 {
     //////////////// TEST SCRIPT //////////////////
 
-    // Test case name: uut_int_int_manual_0
+    // Test case name: uut_int_manual_0
 	
 
 
-int a=1;
+int v;
 
 
-int b=2;
+int AKA_EXPECTED_OUTPUT=0;
 
 /* RootDataNode STATIC */
-/* NormalNumberDataNode a */
-/* NormalNumberDataNode b */
+/* NormalNumberDataNode v */
+/* NormalNumberDataNode RETURN */
 
 
-	AKA_mark()/*<<PRE-CALLING>> Test uut_int_int_manual_0*/;uut(a,b);
-	AKA_fCall++;AKA_mark()/*Return from: ./simple-c/main.c/uut(int,int)*/;
-	/* error assertion */
+	AKA_mark()/*<<PRE-CALLING>> Test uut_int_manual_0*/;int AKA_ACTUAL_OUTPUT = uut(v);
+	AKA_fCall++;AKA_mark()/*Return from: ./stub/teststub.c/uut(int)*/;
+	AKAS_assert_u32(AKA_ACTUAL_OUTPUT, AKA_EXPECTED_OUTPUT);
 
 
 
@@ -44,5 +44,4 @@ int b=2;
     ///////////////////// END /////////////////////
     return 0;
 }
-
 

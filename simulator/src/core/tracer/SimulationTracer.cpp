@@ -14,7 +14,8 @@ namespace Simulator
         : uc_(uc), binary_info_(binary_info), logger_(logger),
           capstone_handle_(0), enable_instruction_trace_(true),
           instruction_count_(0), main_return_address_(0),
-          cpu_descriptor_(cpu_descriptor)
+          cpu_descriptor_(cpu_descriptor),
+          previous_instruction_address_(0)
     {
     }
 
@@ -55,6 +56,7 @@ namespace Simulator
         LOG_INFO(logger_, "SimulationTracer ready");
         return Result<void>::Success();
     }
+
     void SimulationTracer::onCodeExecution(const CodeHookEvent &event)
     {
         instruction_count_++;
@@ -84,19 +86,19 @@ namespace Simulator
         // Check for AKAS_assert_u32
         if (address == binary_info_.akas_assert_u32_address)
         {
-            handleAssertU32(address);
+            handleAssertU32(previous_instruction_address_);
         }
 
         // Check for AKAS_assert_u64
         if (address == binary_info_.akas_assert_u64_address)
         {
-            handleAssertU64(address);
+            handleAssertU64(previous_instruction_address_);
         }
 
         // Check for AKA_mark
         if (address == binary_info_.aka_mark_address)
         {
-            handleMark(address);
+            handleMark(previous_instruction_address_);
         }
 
         // Trace instruction
@@ -104,6 +106,9 @@ namespace Simulator
         {
             handleInstructionTrace(event);
         }
+
+        // Save current address as previous for next instruction
+        previous_instruction_address_ = address;
     }
 
     void SimulationTracer::handleInstructionTrace(const CodeHookEvent &event)

@@ -46,7 +46,7 @@ namespace Simulator
 
     Result<void> SimulationEngine::initialize(BootMode boot_mode)
     {
-        LOG_INFO(logger_, "=== Initializing Execution Engine ===");
+        LOG_INFO(logger_, "=== Initializing Simulation Engine ===");
 
         boot_mode_ = boot_mode;
 

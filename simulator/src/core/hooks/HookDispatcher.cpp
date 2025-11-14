@@ -37,8 +37,6 @@ namespace Simulator
         LOG_DEBUG(logger_, "  ✓ Code hook installed");
 
         // Setup memory hook (for invalid access detection)
-        // Commenting out for now as it can be very verbose
-        /*
         err = uc_hook_add(uc_, &memory_hook_,
                          UC_HOOK_MEM_READ_UNMAPPED | UC_HOOK_MEM_WRITE_UNMAPPED,
                          (void*)memoryHookCallback, this, 1, 0);
@@ -49,7 +47,6 @@ namespace Simulator
         }
 
         LOG_DEBUG(logger_, "  ✓ Memory hook installed");
-        */
 
         hooks_installed_ = true;
         LOG_INFO(logger_, "Hooks setup complete");
