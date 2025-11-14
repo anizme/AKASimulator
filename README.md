@@ -55,17 +55,17 @@ This script should be changed if you already had ELF file, just comment out the 
 ## Usuage Examples
 1. Basic usage:
 ```
-AKASimulator --chip stm32f103c8t6 --elf <path_to_elf_file>
+./AKASimulator --chip stm32f103c8t6 --elf <path_to_elf_file>
 ```
 
 2. With stubs:
 ```
-AKASimulator --chip stm32f103c8t6 --elf <path_to_file_file> --stub <path_to_stub_info_file>
+./AKASimulator --chip stm32f103c8t6 --elf <path_to_file_file> --stub <path_to_stub_info_file>
 ```
 
 3. Custom output files
 ```
-AKASimulator --chip stm32f103c8t6 \
+./AKASimulator --chip stm32f103c8t6 \
      --elf firmware.elf \
      --log output/my_execution.log \
      --trace output/my_trace.trc \
@@ -74,7 +74,7 @@ AKASimulator --chip stm32f103c8t6 \
 
 4. Custom limits
 ```
-AKASimulator --chip stm32f103c8t6 \
+./AKASimulator --chip stm32f103c8t6 \
      --elf firmware.elf \
      --limit 500000 \
      --timeout 30000
@@ -82,7 +82,7 @@ AKASimulator --chip stm32f103c8t6 \
 
 5. Disable features
 ```
-AKASimulator --chip stm32f103c8t6 \
+./AKASimulator --chip stm32f103c8t6 \
      --elf firmware.elf \
      --no-trace \
      --no-error-detect
