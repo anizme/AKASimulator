@@ -406,37 +406,6 @@ namespace Simulator
         return Result<SimulationStatus>::Error(error_msg);
     }
 
-    void SimulationEngine::printRegisters() const
-    {
-        if (!uc_initialized_)
-        {
-            LOG_WARNING(logger_, "Engine not initialized");
-            return;
-        }
-
-        LOG_INFO(logger_, "=== Register State ===");
-
-        uint32_t regs[16];
-        int reg_ids[] = {
-            UC_ARM_REG_R0, UC_ARM_REG_R1, UC_ARM_REG_R2, UC_ARM_REG_R3,
-            UC_ARM_REG_R4, UC_ARM_REG_R5, UC_ARM_REG_R6, UC_ARM_REG_R7,
-            UC_ARM_REG_R8, UC_ARM_REG_R9, UC_ARM_REG_R10, UC_ARM_REG_R11,
-            UC_ARM_REG_R12, UC_ARM_REG_SP, UC_ARM_REG_LR, UC_ARM_REG_PC};
-
-        for (int i = 0; i < 16; ++i)
-        {
-            uc_reg_read(uc_, reg_ids[i], &regs[i]);
-        }
-
-        for (int i = 0; i < 13; ++i)
-        {
-            LOG_INFO_F(logger_) << "  R" << i << " = " << Utils::formatHex(regs[i]);
-        }
-        LOG_INFO_F(logger_) << "  SP = " << Utils::formatHex(regs[13]);
-        LOG_INFO_F(logger_) << "  LR = " << Utils::formatHex(regs[14]);
-        LOG_INFO_F(logger_) << "  PC = " << Utils::formatHex(regs[15]);
-    }
-
     Result<void> SimulationEngine::generateOutputs(
         const std::string &log_file,
         const std::string &trace_file,

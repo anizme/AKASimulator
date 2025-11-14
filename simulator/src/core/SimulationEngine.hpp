@@ -102,11 +102,6 @@ namespace Simulator
         ErrorDetector *getErrorDetector() { return error_detector_.get(); }
 
         /**
-         * @brief Print register state
-         */
-        void printRegisters() const;
-
-        /**
          * @brief Generate output files
          * @param log_file Execution log path
          * @param trace_file Trace file path (JSON)

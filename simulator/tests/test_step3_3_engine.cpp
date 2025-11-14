@@ -96,7 +96,6 @@ int main(int argc, char **argv)
 
     // Print final state
     LOG_INFO(logger, "\n[Test 6] Final state");
-    engine.printRegisters();
 
     // Print trace summary
     if (engine.getTracer())

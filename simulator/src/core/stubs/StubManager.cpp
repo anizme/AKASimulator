@@ -101,21 +101,52 @@ namespace Simulator
     void StubManager::onCodeExecution(const CodeHookEvent &event)
     {
         // Check if this address is a stubbed function
+        // auto it = address_to_stub_.find(event.address);
+        // if (it != address_to_stub_.end())
+        // {
+        //     FunctionStub *stub = it->second;
+
+        //     LOG_DEBUG_F(logger_) << "Redirecting " << stub->function_name
+        //                          << " to stub at " << Utils::formatHex(stub->stub_address);
+
+        //     // Redirect PC to stub function (with Thumb bit set)
+        //     if (isa == ISA::Thumb || isa == ISA::Thumb2)
+        //     {
+        //         stub->stub_address |= 1; // Set Thumb bit
+        //     }
+        //     uint32_t stub_pc = stub->stub_address;
+        //     uc_reg_write(uc_, UC_ARM_REG_PC, &stub_pc);
+        // }
+
         auto it = address_to_stub_.find(event.address);
         if (it != address_to_stub_.end())
         {
             FunctionStub *stub = it->second;
 
-            LOG_DEBUG_F(logger_) << "Redirecting " << stub->function_name
-                                 << " to stub at " << Utils::formatHex(stub->stub_address);
+            // DEBUG: Read current registers
+            uint32_t pc, lr, sp, r0;
+            uc_reg_read(uc_, UC_ARM_REG_PC, &pc);
+            uc_reg_read(uc_, UC_ARM_REG_LR, &lr);
+            uc_reg_read(uc_, UC_ARM_REG_SP, &sp);
+            uc_reg_read(uc_, UC_ARM_REG_R0, &r0);
 
-            // Redirect PC to stub function (with Thumb bit set)
-            if (isa == ISA::Thumb || isa == ISA::Thumb2)
-            {
-                stub->stub_address |= 1; // Set Thumb bit
-            }
-            uint32_t stub_pc = stub->stub_address;
+            LOG_DEBUG(logger_, "=== STUB REDIRECTION DEBUG ===");
+            LOG_DEBUG_F(logger_) << "Function: " << stub->function_name;
+            LOG_DEBUG_F(logger_) << "Original addr: " << Utils::formatHex(stub->function_address);
+            LOG_DEBUG_F(logger_) << "Stub addr: " << Utils::formatHex(stub->stub_address);
+            LOG_DEBUG_F(logger_) << "Current PC: " << Utils::formatHex(pc);
+            LOG_DEBUG_F(logger_) << "Current LR: " << Utils::formatHex(lr);
+            LOG_DEBUG_F(logger_) << "Current SP: " << Utils::formatHex(sp);
+            LOG_DEBUG_F(logger_) << "Current R0: " << r0;
+
+            // Redirect PC
+            uint32_t stub_pc = stub->stub_address | 1;
             uc_reg_write(uc_, UC_ARM_REG_PC, &stub_pc);
+
+            // Verify
+            uc_reg_read(uc_, UC_ARM_REG_PC, &pc);
+            LOG_DEBUG_F(logger_) << "New PC: " << Utils::formatHex(pc);
+            LOG_DEBUG(logger_, "=== END DEBUG ===");
         }
     }
 
