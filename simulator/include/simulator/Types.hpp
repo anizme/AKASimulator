@@ -81,7 +81,7 @@ namespace Simulator
         Unknown
     };
 
-    enum class ExecutionStatus
+    enum class SimulationStatus
     {
         NotStarted,
         Running,

@@ -343,20 +343,20 @@ namespace Simulator
         return Result<void>::Success();
     }
 
-    Result<ExecutionStatus> SimulationEngine::execute(const ExecutionConfig &config)
+    Result<SimulationStatus> SimulationEngine::execute(const ExecutionConfig &config)
     {
         LOG_INFO(logger_, "\n=== Starting Execution ===");
 
         if (!binary_loaded_)
         {
-            return Result<ExecutionStatus>::Error("No binary loaded");
+            return Result<SimulationStatus>::Error("No binary loaded");
         }
 
         // Setup hooks
         auto hook_result = setupHooks(config);
         if (!hook_result)
         {
-            return Result<ExecutionStatus>::Error(
+            return Result<SimulationStatus>::Error(
                 "Failed to setup hooks: " + hook_result.errorMessage());
         }
 
@@ -381,13 +381,13 @@ namespace Simulator
         {
             LOG_ERROR_F(logger_) << "Execution error: "
                                  << error_detector_->getErrorMessage();
-            return Result<ExecutionStatus>::Success(ExecutionStatus::Error);
+            return Result<SimulationStatus>::Success(SimulationStatus::Error);
         }
 
         if (err == UC_ERR_OK)
         {
             LOG_INFO(logger_, "✓ Execution completed successfully");
-            return Result<ExecutionStatus>::Success(ExecutionStatus::Success);
+            return Result<SimulationStatus>::Success(SimulationStatus::Success);
         }
 
         // Handle Unicorn errors
@@ -397,11 +397,11 @@ namespace Simulator
             err == UC_ERR_FETCH_UNMAPPED)
         {
             LOG_ERROR_F(logger_) << "Memory access error: " << error_msg;
-            return Result<ExecutionStatus>::Success(ExecutionStatus::Error);
+            return Result<SimulationStatus>::Success(SimulationStatus::Error);
         }
 
         LOG_ERROR_F(logger_) << "Unicorn error: " << error_msg;
-        return Result<ExecutionStatus>::Error(error_msg);
+        return Result<SimulationStatus>::Error(error_msg);
     }
 
     void SimulationEngine::printRegisters() const

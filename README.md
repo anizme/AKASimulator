@@ -10,7 +10,7 @@ It executes ELF binaries compiled from embedded source code and produces:
 ---
 ## Input  
 1. Path to ELF file
-2. Path for output of simulator
+2. (Optional) Path for output of simulator
 3. (Optional) Path to stub_info file
 ---
 ## Output  
@@ -35,13 +35,51 @@ This script should be changed if you already had ELF file, just comment out the 
 ```bash
 ./script.sh
 ```
+## Usuage Examples
+1. Basic usage:
+```
+build/AKASimulator --chip stm32f103c8t6 --elf <path_to_elf_file>
+```
+
+2. With stubs:
+```
+build/AKASimulator --chip stm32f103c8t6 --elf <path_to_file_file> --stub <path_to_stub_info_file>
+```
+
+3. Custom output files
+```
+build/AKASimulator --chip stm32f103c8t6 \
+     --elf firmware.elf \
+     --log output/my_execution.log \
+     --trace output/my_trace.trc \
+     --testpath output/my_path.tp
+```
+
+4. Custom limits
+```
+build/AKASimulator --chip stm32f103c8t6 \
+     --elf firmware.elf \
+     --limit 500000 \
+     --timeout 30000
+```
+
+5. Disable features
+```
+build/AKASimulator --chip stm32f103c8t6 \
+     --elf firmware.elf \
+     --no-trace \
+     --no-error-detect
+```
+
+Any many other combinations of flags, using --help for details
+
 ---
 ## Project Structure
 ```
 akas/
 ├── core/ # All simulation logic
 ├── architecture/ # Chip architecture metadata
-└── io_utils/ # Configuration, file I/O, utilities
+└── io/ # Configuration, file I/O, utilities
 ```
 
 ## Modules

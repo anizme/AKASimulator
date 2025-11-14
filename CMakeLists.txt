@@ -15,7 +15,7 @@ add_subdirectory(lib/libdwarf)
 add_subdirectory(simulator)
 
 # Options
-option(BUILD_TESTS "Build tests" ON)
+option(BUILD_TESTS "Build tests" OFF)
 
 # Tests
 if(BUILD_TESTS)
@@ -58,3 +58,18 @@ if(BUILD_TESTS)
     add_test(NAME Step3_5Test COMMAND test_step3_4)
     
 endif()
+
+add_executable(AKASimulator
+    simulator/app/AKASimulator.cpp
+    simulator/app/main.cpp
+)
+
+target_include_directories(AKASimulator PRIVATE
+    simulator/include
+    simulator/src
+    simulator/app
+)
+
+target_link_libraries(AKASimulator PRIVATE
+    simulator_core
+)

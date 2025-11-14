@@ -91,7 +91,7 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    ExecutionStatus status = exec_result.value();
+    SimulationStatus status = exec_result.value();
     LOG_INFO_F(logger) << "  Execution status: " << static_cast<int>(status);
 
     // Print final state

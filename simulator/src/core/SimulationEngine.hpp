@@ -84,7 +84,7 @@ namespace Simulator
          * @param config Execution configuration
          * @return Execution status
          */
-        Result<ExecutionStatus> execute(const ExecutionConfig &config = ExecutionConfig());
+        Result<SimulationStatus> execute(const ExecutionConfig &config = ExecutionConfig());
 
         /**
          * @brief Get binary info
