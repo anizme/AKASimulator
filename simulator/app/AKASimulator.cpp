@@ -23,16 +23,16 @@ namespace Simulator
 
     Result<SimulationStatus> AKASimulator::run()
     {
-        LOG_INFO(logger_, "========================================");
-        LOG_INFO(logger_, "   Embedded Firmware Simulator");
-        LOG_INFO(logger_, "========================================");
-
         // Step 1: Setup logger
         auto logger_result = setupLogger();
         if (!logger_result)
         {
             return Result<SimulationStatus>::Error(logger_result.errorMessage());
         }
+
+        LOG_INFO(logger_, "========================================");
+        LOG_INFO(logger_, "   Embedded Firmware Simulator");
+        LOG_INFO(logger_, "========================================");
 
         // Step 2: Setup architecture
         auto arch_result = setupArchitecture();
