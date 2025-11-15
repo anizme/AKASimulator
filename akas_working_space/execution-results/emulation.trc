@@ -1,9 +1,9 @@
 [
   {
-    "tag": "Aka function calls: 2",
-    "actualName": "AKA_ACTUAL_OUTPUT",
-    "actualVal": "13",
-    "expectedName": "AKA_EXPECTED_OUTPUT",
-    "expectedVal": "0"
+    "tag": "Aka function calls: 0",
+    "actualName": "x",
+    "actualVal": "0",
+    "expectedName": "1",
+    "expectedVal": "1"
   }
 ]

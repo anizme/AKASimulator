@@ -15,11 +15,15 @@ int AKA_fCall = 0;
 
 
 int main(void) {
+    AKA_mark()/*Hello*/;
     gpio_init();
+    int x = 0;
+    int x_EXPECTED = 1;
+    AKAS_assert_u32(x, 1);
 
     // Gọi từng hàm một để test lỗi
-    // cause_divide_by_zero();          // lỗi chia 0
-    cause_null_pointer_deref();   // lỗi con trỏ NULL
+    cause_divide_by_zero();          // lỗi chia 0
+    // cause_null_pointer_deref();   // lỗi con trỏ NULL
     // cause_stack_overflow();       // lỗi tràn stack
     // cause_function_pointer_crash(); // gọi vào địa chỉ rác
 

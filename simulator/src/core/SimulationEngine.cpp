@@ -363,7 +363,11 @@ namespace Simulator
         }
 
         // Get entry point
-        Address entry = binary_info_.entry_point | 1; // Set Thumb bit
+        Address entry = binary_info_.entry_point;
+        if (cpu_descriptor_.isa != ISA::Thumb || cpu_descriptor_.isa == ISA::Thumb2)
+        {
+            entry = binary_info_.entry_point | 1;
+        }
 
         LOG_INFO_F(logger_) << "Entry point: " << Utils::formatHex(entry);
         LOG_INFO_F(logger_) << "Instruction limit: "
@@ -383,7 +387,8 @@ namespace Simulator
         {
             LOG_ERROR_F(logger_) << "Execution error: "
                                  << error_detector_->getErrorMessage();
-            return Result<SimulationStatus>::Success(SimulationStatus::Error);
+            return Result<SimulationStatus>::Success(SimulationStatus::Error, 
+                error_detector_->getErrorMessage() + " #AT " + tracer_->getInstructionTraces().back().source_info.toString());
         }
 
         if (err == UC_ERR_OK)
@@ -393,17 +398,10 @@ namespace Simulator
         }
 
         // Handle Unicorn errors
-        std::string error_msg = uc_strerror(err);
-
-        if (err == UC_ERR_READ_UNMAPPED || err == UC_ERR_WRITE_UNMAPPED ||
-            err == UC_ERR_FETCH_UNMAPPED)
-        {
-            LOG_ERROR_F(logger_) << "Memory access error: " << error_msg;
-            return Result<SimulationStatus>::Success(SimulationStatus::Error);
-        }
+        std::string error_msg = std::string(uc_strerror(err)) + " at " + tracer_->getInstructionTraces().back().source_info.toString();
 
         LOG_ERROR_F(logger_) << "Unicorn error: " << error_msg;
-        return Result<SimulationStatus>::Error(error_msg);
+        return Result<SimulationStatus>::Success(SimulationStatus::Error, error_msg);
     }
 
     Result<void> SimulationEngine::generateOutputs(

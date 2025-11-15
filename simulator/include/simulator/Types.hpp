@@ -120,6 +120,15 @@ namespace Simulator
             return r;
         }
 
+        static Result<T> Success(T value, const std::string &message)
+        {
+            Result<T> r;
+            r.success_ = true;
+            r.value_ = std::move(value);
+            r.error_message_ = message;
+            return r;
+        }
+        
         // Error constructor
         static Result<T> Error(const std::string &message)
         {
@@ -174,6 +183,14 @@ namespace Simulator
     class Result<void>
     {
     public:
+        static Result<void> Success(const std::string &message)
+        {
+            Result<void> r;
+            r.success_ = true;
+            r.error_message_ = message;
+            return r;
+        }
+
         static Result<void> Success()
         {
             Result<void> r;

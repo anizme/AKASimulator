@@ -3,6 +3,7 @@
 #include "io/logging/ConsoleLogger.hpp"
 #include "io/logging/FileLogger.hpp"
 #include "io/logging/CompositeLogger.hpp"
+#include "io/writers/ResultWriter.hpp"
 #include "core/ArchitectureMapper.hpp"
 #include "architecture/arm/chips/STM32F103C8T6.hpp"
 #include "architecture/arm/chips/STM32F407VG.hpp"
@@ -85,7 +86,11 @@ namespace Simulator
         exec_config.enable_error_detection = config_.enable_error_detection;
         exec_config.enable_stubs = !config_.stub_file.empty();
 
+        ResultWriter result_writer_;
+
         auto exec_result = engine_->execute(exec_config);
+
+        result_writer_.write(exec_result, config_.log_file);
         if (!exec_result)
         {
             LOG_ERROR_F(logger_) << "Execution failed: " << exec_result.errorMessage();
@@ -123,11 +128,8 @@ namespace Simulator
             break;
         case SimulationStatus::Error:
             LOG_ERROR(logger_, "Status: ERROR");
-            if (engine_->getErrorDetector() && engine_->getErrorDetector()->hasError())
-            {
                 LOG_ERROR_F(logger_) << "Error: "
-                                     << engine_->getErrorDetector()->getErrorMessage();
-            }
+                                     << exec_result.errorMessage();
             break;
         case SimulationStatus::Timeout:
             LOG_WARNING(logger_, "Status: TIMEOUT");

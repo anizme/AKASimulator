@@ -5,6 +5,7 @@ add_library(simulator_io
     writers/SimulationLogWriter.cpp
     writers/TraceFileWriter.cpp
     writers/TestPathWriter.cpp
+    writers/ResultWriter.cpp
 )
 
 target_include_directories(simulator_io PUBLIC
