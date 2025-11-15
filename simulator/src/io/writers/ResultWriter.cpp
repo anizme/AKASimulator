@@ -157,7 +157,7 @@ namespace Simulator
         std::string directory = getDirectory(logFilePath);
         std::string fileName = extractFileName(logFilePath);
 
-        return directory + "AKAS_SIMULATED_RESULT_" + fileName + ".json";
+        return directory + "AKA_SIMULATED_RESULT_" + fileName + ".json";
     }
 
     std::string ResultWriter::extractLocation(const std::string &message) const
