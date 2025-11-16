@@ -41,8 +41,9 @@ namespace Simulator
 
             if (!message.empty())
             {
+                std::string messageWithoutErrLocation = message.substr(0, message.find("#AT"));
                 outFile << ",\n";
-                outFile << "  \"Message\": \"" << escapeJsonString(message) << "\"";
+                outFile << "  \"Message\": \"" << escapeJsonString(messageWithoutErrLocation) << "\"";
 
                 // Add Location field for Error status
                 if (status == "Error")
