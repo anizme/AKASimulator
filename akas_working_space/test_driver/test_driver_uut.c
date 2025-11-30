@@ -1,8 +1,10 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdbool.h>
-#include "akas_source/main.c"  
-// #include "stub.h"
+#include "./akas_source/main.c"
+#include "stub.h"
+
+
 
 
 int AKA_mark() {return 1;}
@@ -14,19 +16,37 @@ void AKAS_assert_u64(uint64_t actual, uint64_t expected) {}
 int AKA_fCall = 0;
 
 
-int main(void) {
-    AKA_mark()/*Hello*/;
-    gpio_init();
-    int x = 0;
-    int x_EXPECTED = 1;
-    AKAS_assert_u32(x, 1);
 
-    // Gọi từng hàm một để test lỗi
-    cause_divide_by_zero();          // lỗi chia 0
-    // cause_null_pointer_deref();   // lỗi con trỏ NULL
-    // cause_stack_overflow();       // lỗi tràn stack
-    // cause_function_pointer_crash(); // gọi vào địa chỉ rác
+int main()
+{
+    //////////////// TEST SCRIPT //////////////////
 
-    set_led(1); // nếu tới đây, tức là không lỗi
+    // Test case name: uut_int_manual_0
+		AKA_mark()/*BEGIN OF UUT_INT_MANUAL_0*/;
+	
+
+
+int v=90;
+
+
+int AKA_EXPECTED_OUTPUT;
+
+/* RootDataNode STATIC */
+/* NormalNumberDataNode v */
+/* NormalNumberDataNode RETURN */
+
+
+	AKA_mark()/*<<PRE-CALLING>> Test uut_int_manual_0*/;int AKA_ACTUAL_OUTPUT = uut(v);
+	AKA_fCall++;AKA_mark()/*Return from: ./simple-c/main.c/uut(int)*/;
+	
+
+	AKA_mark()/*END OF UUT_INT_MANUAL_0*/;
+
+
+
+
+    ///////////////////// END /////////////////////
     return 0;
 }
+
+

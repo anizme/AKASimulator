@@ -1,0 +1,207 @@
+[2025-11-30 17:06:09] [INFO ] ========================================
+[2025-11-30 17:06:09] [INFO ]             AKA Simulator
+[2025-11-30 17:06:09] [INFO ] ========================================
+[2025-11-30 17:06:09] [INFO ] === Setting up Architecture ===
+[2025-11-30 17:06:09] [INFO ]   Chip: STM32F103C8T6
+[2025-11-30 17:06:09] [INFO ]   CPU: ARM Cortex-M3 (Thumb-2)
+[2025-11-30 17:06:09] [INFO ]   Flash: 64 KB
+[2025-11-30 17:06:09] [INFO ]   SRAM: 20 KB
+[2025-11-30 17:06:09] [INFO ] === Creating Execution Engine ===
+[2025-11-30 17:06:09] [INFO ] === Initializing Simulation Engine ===
+[2025-11-30 17:06:09] [INFO ] 
+[Step 1/4] Initializing Unicorn Engine...
+[2025-11-30 17:06:09] [DEBUG]   CPU: ARM Cortex-M3 (Thumb-2)
+[2025-11-30 17:06:09] [DEBUG]   Unicorn arch=1, mode=16
+[2025-11-30 17:06:09] [INFO ]   ✓ Unicorn initialized
+[2025-11-30 17:06:09] [INFO ] 
+[Step 2/4] Setting up memory regions...
+[2025-11-30 17:06:09] [INFO ] Setting up memory regions...
+[2025-11-30 17:06:09] [DEBUG] Mapping Flash at 0x08000000 (size: 64 KB, perm: 5)
+[2025-11-30 17:06:09] [DEBUG] Mapping SRAM at 0x20000000 (size: 20 KB, perm: 3)
+[2025-11-30 17:06:09] [DEBUG] Mapping SystemMemory at 0x1ffff000 (size: 2 KB, perm: 5)
+[2025-11-30 17:06:09] [DEBUG] Mapping OptionBytes at 0x1ffff800 (size: 1 KB, perm: 1)
+[2025-11-30 17:06:09] [DEBUG] Mapping APB1_TIM2 at 0x40000000 (size: 1 KB, perm: 3)
+[2025-11-30 17:06:09] [DEBUG] Mapping APB1_TIM3 at 0x40000400 (size: 1 KB, perm: 3)
+[2025-11-30 17:06:09] [DEBUG] Mapping APB1_TIM4 at 0x40000800 (size: 1 KB, perm: 3)
+[2025-11-30 17:06:09] [DEBUG] Mapping APB1_RTC at 0x40002800 (size: 1 KB, perm: 3)
+[2025-11-30 17:06:09] [DEBUG] Mapping APB1_WWDG at 0x40002c00 (size: 1 KB, perm: 3)
+[2025-11-30 17:06:09] [DEBUG] Mapping APB1_IWDG at 0x40003000 (size: 1 KB, perm: 3)
+[2025-11-30 17:06:09] [DEBUG] Mapping APB1_SPI2 at 0x40003800 (size: 1 KB, perm: 3)
+[2025-11-30 17:06:09] [DEBUG] Mapping APB1_USART2 at 0x40004400 (size: 1 KB, perm: 3)
+[2025-11-30 17:06:09] [DEBUG] Mapping APB1_USART3 at 0x40004800 (size: 1 KB, perm: 3)
+[2025-11-30 17:06:09] [DEBUG] Mapping APB1_I2C1 at 0x40005400 (size: 1 KB, perm: 3)
+[2025-11-30 17:06:09] [DEBUG] Mapping APB1_I2C2 at 0x40005800 (size: 1 KB, perm: 3)
+[2025-11-30 17:06:09] [DEBUG] Mapping APB1_USB at 0x40005c00 (size: 1 KB, perm: 3)
+[2025-11-30 17:06:09] [DEBUG] Mapping APB1_CAN at 0x40006400 (size: 1 KB, perm: 3)
+[2025-11-30 17:06:09] [DEBUG] Mapping APB1_BKP at 0x40006c00 (size: 1 KB, perm: 3)
+[2025-11-30 17:06:09] [DEBUG] Mapping APB1_PWR at 0x40007000 (size: 1 KB, perm: 3)
+[2025-11-30 17:06:09] [DEBUG] Mapping APB2_AFIO at 0x40010000 (size: 1 KB, perm: 3)
+[2025-11-30 17:06:09] [DEBUG] Mapping APB2_EXTI at 0x40010400 (size: 1 KB, perm: 3)
+[2025-11-30 17:06:09] [DEBUG] Mapping APB2_GPIOA at 0x40010800 (size: 1 KB, perm: 3)
+[2025-11-30 17:06:09] [DEBUG] Mapping APB2_GPIOB at 0x40010c00 (size: 1 KB, perm: 3)
+[2025-11-30 17:06:09] [DEBUG] Mapping APB2_GPIOC at 0x40011000 (size: 1 KB, perm: 3)
+[2025-11-30 17:06:09] [DEBUG] Mapping APB2_GPIOD at 0x40011400 (size: 1 KB, perm: 3)
+[2025-11-30 17:06:09] [DEBUG] Mapping APB2_GPIOE at 0x40011800 (size: 1 KB, perm: 3)
+[2025-11-30 17:06:09] [DEBUG] Mapping APB2_ADC1 at 0x40012400 (size: 1 KB, perm: 3)
+[2025-11-30 17:06:09] [DEBUG] Mapping APB2_ADC2 at 0x40012800 (size: 1 KB, perm: 3)
+[2025-11-30 17:06:09] [DEBUG] Mapping APB2_TIM1 at 0x40012c00 (size: 1 KB, perm: 3)
+[2025-11-30 17:06:09] [DEBUG] Mapping APB2_SPI1 at 0x40013000 (size: 1 KB, perm: 3)
+[2025-11-30 17:06:09] [DEBUG] Mapping APB2_USART1 at 0x40013800 (size: 1 KB, perm: 3)
+[2025-11-30 17:06:09] [DEBUG] Mapping AHB_DMA1 at 0x40020000 (size: 1 KB, perm: 3)
+[2025-11-30 17:06:09] [DEBUG] Mapping AHB_RCC at 0x40021000 (size: 1 KB, perm: 3)
+[2025-11-30 17:06:09] [DEBUG] Mapping AHB_FLASH at 0x40022000 (size: 1 KB, perm: 3)
+[2025-11-30 17:06:09] [DEBUG] Mapping AHB_CRC at 0x40023000 (size: 1 KB, perm: 3)
+[2025-11-30 17:06:09] [DEBUG] Mapping NVIC at 0xe000e000 (size: 4 KB, perm: 3)
+[2025-11-30 17:06:09] [INFO ] Setting up boot alias for mode: 0
+[2025-11-30 17:06:09] [INFO ]   Boot from Flash
+[2025-11-30 17:06:09] [DEBUG]   Boot alias: 0x00000000 -> 0x08000000 (size: 512 KB)
+[2025-11-30 17:06:09] [INFO ]   ✓ Boot alias mapped
+[2025-11-30 17:06:09] [INFO ] Memory setup complete
+[2025-11-30 17:06:09] [INFO ] Memory Layout:
+[2025-11-30 17:06:09] [INFO ]   Flash: 0x08000000 - 0x0800ffff (64 KB) [RX]
+[2025-11-30 17:06:09] [INFO ]   SRAM: 0x20000000 - 0x20004fff (20 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   SystemMemory: 0x1ffff000 - 0x1ffff7ff (2 KB) [RX]
+[2025-11-30 17:06:09] [INFO ]   OptionBytes: 0x1ffff800 - 0x1ffffbff (1 KB) [R]
+[2025-11-30 17:06:09] [INFO ]   APB1_TIM2: 0x40000000 - 0x400003ff (1 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   APB1_TIM3: 0x40000400 - 0x400007ff (1 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   APB1_TIM4: 0x40000800 - 0x40000bff (1 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   APB1_RTC: 0x40002800 - 0x40002bff (1 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   APB1_WWDG: 0x40002c00 - 0x40002fff (1 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   APB1_IWDG: 0x40003000 - 0x400033ff (1 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   APB1_SPI2: 0x40003800 - 0x40003bff (1 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   APB1_USART2: 0x40004400 - 0x400047ff (1 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   APB1_USART3: 0x40004800 - 0x40004bff (1 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   APB1_I2C1: 0x40005400 - 0x400057ff (1 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   APB1_I2C2: 0x40005800 - 0x40005bff (1 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   APB1_USB: 0x40005c00 - 0x40005fff (1 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   APB1_CAN: 0x40006400 - 0x400067ff (1 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   APB1_BKP: 0x40006c00 - 0x40006fff (1 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   APB1_PWR: 0x40007000 - 0x400073ff (1 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   APB2_AFIO: 0x40010000 - 0x400103ff (1 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   APB2_EXTI: 0x40010400 - 0x400107ff (1 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   APB2_GPIOA: 0x40010800 - 0x40010bff (1 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   APB2_GPIOB: 0x40010c00 - 0x40010fff (1 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   APB2_GPIOC: 0x40011000 - 0x400113ff (1 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   APB2_GPIOD: 0x40011400 - 0x400117ff (1 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   APB2_GPIOE: 0x40011800 - 0x40011bff (1 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   APB2_ADC1: 0x40012400 - 0x400127ff (1 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   APB2_ADC2: 0x40012800 - 0x40012bff (1 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   APB2_TIM1: 0x40012c00 - 0x40012fff (1 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   APB2_SPI1: 0x40013000 - 0x400133ff (1 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   APB2_USART1: 0x40013800 - 0x40013bff (1 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   AHB_DMA1: 0x40020000 - 0x400203ff (1 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   AHB_RCC: 0x40021000 - 0x400213ff (1 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   AHB_FLASH: 0x40022000 - 0x400223ff (1 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   AHB_CRC: 0x40023000 - 0x400233ff (1 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   NVIC: 0xe000e000 - 0xe000efff (4 KB) [RW]
+[2025-11-30 17:06:09] [INFO ]   BootAlias: 0x00000000 -> 0x08000000
+[2025-11-30 17:06:09] [INFO ] 
+[Step 3/4] Creating components...
+[2025-11-30 17:06:09] [INFO ] === Initialization Complete ===
+[2025-11-30 17:06:09] [INFO ] === Loading Binary ===
+[2025-11-30 17:06:09] [INFO ] === Loading Binary ===
+[2025-11-30 17:06:09] [INFO ] Loading ELF file: /home/hoanganh/HA/AkaSim/AKASimulator/akas_working_space/test_driver/firmware.elf
+[2025-11-30 17:06:09] [DEBUG] Loading segment 0: 0x08000000 (size: 280 bytes)
+[2025-11-30 17:06:09] [DEBUG] Loading segment 1: 0x08000118 (size: 356 bytes)
+[2025-11-30 17:06:09] [DEBUG] Vector table: 0x08000000 (size: 264)
+[2025-11-30 17:06:09] [INFO ] ELF loaded successfully
+[2025-11-30 17:06:09] [INFO ]   Entry point: 0x08000119
+[2025-11-30 17:06:09] [INFO ]   Main address: 0x0800023e
+[2025-11-30 17:06:09] [INFO ] Setting up initial CPU state...
+[2025-11-30 17:06:09] [INFO ]   Initial SP: 0x20005000
+[2025-11-30 17:06:09] [INFO ]   Reset Handler: 0x08000119
+[2025-11-30 17:06:09] [INFO ]   ✓ CPU state initialized
+[2025-11-30 17:06:09] [INFO ] Setting up boot alias (0x00000000)...
+[2025-11-30 17:06:09] [INFO ]   Copied 64 KB from 0x08000000 to 0x00000000
+[2025-11-30 17:06:09] [INFO ]   ✓ Boot alias setup complete
+[2025-11-30 17:06:09] [INFO ] === Binary Loaded Successfully ===
+[2025-11-30 17:06:09] [INFO ] === Loading Stubs ===
+[2025-11-30 17:06:09] [INFO ] === Loading Stubs ===
+[2025-11-30 17:06:09] [INFO ] Loading stub file: /home/hoanganh/HA/AkaSim/AKASimulator/akas_working_space/test_driver/stub_info.txt
+[2025-11-30 17:06:09] [DEBUG]   Stub: stubFunc
+[2025-11-30 17:06:09] [INFO ] Loaded 1 stubs
+[2025-11-30 17:06:09] [INFO ] Resolving stub addresses...
+[2025-11-30 17:06:09] [DEBUG]   stubFunc: 0x08000164 -> 0x080001f2
+[2025-11-30 17:06:09] [INFO ] Resolved 1/1 stubs
+[2025-11-30 17:06:09] [INFO ] === Stubs Loaded Successfully ===
+[2025-11-30 17:06:09] [INFO ] === Starting Simulation ===
+[2025-11-30 17:06:09] [INFO ] === Starting Execution ===
+[2025-11-30 17:06:09] [INFO ] Setting up hooks...
+[2025-11-30 17:06:09] [INFO ] Initializing SimulationTracer...
+[2025-11-30 17:06:09] [DEBUG]   Capstone config: arch=0, mode=16 (ISA: Thumb-2)
+[2025-11-30 17:06:09] [DEBUG]   ✓ Capstone initialized
+[2025-11-30 17:06:09] [DEBUG]   ✓ Symbolizer initialized
+[2025-11-30 17:06:09] [INFO ] SimulationTracer ready
+[2025-11-30 17:06:09] [DEBUG] Registered hook handler (total: 1)
+[2025-11-30 17:06:09] [DEBUG]   ✓ Tracer registered
+[2025-11-30 17:06:09] [INFO ] Initializing ErrorDetector...
+[2025-11-30 17:06:09] [INFO ] ErrorDetector ready
+[2025-11-30 17:06:09] [DEBUG] Registered hook handler (total: 2)
+[2025-11-30 17:06:09] [DEBUG]   ✓ Error detector registered
+[2025-11-30 17:06:09] [DEBUG] Registered hook handler (total: 3)
+[2025-11-30 17:06:09] [DEBUG]   ✓ Stub manager registered
+[2025-11-30 17:06:09] [INFO ] Setting up hooks...
+[2025-11-30 17:06:09] [DEBUG]   ✓ Code hook installed
+[2025-11-30 17:06:09] [DEBUG]   ✓ Memory hook installed
+[2025-11-30 17:06:09] [INFO ] Hooks setup complete
+[2025-11-30 17:06:09] [INFO ]   ✓ All hooks setup complete
+[2025-11-30 17:06:09] [INFO ] Entry point: 0x08000119
+[2025-11-30 17:06:09] [INFO ] Instruction limit: 100000
+[2025-11-30 17:06:09] [INFO ] 
+--- Execution Started ---
+[2025-11-30 17:06:09] [INFO ] Entered main(), return address: 0x08000144
+[2025-11-30 17:06:09] [DEBUG] AKA_mark called at 0x0800024a
+[2025-11-30 17:06:09] [DEBUG]   Marker: BEGIN OF UUT_INT_MANUAL_0
+[2025-11-30 17:06:09] [DEBUG] AKA_mark called at 0x08000252
+[2025-11-30 17:06:09] [DEBUG]   Marker: <<PRE-CALLING>> Test uut_int_manual_0
+[2025-11-30 17:06:09] [DEBUG] AKA_mark called at 0x08000196
+[2025-11-30 17:06:09] [DEBUG]   Marker: Calling: ./simple-c/main.c/uut(int)
+[2025-11-30 17:06:09] [DEBUG] AKA_mark called at 0x080001a8
+[2025-11-30 17:06:09] [DEBUG]   Marker: lis===12###sois===155###eois===257###lif===1###soif===15###eoif===117###function===./simple-c/main.c/uut(int)
+[2025-11-30 17:06:09] [DEBUG] AKA_mark called at 0x080001ac
+[2025-11-30 17:06:09] [DEBUG]   Marker: lis===13###sois===161###eois===181###lif===2###soif===21###eoif===41###ins===true###function===./simple-c/main.c/uut(int)
+[2025-11-30 17:06:09] [DEBUG] === STUB REDIRECTION DEBUG ===
+[2025-11-30 17:06:09] [DEBUG] Function: stubFunc
+[2025-11-30 17:06:09] [DEBUG] Original addr: 0x08000164
+[2025-11-30 17:06:09] [DEBUG] Stub addr: 0x080001f2
+[2025-11-30 17:06:09] [DEBUG] Current PC: 0x08000164
+[2025-11-30 17:06:09] [DEBUG] Current LR: 0x080001b7
+[2025-11-30 17:06:09] [DEBUG] Current SP: 0x20004fc8
+[2025-11-30 17:06:09] [DEBUG] Current R0: 90
+[2025-11-30 17:06:09] [DEBUG] New PC: 0x080001f2
+[2025-11-30 17:06:09] [DEBUG] === END DEBUG ===
+[2025-11-30 17:06:10] [DEBUG] AKA_mark called at 0x080001b8
+[2025-11-30 17:06:10] [DEBUG]   Marker: lis===14###sois===190###eois===197###lif===3###soif===50###eoif===57###ifc===true###function===./simple-c/main.c/uut(int)
+[2025-11-30 17:06:10] [DEBUG] AKA_mark called at 0x080001c0
+[2025-11-30 17:06:10] [DEBUG]   Marker: lis===14###sois===190###eois===197###lif===3###soif===50###eoif===57###isc===true###function===./simple-c/main.c/uut(int)
+[2025-11-30 17:06:10] [DEBUG] AKA_mark called at 0x080001d0
+[2025-11-30 17:06:10] [DEBUG]   Marker: lis===14###sois===199###eois===224###lif===3###soif===59###eoif===84###function===./simple-c/main.c/uut(int)
+[2025-11-30 17:06:10] [DEBUG] AKA_mark called at 0x080001d4
+[2025-11-30 17:06:10] [DEBUG]   Marker: lis===15###sois===209###eois===218###lif===4###soif===69###eoif===78###ins===true###function===./simple-c/main.c/uut(int)
+[2025-11-30 17:06:10] [DEBUG] AKA_mark called at 0x0800026c
+[2025-11-30 17:06:10] [DEBUG]   Marker: Return from: ./simple-c/main.c/uut(int)
+[2025-11-30 17:06:10] [DEBUG] AKA_mark called at 0x08000270
+[2025-11-30 17:06:10] [DEBUG]   Marker: END OF UUT_INT_MANUAL_0
+[2025-11-30 17:06:10] [INFO ] Main returned, stopping execution
+[2025-11-30 17:06:10] [INFO ] --- Execution Stopped ---
+
+[2025-11-30 17:06:10] [INFO ] ✓ Execution completed successfully
+[2025-11-30 17:06:25] [INFO ] Execution result written to: ./AKA_SIMULATED_RESULT_simulation.json
+[2025-11-30 17:08:08] [INFO ] === Generating Output Files ===
+[2025-11-30 17:08:08] [INFO ] === Generating Output Files ===
+[2025-11-30 17:08:08] [INFO ] Writing execution log to: simulation.log
+[2025-11-30 17:08:08] [INFO ]   ✓ Wrote 119 instruction traces
+[2025-11-30 17:08:08] [INFO ] Writing trace file to: trace.trc
+[2025-11-30 17:08:08] [INFO ]   ✓ Wrote 0 assertions
+[2025-11-30 17:08:08] [INFO ] Writing test path file to: testpath.tp
+[2025-11-30 17:08:08] [INFO ]   ✓ Wrote 11 markers
+[2025-11-30 17:08:08] [INFO ] === Output Generation Complete ===
+[2025-11-30 17:08:08] [INFO ] ========================================
+[2025-11-30 17:08:08] [INFO ]    Simulation Summary
+[2025-11-30 17:08:08] [INFO ] ========================================
+[2025-11-30 17:08:08] [INFO ] Status: SUCCESS
+[2025-11-30 17:08:08] [INFO ] Instructions executed: 120
+[2025-11-30 17:08:08] [INFO ] Assertions collected: 0
+[2025-11-30 17:08:08] [INFO ] Markers collected: 11
+[2025-11-30 17:08:08] [INFO ] ========================================
+[2025-11-30 17:08:08] [DEBUG] Hooks removed

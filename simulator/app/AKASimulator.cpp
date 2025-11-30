@@ -90,7 +90,12 @@ namespace Simulator
 
         auto exec_result = engine_->execute(exec_config);
 
-        result_writer_.write(exec_result, config_.log_file);
+        if (result_writer_.write(exec_result, config_.log_file)) {
+            LOG_INFO(logger_, "Execution result written to: " + result_writer_.buildOutputPath(config_.log_file));
+        } else {
+            LOG_WARNING(logger_, "Failed to write execution result to json.");
+        }
+
         if (!exec_result)
         {
             LOG_ERROR_F(logger_) << "Execution failed: " << exec_result.errorMessage();

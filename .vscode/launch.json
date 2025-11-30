@@ -5,11 +5,14 @@
       "name": "Debug akas_emulator",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/build/akas_simulator/akas_emulator",
+      "program": "${workspaceFolder}/AKASimulator",
       "args": [
+        "--chip",
+        "stm32f103c8t6",
+        "--elf",
         "${workspaceFolder}/akas_working_space/test_driver/firmware.elf",
+        "--stub",
         "${workspaceFolder}/akas_working_space/test_driver/stub_info.txt",
-        "${workspaceFolder}/akas_working_space/emulation_log/emulation.log"
       ],
       "cwd": "${workspaceFolder}",
       "stopAtEntry": true,

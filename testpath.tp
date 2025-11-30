@@ -1,0 +1,11 @@
+BEGIN OF UUT_INT_MANUAL_0
+<<PRE-CALLING>> Test uut_int_manual_0
+Calling: ./simple-c/main.c/uut(int)
+lis===12###sois===155###eois===257###lif===1###soif===15###eoif===117###function===./simple-c/main.c/uut(int)
+lis===13###sois===161###eois===181###lif===2###soif===21###eoif===41###ins===true###function===./simple-c/main.c/uut(int)
+lis===14###sois===190###eois===197###lif===3###soif===50###eoif===57###ifc===true###function===./simple-c/main.c/uut(int)
+lis===14###sois===190###eois===197###lif===3###soif===50###eoif===57###isc===true###function===./simple-c/main.c/uut(int)
+lis===14###sois===199###eois===224###lif===3###soif===59###eoif===84###function===./simple-c/main.c/uut(int)
+lis===15###sois===209###eois===218###lif===4###soif===69###eoif===78###ins===true###function===./simple-c/main.c/uut(int)
+Return from: ./simple-c/main.c/uut(int)
+END OF UUT_INT_MANUAL_0

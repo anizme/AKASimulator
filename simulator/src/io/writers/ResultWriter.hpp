@@ -20,6 +20,8 @@ namespace Simulator
         // Specialized version for SimulationStatus
         bool write(const Result<SimulationStatus> &result, const std::string &logFilePath);
 
+        std::string buildOutputPath(const std::string &logFilePath) const;
+
     private:
         // Extract filename from path
         std::string extractFileName(const std::string &path) const;
@@ -31,7 +33,7 @@ namespace Simulator
         std::string escapeJsonString(const std::string &input) const;
 
         // Build output file path
-        std::string buildOutputPath(const std::string &logFilePath) const;
+        
 
         // Extract location from message (text after #AT until '(')
         std::string extractLocation(const std::string &message) const;

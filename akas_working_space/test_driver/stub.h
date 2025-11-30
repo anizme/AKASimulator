@@ -10,7 +10,7 @@ int AKA_STUB_x;
 
 
 
-int AKA_STUB_return=12;
+int AKA_STUB_return=10;
 
 return AKA_STUB_return;
 }
