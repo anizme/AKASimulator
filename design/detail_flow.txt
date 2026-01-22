@@ -1,0 +1,147 @@
+@startuml
+title Firmware Simulator Detailed Workflow
+
+|User|
+start
+
+:Main Application;
+note right
+  Parse command line arguments
+  Create SimulatorConfig
+end note
+
+|#LightSkyBlue|Configuration Manager|
+:Configuration Manager (I/O Module);
+note right
+  Read config.json (if provided)
+  Validate settings
+  Setup: chip, binary, stubs, outputs
+end note
+
+|#LightGreen|Architecture Factory|
+:Architecture Factory;
+note right
+  Select chip: "stm32f103c8t6"
+  Create architecture instance
+  Return descriptors:
+  - MemoryMapDescriptor
+  - CPUDescriptor  
+  - BootDescriptor
+end note
+
+|#Gold|Simulation Engine|
+:Simulation Engine (Core Module);
+
+partition "Initialization Phase" {
+  :Initialize Unicorn Engine;
+  
+  :Memory Manager;
+  note right
+    Map Flash region (RX)
+    Map SRAM region (RW)
+    Map Peripherals (RW)
+    Setup boot alias
+  end note
+  
+  :ELF Loader;
+  note right
+    Parse ELF segments
+    Write code/data to memory
+    Find symbols
+  end note
+  
+  :Stub Manager (optional);
+  note right
+    Load stub definitions
+    Find stub function addresses
+    Map original → stub addresses
+  end note
+  
+  :Setup Hooks;
+  note right
+    Register Code Hook
+    Register handlers:
+    - SimulationTracer
+    - ErrorDetector  
+    - StubManager
+  end note
+}
+
+|#Gold|Simulation|
+:Simulation (Core Module);
+
+:Setup initial CPU state;
+note right
+  Read initial SP from vector table
+  Read reset handler from vector table
+  Set PC to entry point
+end note
+
+:Start Unicorn emulation;
+
+partition "Instruction Simulation Loop" {
+  while (Every Instruction) is (Execute)
+    :Unicorn executes instruction;
+    
+    :Code hook triggered;
+    
+    :HookDispatcher;
+    note right: Dispatch to handlers
+    
+    fork
+      :SimulationTracer;
+      note right
+        Disassemble (Capstone)
+        Symbolize (llvm-symbolizer)
+        Check for AKAS_assert
+        Check for AKA_mark
+        Buffer trace data
+      end note
+    fork again
+      :ErrorDetector;
+      note right
+        Check div by zero
+        Check null pointer
+      end note
+    fork again
+      :StubManager;
+      note right: Redirect if stubbed
+    end fork
+    
+    :Next instruction;
+  end while (Stop Condition?)
+}
+
+:Check stop conditions;
+note right
+  Main function returned
+  Instruction limit reached
+  Timeout
+  Error detected
+end note
+
+|#LightSkyBlue|Output Generation|
+:Output Generation (I/O Module);
+
+fork
+  :SimulationLogWriter;
+  note right: Write instruction traces\n→ simulation.log
+fork again  
+  :TraceFileWriter;
+  note right: Write assertion events\n→ trace.trc
+fork again
+  :TestPathWriter;
+  note right: Write markers\n→ testpath.tp
+end fork
+
+|User|
+:Completion;
+note right
+  Print summary
+  (instructions, assertions, errors)
+  Exit with status code
+end note
+
+stop
+
+@enduml

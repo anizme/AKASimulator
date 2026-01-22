@@ -1,0 +1,41 @@
+@startuml
+title Simulation System Execution Flow
+
+actor User
+participant Main
+participant Config
+participant "Architecture" as Arch
+participant "Core Engine" as Core
+participant "I/O Writers" as IO
+
+User -> Main: Run with config
+Main -> Config: Load config.json
+Config --> Main: SimulationConfig
+
+Main -> Arch: Create chip instance
+Arch --> Main: Descriptors (Memory, CPU, Boot)
+
+Main -> Core: Initialize Engine
+Core -> Core: Setup Memory Regions
+Core -> Core: Load ELF Binary
+Core -> Core: Setup Hooks & Stubs
+
+Main -> Core: Execute
+
+loop Every Instruction
+    Core -> Core: Unicorn executes
+    Core -> Core: Hook triggered
+    Core -> Core: Tracer captures
+    Core -> Core: Error detection
+    Core -> Core: Stub redirection
+end
+
+Core --> Main: Execution complete
+
+Main -> IO: Generate outputs
+IO -> IO: Write execution.log
+IO -> IO: Write trace.trc
+IO -> IO: Write testpath.tp
+IO --> User: Output files ready
+
+@enduml
