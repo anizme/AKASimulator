@@ -3,6 +3,7 @@
 #include "simulator/Types.hpp"
 #include "core/hooks/HookDispatcher.hpp"
 #include "io/logging/ILogger.hpp"
+#include "io/utils/Symbolizer.hpp"
 #include <unicorn/unicorn.h>
 #include <string>
 #include <vector>
@@ -67,10 +68,15 @@ namespace Simulator
 
         ArchitectureType arch_type; // Enum for type
         ISA isa;                    // Enum for ISA
+
+        void setSymbolizer(std::unique_ptr<Symbolizer> sym) {symbolizer_ = std::move(sym);}
     private:
         uc_engine *uc_;
         LoggerPtr logger_;
+        std::unique_ptr<Symbolizer> symbolizer_;
 
+        Address previous_addr_;
+        std::string uut_name_;
         std::vector<FunctionStub> stubs_;
         std::map<Address, FunctionStub *> address_to_stub_;
 
