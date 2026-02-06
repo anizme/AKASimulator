@@ -32,6 +32,7 @@ namespace Simulator
         uint64_t instruction_limit;
         uint32_t timeout_ms;
         bool enable_instruction_trace;
+        bool trace_from_main;
         bool enable_error_detection;
 
         // Logging
@@ -42,6 +43,7 @@ namespace Simulator
               instruction_limit(100000),
               timeout_ms(10000),
               enable_instruction_trace(true),
+              trace_from_main(false),
               enable_error_detection(true),
               verbose(false) {}
     };

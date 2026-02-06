@@ -10,9 +10,10 @@ namespace Simulator
     SimulationTracer::SimulationTracer(uc_engine *uc,
                                        const BinaryInfo &binary_info,
                                        LoggerPtr logger,
-                                       CPUDescriptor cpu_descriptor)
+                                       CPUDescriptor cpu_descriptor, 
+                                       bool trace_from_main)
         : uc_(uc), binary_info_(binary_info), logger_(logger),
-          capstone_handle_(0), enable_instruction_trace_(true),
+          capstone_handle_(0), trace_from_main_(trace_from_main), is_in_main_(false),
           instruction_count_(0), main_return_address_(0),
           cpu_descriptor_(cpu_descriptor),
           previous_instruction_address_(0)
@@ -73,6 +74,8 @@ namespace Simulator
 
             LOG_INFO_F(logger_) << "Entered main(), return address: "
                                 << Utils::formatHex(main_return_address_);
+            
+            is_in_main_ = true;
         }
 
         // Check for main return
@@ -80,6 +83,7 @@ namespace Simulator
         {
             LOG_INFO(logger_, "Main returned, stopping execution");
             uc_emu_stop(uc_);
+            is_in_main_ = false;
             return;
         }
 
@@ -102,7 +106,7 @@ namespace Simulator
         }
 
         // Trace instruction
-        if (enable_instruction_trace_)
+        if (!trace_from_main_ || (trace_from_main_ && is_in_main_))
         {
             handleInstructionTrace(event);
         }

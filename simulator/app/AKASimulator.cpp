@@ -83,6 +83,7 @@ namespace Simulator
         exec_config.instruction_limit = config_.instruction_limit;
         exec_config.timeout_ms = config_.timeout_ms;
         exec_config.enable_instruction_trace = config_.enable_instruction_trace;
+        exec_config.trace_from_main = config_.trace_from_main;
         exec_config.enable_error_detection = config_.enable_error_detection;
         exec_config.enable_stubs = !config_.stub_file.empty();
 

@@ -24,6 +24,7 @@ namespace Simulator
         uint64_t instruction_limit;    // Max instructions (0 = unlimited)
         uint32_t timeout_ms;           // Timeout in milliseconds (0 = no timeout)
         bool enable_instruction_trace; // Trace every instruction
+        bool trace_from_main;
         bool enable_error_detection;   // Detect runtime errors
         bool enable_stubs;             // Use stub functions
 
@@ -31,6 +32,7 @@ namespace Simulator
             : instruction_limit(100000),
               timeout_ms(10000),
               enable_instruction_trace(true),
+              trace_from_main(false),
               enable_error_detection(true),
               enable_stubs(true) {}
     };
