@@ -72,14 +72,19 @@ namespace Simulator
             if (segment.get_type() == ELFIO::PT_LOAD && segment.get_file_size() > 0)
             {
                 Address vaddr = segment.get_virtual_address();
+                Address paddr = segment.get_physical_address();
                 Size size = segment.get_file_size();
 
-                LOG_DEBUG_F(logger_) << "Loading segment " << i
+                LOG_INFO_F(logger_) << "Loading segment " << i
                                      << ": " << Utils::formatHex(vaddr)
                                      << " (size: " << size << " bytes)";
 
                 // Write segment data to Unicorn memory
                 uc_err err = uc_mem_write(uc_, vaddr, segment.get_data(), size);
+                if (vaddr != paddr) {
+                    err = uc_mem_write(uc_, paddr, segment.get_data(), size);
+                }
+
                 if (err != UC_ERR_OK)
                 {
                     LOG_ERROR_F(logger_) << "Failed to write segment: " << uc_strerror(err);
