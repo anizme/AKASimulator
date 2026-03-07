@@ -266,7 +266,7 @@ namespace Simulator
             }
             if (!function_name.empty() && function_name != "??")
             {
-                result += " (" + function_name + ")";
+                result += "\n" + function_name;
             }
             return result;
         }

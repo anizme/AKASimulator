@@ -100,6 +100,10 @@ int main(int argc, char *argv[])
         {
             config.enable_instruction_trace = false;
         }
+        else if (arg == "--trace-from-main") 
+        {
+            config.trace_from_main = true;
+        }
         else if (arg == "--no-error-detect")
         {
             config.enable_error_detection = false;

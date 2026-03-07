@@ -273,6 +273,7 @@ namespace Simulator
         stub_manager_ = std::make_shared<StubManager>(uc_, logger_);
         stub_manager_->arch_type = cpu_descriptor_.arch_type;
         stub_manager_->isa = cpu_descriptor_.isa;
+        stub_manager_->setSymbolizer(std::make_unique<Symbolizer>(binary_info_.file_path, logger_));
 
         // Load stub definitions
         auto load_result = stub_manager_->loadStubFile(stub_file);
@@ -302,7 +303,7 @@ namespace Simulator
         if (config.enable_instruction_trace)
         {
             tracer_ = std::make_shared<SimulationTracer>(
-                uc_, binary_info_, logger_, cpu_descriptor_);
+                uc_, binary_info_, logger_, cpu_descriptor_, config.trace_from_main);
             auto tracer_result = tracer_->initialize();
             if (!tracer_result)
             {

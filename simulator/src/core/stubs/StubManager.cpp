@@ -33,7 +33,6 @@ namespace Simulator
         int line_num = 0;
         while (std::getline(file, line))
         {
-            line_num++;
             line = Utils::trim(line);
 
             // Skip empty lines and comments
@@ -42,11 +41,16 @@ namespace Simulator
                 continue;
             }
 
-            FunctionStub stub;
-            stub.function_name = line;
-            stubs_.push_back(stub);
+            line_num++;
+            if (line_num == 1) {
+                uut_name_ = line;
+            } else {
+                FunctionStub stub;
+                stub.function_name = line;
+                stubs_.push_back(stub);
 
-            LOG_DEBUG_F(logger_) << "  Stub: " << line;
+                LOG_DEBUG_F(logger_) << "  Stub: " << line;
+            }
         }
 
         LOG_INFO_F(logger_) << "Loaded " << stubs_.size() << " stubs";
@@ -121,33 +125,39 @@ namespace Simulator
         auto it = address_to_stub_.find(event.address);
         if (it != address_to_stub_.end())
         {
-            FunctionStub *stub = it->second;
+            SourceInfo src = symbolizer_->resolve(previous_addr_);
+            if (src.isValid() && src.function_name == uut_name_)
+            {
+                FunctionStub *stub = it->second;
 
-            // DEBUG: Read current registers
-            uint32_t pc, lr, sp, r0;
-            uc_reg_read(uc_, UC_ARM_REG_PC, &pc);
-            uc_reg_read(uc_, UC_ARM_REG_LR, &lr);
-            uc_reg_read(uc_, UC_ARM_REG_SP, &sp);
-            uc_reg_read(uc_, UC_ARM_REG_R0, &r0);
+                // DEBUG: Read current registers
+                uint32_t pc, lr, sp, r0;
+                uc_reg_read(uc_, UC_ARM_REG_PC, &pc);
+                uc_reg_read(uc_, UC_ARM_REG_LR, &lr);
+                uc_reg_read(uc_, UC_ARM_REG_SP, &sp);
+                uc_reg_read(uc_, UC_ARM_REG_R0, &r0);
 
-            LOG_DEBUG(logger_, "=== STUB REDIRECTION DEBUG ===");
-            LOG_DEBUG_F(logger_) << "Function: " << stub->function_name;
-            LOG_DEBUG_F(logger_) << "Original addr: " << Utils::formatHex(stub->function_address);
-            LOG_DEBUG_F(logger_) << "Stub addr: " << Utils::formatHex(stub->stub_address);
-            LOG_DEBUG_F(logger_) << "Current PC: " << Utils::formatHex(pc);
-            LOG_DEBUG_F(logger_) << "Current LR: " << Utils::formatHex(lr);
-            LOG_DEBUG_F(logger_) << "Current SP: " << Utils::formatHex(sp);
-            LOG_DEBUG_F(logger_) << "Current R0: " << r0;
+                LOG_DEBUG(logger_, "=== STUB REDIRECTION DEBUG ===");
+                LOG_DEBUG_F(logger_) << "Function: " << stub->function_name;
+                LOG_DEBUG_F(logger_) << "Original addr: " << Utils::formatHex(stub->function_address);
+                LOG_DEBUG_F(logger_) << "Stub addr: " << Utils::formatHex(stub->stub_address);
+                LOG_DEBUG_F(logger_) << "Current PC: " << Utils::formatHex(pc);
+                LOG_DEBUG_F(logger_) << "Current LR: " << Utils::formatHex(lr);
+                LOG_DEBUG_F(logger_) << "Current SP: " << Utils::formatHex(sp);
+                LOG_DEBUG_F(logger_) << "Current R0: " << r0;
 
-            // Redirect PC
-            uint32_t stub_pc = stub->stub_address | 1;
-            uc_reg_write(uc_, UC_ARM_REG_PC, &stub_pc);
+                // Redirect PC
+                uint32_t stub_pc = stub->stub_address | 1;
+                uc_reg_write(uc_, UC_ARM_REG_PC, &stub_pc);
 
-            // Verify
-            uc_reg_read(uc_, UC_ARM_REG_PC, &pc);
-            LOG_DEBUG_F(logger_) << "New PC: " << Utils::formatHex(pc);
-            LOG_DEBUG(logger_, "=== END DEBUG ===");
+                // Verify
+                uc_reg_read(uc_, UC_ARM_REG_PC, &pc);
+                LOG_DEBUG_F(logger_) << "New PC: " << Utils::formatHex(pc);
+                LOG_DEBUG(logger_, "=== END DEBUG ===");
+            }
         }
+
+        previous_addr_ = event.address;
     }
 
     bool StubManager::findFunctionAddress(const std::string &elf_path,

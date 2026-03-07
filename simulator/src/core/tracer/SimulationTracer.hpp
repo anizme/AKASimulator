@@ -36,7 +36,8 @@ namespace Simulator
         SimulationTracer(uc_engine *uc,
                          const BinaryInfo &binary_info,
                          LoggerPtr logger,
-                         CPUDescriptor cpu_descriptor);
+                         CPUDescriptor cpu_descriptor, 
+                         bool trace_from_main);
 
         ~SimulationTracer();
 
@@ -80,14 +81,6 @@ namespace Simulator
          */
         size_t getInstructionCount() const { return instruction_count_; }
 
-        /**
-         * @brief Enable/disable instruction tracing
-         */
-        void setEnableInstructionTrace(bool enable)
-        {
-            enable_instruction_trace_ = enable;
-        }
-
     private:
         uc_engine *uc_;
         BinaryInfo binary_info_;
@@ -97,7 +90,8 @@ namespace Simulator
         csh capstone_handle_;
         std::unique_ptr<Symbolizer> symbolizer_;
 
-        bool enable_instruction_trace_;
+        bool trace_from_main_;
+        bool is_in_main_;
         size_t instruction_count_;
 
         // Buffered data

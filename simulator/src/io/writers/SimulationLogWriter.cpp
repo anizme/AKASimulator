@@ -87,11 +87,11 @@ namespace Simulator
         // Source info
         if (trace.source_info.isValid())
         {
-            file << "    # CodePos: " << trace.source_info.toString() << "\n";
+            file << trace.source_info.toString() << "\n\n";
         }
         else
         {
-            file << "    # CodePos: unknown\n";
+            file << "unknown\n\n";
         }
     }
 
