@@ -45,8 +45,10 @@ namespace Simulator
             if (line_num == 1) {
                 uut_name_ = line;
             } else {
+                int separator = line.find(':');
                 FunctionStub stub;
-                stub.function_name = line;
+                stub.file_path = line.substr(0, separator);
+                stub.function_name = line.substr(separator + 1);
                 stubs_.push_back(stub);
 
                 LOG_DEBUG_F(logger_) << "  Stub: " << line;
@@ -67,16 +69,16 @@ namespace Simulator
         for (auto &stub : stubs_)
         {
             // Find original function address
-            if (!findFunctionAddress(elf_path, stub.function_name,
+            if (!findFunctionAddress(elf_path, stub.function_name, stub.file_path,
                                      stub.function_address))
             {
-                LOG_WARNING_F(logger_) << "Function not found: " << stub.function_name;
+                LOG_WARNING_F(logger_) << "Function not found: " << stub.file_path << ":" << stub.function_name;
                 continue;
             }
 
             // Find stub function (prefixed with AKA_stub_)
-            std::string stub_func_name = "AKA_stub_" + stub.function_name;
-            if (!findFunctionAddress(elf_path, stub_func_name,
+            std::string stub_func_name = "AKA_STUB_" + stub.function_name;
+            if (!findFunctionAddress(elf_path, stub_func_name, "", 
                                      stub.stub_address))
             {
                 LOG_WARNING_F(logger_) << "Stub function not found: " << stub_func_name;
@@ -104,24 +106,6 @@ namespace Simulator
 
     void StubManager::onCodeExecution(const CodeHookEvent &event)
     {
-        // Check if this address is a stubbed function
-        // auto it = address_to_stub_.find(event.address);
-        // if (it != address_to_stub_.end())
-        // {
-        //     FunctionStub *stub = it->second;
-
-        //     LOG_DEBUG_F(logger_) << "Redirecting " << stub->function_name
-        //                          << " to stub at " << Utils::formatHex(stub->stub_address);
-
-        //     // Redirect PC to stub function (with Thumb bit set)
-        //     if (isa == ISA::Thumb || isa == ISA::Thumb2)
-        //     {
-        //         stub->stub_address |= 1; // Set Thumb bit
-        //     }
-        //     uint32_t stub_pc = stub->stub_address;
-        //     uc_reg_write(uc_, UC_ARM_REG_PC, &stub_pc);
-        // }
-
         auto it = address_to_stub_.find(event.address);
         if (it != address_to_stub_.end())
         {
@@ -162,6 +146,7 @@ namespace Simulator
 
     bool StubManager::findFunctionAddress(const std::string &elf_path,
                                           const std::string &func_name,
+                                          const std::string &file_path,
                                           Address &address)
     {
         ELFIO::elfio reader;
@@ -206,7 +191,13 @@ namespace Simulator
                 if (isa == ISA::Thumb || isa == ISA::Thumb2)
                 {
                     // Clear Thumb bit
-                    address = static_cast<Address>(value & ~1U);
+                    Address possible_addr = static_cast<Address>(value & ~1U);
+                    SourceInfo sourceInfo = symbolizer_->resolve(possible_addr);
+                    if (!file_path.empty() && std::filesystem::weakly_canonical(sourceInfo.filename) 
+                                            != std::filesystem::weakly_canonical(file_path)) {
+                        continue;
+                    }
+                    address = possible_addr;
                 }
 
                 return true;

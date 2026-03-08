@@ -250,7 +250,7 @@ namespace Simulator
 
         bool isValid() const
         {
-            return !filename.empty() && filename != "??" && line_number > 0;
+            return !filename.empty() && filename != "??" && line_number >= 0;
         }
 
         std::string toString() const
@@ -260,7 +260,7 @@ namespace Simulator
                 return "unknown";
             }
             std::string result = filename + ":" + std::to_string(line_number);
-            if (column_number > 0)
+            if (column_number >= 0)
             {
                 result += ":" + std::to_string(column_number);
             }

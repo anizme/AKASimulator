@@ -8,6 +8,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <filesystem>
 
 namespace Simulator
 {
@@ -17,6 +18,7 @@ namespace Simulator
      */
     struct FunctionStub
     {
+        std::string file_path;
         std::string function_name;
         Address function_address;
         Address stub_address;
@@ -83,6 +85,7 @@ namespace Simulator
         // Find function address in ELF
         bool findFunctionAddress(const std::string &elf_path,
                                  const std::string &func_name,
+                                 const std::string &file_path,
                                  Address &address);
     };
 
