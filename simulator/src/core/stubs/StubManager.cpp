@@ -74,8 +74,8 @@ namespace Simulator
                 continue;
             }
 
-            // Find stub function (prefixed with AKA_stub_)
-            std::string stub_func_name = "AKA_stub_" + stub.function_name;
+            // Find stub function (prefixed with AKA_STUB_)
+            std::string stub_func_name = "AKA_STUB_" + stub.function_name;
             if (!findFunctionAddress(elf_path, stub_func_name,
                                      stub.stub_address))
             {
