@@ -8,6 +8,7 @@
 #include <unicorn/unicorn.h>
 #include <capstone/capstone.h>
 #include <vector>
+#include <unordered_map>
 #include <memory>
 
 namespace Simulator
@@ -37,7 +38,9 @@ namespace Simulator
                          const BinaryInfo &binary_info,
                          LoggerPtr logger,
                          CPUDescriptor cpu_descriptor, 
-                         bool trace_from_main);
+                         bool trace_from_main, 
+                         bool break_loop, 
+                         int loop_limit);
 
         ~SimulationTracer();
 
@@ -94,6 +97,12 @@ namespace Simulator
         bool is_in_main_;
         size_t instruction_count_;
 
+        bool break_loop_;
+        std::unordered_map<Address, int> loop_counter_;
+        std::unordered_map<Address, Address> loop_escape_map_;
+        int max_loop_ = 100;
+        int max_self_loop_ = 2;
+
         // Buffered data
         std::vector<InstructionTrace> instruction_traces_;
         std::vector<AssertionEvent> assertion_events_;
@@ -110,12 +119,16 @@ namespace Simulator
         void handleAssertU32(Address caller_address);
         void handleAssertU64(Address caller_address);
         void handleMark(Address caller_address);
+        void handleLoopBreak(const CodeHookEvent &event);
 
         // Disassemble instruction
         bool disassembleInstruction(const CodeHookEvent &event, InstructionTrace &trace);
 
         // Read source line at address
         std::string readSourceLine(const SourceInfo &info);
+
+        bool getBranchTarget(cs_insn *insn, Address *target);
+        bool isLoopBranch(cs_insn *insn);
     };
 
 } // namespace Simulator

@@ -86,6 +86,8 @@ namespace Simulator
         exec_config.trace_from_main = config_.trace_from_main;
         exec_config.enable_error_detection = config_.enable_error_detection;
         exec_config.enable_stubs = !config_.stub_file.empty();
+        exec_config.enable_loop_break = config_.enable_loop_break;
+        exec_config.loop_limit = config_.loop_limit;
 
         ResultWriter result_writer_;
 

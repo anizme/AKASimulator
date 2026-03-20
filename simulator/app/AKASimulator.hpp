@@ -31,9 +31,11 @@ namespace Simulator
         // Execution settings
         uint64_t instruction_limit;
         uint32_t timeout_ms;
+        int loop_limit;
         bool enable_instruction_trace;
         bool trace_from_main;
         bool enable_error_detection;
+        bool enable_loop_break;
 
         // Logging
         bool verbose;
@@ -45,6 +47,8 @@ namespace Simulator
               enable_instruction_trace(true),
               trace_from_main(false),
               enable_error_detection(true),
+              enable_loop_break(true),
+              loop_limit(100),
               verbose(false) {}
     };
 

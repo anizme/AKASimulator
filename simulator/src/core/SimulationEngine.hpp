@@ -27,6 +27,8 @@ namespace Simulator
         bool trace_from_main;
         bool enable_error_detection;   // Detect runtime errors
         bool enable_stubs;             // Use stub functions
+        bool enable_loop_break;
+        int loop_limit;
 
         ExecutionConfig()
             : instruction_limit(100000),
@@ -34,7 +36,9 @@ namespace Simulator
               enable_instruction_trace(true),
               trace_from_main(false),
               enable_error_detection(true),
-              enable_stubs(true) {}
+              enable_stubs(true),
+              enable_loop_break(true), 
+              loop_limit(100) {}
     };
 
     /**

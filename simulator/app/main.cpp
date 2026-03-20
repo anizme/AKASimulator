@@ -108,6 +108,14 @@ int main(int argc, char *argv[])
         {
             config.enable_error_detection = false;
         }
+        else if (arg == "--no-loop-break") 
+        {
+            config.enable_loop_break = false;
+        }
+        else if (arg == "--loop-limit" && i + 1 < argc)
+        {
+            config.loop_limit = std::stoul(argv[++i]);
+        }
         else if (arg == "--verbose" || arg == "-v")
         {
             config.verbose = true;

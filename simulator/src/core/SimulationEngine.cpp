@@ -302,8 +302,9 @@ namespace Simulator
         // Create tracer
         if (config.enable_instruction_trace)
         {
-            tracer_ = std::make_shared<SimulationTracer>(
-                uc_, binary_info_, logger_, cpu_descriptor_, config.trace_from_main);
+            tracer_ = std::make_shared<SimulationTracer>(uc_, 
+                binary_info_, logger_, cpu_descriptor_, 
+                config.trace_from_main, config.enable_loop_break, config.loop_limit);
             auto tracer_result = tracer_->initialize();
             if (!tracer_result)
             {

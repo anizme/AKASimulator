@@ -11,12 +11,18 @@ namespace Simulator
                                        const BinaryInfo &binary_info,
                                        LoggerPtr logger,
                                        CPUDescriptor cpu_descriptor, 
-                                       bool trace_from_main)
+                                       bool trace_from_main, 
+                                       bool break_loop, 
+                                       int loop_limit)
         : uc_(uc), binary_info_(binary_info), logger_(logger),
           capstone_handle_(0), trace_from_main_(trace_from_main), is_in_main_(false),
           instruction_count_(0), main_return_address_(0),
           cpu_descriptor_(cpu_descriptor),
-          previous_instruction_address_(0)
+          previous_instruction_address_(0),
+          break_loop_(break_loop),
+          max_loop_(loop_limit),
+          loop_counter_(),
+          loop_escape_map_()
     {
     }
 
@@ -109,6 +115,10 @@ namespace Simulator
         if (!trace_from_main_ || (trace_from_main_ && is_in_main_))
         {
             handleInstructionTrace(event);
+        }
+
+        if (break_loop_ && is_in_main_) {
+            handleLoopBreak(event);
         }
 
         // Save current address as previous for next instruction
@@ -239,6 +249,81 @@ namespace Simulator
         }
     }
 
+    void SimulationTracer::handleLoopBreak(const CodeHookEvent &event) {
+        Address address = event.address;
+
+        auto it = loop_escape_map_.find(address);
+        if (it != loop_escape_map_.end()) {
+            loop_counter_[it->second] = 0;
+        }
+
+        cs_insn *insn;
+        size_t count = cs_disasm(capstone_handle_,
+                                 event.instruction_bytes.data(),
+                                 event.instruction_bytes.size(),
+                                 event.address, 1, &insn);
+
+        if (count == 0) {
+            cs_free(insn, count);
+            return;
+        }
+
+        if (!insn->detail) {
+            cs_free(insn, count);
+            return;
+        }
+
+        if (isLoopBranch(insn)) {
+            Address target;
+
+            if (!getBranchTarget(insn, &target)) {
+                cs_free(insn, count);
+                return;
+            }
+
+            if (target <= address) {
+                Address escape_addr = address + event.size;
+                SourceInfo currentInfo = symbolizer_->resolve(address);
+                SourceInfo escapeInfo = symbolizer_->resolve(escape_addr);
+
+                bool same_function = currentInfo.filename == escapeInfo.filename 
+                                    && currentInfo.function_name == escapeInfo.function_name;
+
+                if (same_function) {
+                    loop_escape_map_.emplace(escape_addr, address);
+                }
+                
+                loop_counter_[address]++;
+
+                if ((target < address && loop_counter_[address] > max_loop_) 
+                    || (target == address && loop_counter_[address] > max_self_loop_)) {
+                    if (same_function) {
+                        Address new_pc = escape_addr | 1;
+                        uc_reg_write(uc_, UC_ARM_REG_PC, &new_pc);
+                        LOG_INFO_F(logger_) << "Break loop from "
+                                << Utils::formatHex(address) 
+                                << " to " 
+                                << Utils::formatHex(target) 
+                                << " after reaching loop limit of " 
+                                << loop_counter_[address] - 1;
+                        loop_counter_[address] = 0;
+                    } else {
+                        cs_free(insn, count);
+                        uc_emu_stop(uc_);
+                        LOG_INFO_F(logger_) 
+                                << "Stopped execution after reaching infinite loop from "
+                                << Utils::formatHex(address) 
+                                << " to " 
+                                << Utils::formatHex(target);
+                        return;
+                    }
+                }
+            }
+        }
+
+        cs_free(insn, count);
+    }
+
     std::string SimulationTracer::readSourceLine(const SourceInfo &info)
     {
         if (!info.isValid())
@@ -265,6 +350,35 @@ namespace Simulator
         }
 
         return Utils::trim(line);
+    }
+
+    bool SimulationTracer::getBranchTarget(cs_insn *insn, Address *target) {
+        cs_arm *arm = &(insn->detail->arm);
+
+        if (arm->op_count < 1) {
+            return false;
+        }
+
+        cs_arm_op *op = &(arm->operands[0]);
+
+        if (op->type == ARM_OP_IMM) {
+            *target = (Address)op->imm;
+            return true;
+        }
+
+        return false;
+    }
+
+    bool SimulationTracer::isLoopBranch(cs_insn *insn) {
+        switch (insn->id) {
+            case ARM_INS_B:      
+            case ARM_INS_CBZ:
+            case ARM_INS_CBNZ:
+                return 1;
+
+            default:
+                return 0;
+        }
     }
 
 } // namespace Simulator
